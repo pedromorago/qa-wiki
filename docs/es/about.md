@@ -46,3 +46,9 @@ Tres motivos:
 1. **Aprender escribiendo** — explicar algo con tus palabras es la prueba de fuego de que lo entiendes.
 2. **Referencia rápida** — mi documentación de consulta mientras trabajo.
 3. **Divulgación** — si a alguien más le sirve lo que voy aprendiendo, doble victoria.
+
+## Cómo está hecha esta wiki
+
+Transparencia total: mantengo esta wiki **con ayuda de Claude Code**. La experiencia, las decisiones técnicas y el criterio detrás de cada artículo son míos — salen de mi día a día como QA —, y la IA me ayuda con la redacción, la traducción y la infraestructura del sitio. Reviso y suscribo cada página.
+
+Lo veo igual que la automatización de pruebas: la herramienta te multiplica, pero [no sustituye tu criterio](/es/automation/ai-in-test-automation). Saber trabajar *con* la IA — darle el contexto adecuado, revisar su salida con ojo crítico y mantener la propiedad del resultado — es parte de mi caja de herramientas como ingeniero.

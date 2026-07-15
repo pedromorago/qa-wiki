@@ -46,3 +46,9 @@ Three reasons:
 1. **Learning by writing** — explaining something in your own words is the litmus test that you understand it.
 2. **Quick reference** — my go-to documentation while I work.
 3. **Sharing** — if what I'm learning helps someone else too, that's a double win.
+
+## How this wiki is made
+
+Full transparency: I maintain this wiki **with the help of Claude Code**. The experience, the technical decisions and the criteria behind every article are mine — drawn from my day-to-day work as a QA engineer — and the AI helps me with drafting, translation and the site's infrastructure. I review and stand behind every page.
+
+I see it the same way I see test automation: the tool multiplies you, but [it doesn't replace your judgement](/automation/ai-in-test-automation). Knowing how to work *with* AI — giving it the right context, reviewing its output critically, and keeping ownership of the result — is part of my toolkit as an engineer.
