@@ -1,20 +1,20 @@
 # API Testing
 
-Probar por debajo de la interfaz: más rápido, más estable y más cerca de la lógica de negocio que el testing de UI.
+Testing below the interface: faster, more stable, and closer to the business logic than UI testing.
 
-## Fundamentos
+## Fundamentals
 
-- [Fundamentos de HTTP](/api-testing/fundamentos-http) — métodos, códigos de estado, cabeceras: el idioma de las APIs.
-- [Qué probar en una API](/api-testing/que-probar-en-una-api) — checklist: contrato, datos, errores, seguridad e idempotencia.
+- [HTTP fundamentals](/api-testing/http-fundamentals) — methods, status codes, headers: the language of APIs.
+- [What to test in an API](/api-testing/what-to-test-in-an-api) — checklist: contract, data, errors, security, and idempotency.
 
-## Automatización de APIs
+## API automation
 
-- [Arquitectura de un framework de API testing](/api-testing/arquitectura-framework-api) — capas, service objects y organización (Java + REST Assured + JUnit 5).
-- [Anatomía de un test de API](/api-testing/anatomia-de-un-test-de-api) — Given-When-Then, la matriz de casos por endpoint y las aserciones.
-- [Validación de JSON Schema](/api-testing/validacion-json-schema) — validar el contrato, no solo los valores.
-- [Datos de prueba y autenticación](/api-testing/datos-de-prueba-y-autenticacion) — builders con datos aleatorios, usuarios efímeros y mínimo privilegio.
-- [APIs asíncronas con Awaitility](/api-testing/apis-asincronas-awaitility) — polling con timeout en vez de sleeps.
+- [Architecture of an API testing framework](/api-testing/api-framework-architecture) — layers, service objects, and organization (Java + REST Assured + JUnit 5).
+- [Anatomy of an API test](/api-testing/anatomy-of-an-api-test) — Given-When-Then, the per-endpoint case matrix, and assertions.
+- [JSON Schema validation](/api-testing/json-schema-validation) — validate the contract, not just the values.
+- [Test data and authentication](/api-testing/test-data-and-authentication) — builders with random data, ephemeral users, and least privilege.
+- [Async APIs with Awaitility](/api-testing/async-apis-with-awaitility) — polling with a timeout instead of sleeps.
 
-## Herramientas
+## Tools
 
-- [REST Client de VS Code](/api-testing/rest-client-vscode) — probar APIs con ficheros `.http` versionados en el repo.
+- [VS Code REST Client](/api-testing/rest-client-vscode) — testing APIs with `.http` files versioned in the repo.

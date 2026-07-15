@@ -3,44 +3,44 @@ layout: home
 
 hero:
   name: "QA Wiki"
-  text: "Formación y conocimiento en Quality Assurance"
-  tagline: Mi base de conocimiento como QA Engineer — estrategia, API testing, Playwright, CI/CD y procesos de calidad, escritos con mis palabras.
+  text: "Training and knowledge in Quality Assurance"
+  tagline: My knowledge base as a QA Engineer — strategy, API testing, Playwright, CI/CD and quality processes, written in my own words.
   actions:
     - theme: brand
-      text: Empezar por los fundamentos
-      link: /fundamentos/que-es-qa
+      text: Start with the fundamentals
+      link: /fundamentals/what-is-qa
     - theme: alt
-      text: Sobre mí
-      link: /sobre-mi
+      text: About me
+      link: /about
 
 features:
   - icon: 🧭
-    title: Fundamentos
-    details: Tipos de testing, la pirámide, diseño de casos de prueba, reporte de bugs y la evolución del rol de QA.
-    link: /fundamentos/
+    title: Fundamentals
+    details: Types of testing, the pyramid, test case design, bug reporting and the evolution of the QA role.
+    link: /fundamentals/
   - icon: ♟️
-    title: Estrategia y procesos
-    details: Testing ágil, capas de testing con ejemplos, microservicios, shift-left con su modelo de madurez, causa raíz de bugs.
-    link: /estrategia/
+    title: Strategy and processes
+    details: Agile testing, testing layers with examples, microservices, shift-left with its maturity model, bug root cause analysis.
+    link: /strategy/
   - icon: 🔌
     title: API Testing
-    details: HTTP, qué probar en una API, y automatización con REST Assured + JUnit 5 — schemas, datos, autenticación y APIs asíncronas.
+    details: HTTP, what to test in an API, and automation with REST Assured + JUnit 5 — schemas, data, authentication and async APIs.
     link: /api-testing/
   - icon: 🎭
-    title: Automatización con Playwright
-    details: POM, configuración, TypeScript, tags — y un caso real de migración desde TestCafe con números.
-    link: /automatizacion/
+    title: Automation with Playwright
+    details: POM, configuration, TypeScript, tags — and a real migration case from TestCafe, with numbers.
+    link: /automation/
   - icon: 🔁
-    title: CI/CD y calidad de código
-    details: Validaciones por entorno, análisis estático (Sonar, linters) y paralelización/sharding de suites.
+    title: CI/CD and code quality
+    details: Environment validations, static analysis (Sonar, linters) and suite parallelization/sharding.
     link: /cicd/
   - icon: 📖
-    title: En constante crecimiento
-    details: Documento vivo — cada cosa que aprendo trabajando o estudiando acaba aquí, destilada y sin humo.
+    title: Constantly growing
+    details: A living document — everything I learn while working or studying ends up here, distilled and hype-free.
 ---
 
-## Sobre esta wiki
+## About this wiki
 
-Soy [Pedro Morago](/sobre-mi), QA Engineer. Esta es mi **base de conocimiento personal**: aquí recojo, organizo y explico con mis palabras lo que voy aprendiendo — de estrategia de testing a Playwright, pasando por API testing, CI/CD y procesos de calidad. Me sirve para consultar mientras trabajo, para afianzar lo aprendido escribiéndolo, y como divulgación por si a alguien más le resulta útil.
+I'm [Pedro Morago](/about), QA Engineer. This is my **personal knowledge base**: here I collect, organize and explain in my own words what I keep learning — from testing strategy to Playwright, through API testing, CI/CD and quality processes. It helps me look things up while I work, cement what I've learned by writing it down, and share it in case it's useful to someone else.
 
-Si algo está incompleto es porque está vivo: lo iré ampliando.
+If something looks incomplete, it's because it's alive: I'll keep expanding it.

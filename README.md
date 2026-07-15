@@ -3,46 +3,47 @@
 [![Deploy](https://github.com/pedro-morago/formacion/actions/workflows/deploy.yml/badge.svg)](https://github.com/pedro-morago/formacion/actions/workflows/deploy.yml)
 [![CI](https://github.com/pedro-morago/formacion/actions/workflows/ci.yml/badge.svg)](https://github.com/pedro-morago/formacion/actions/workflows/ci.yml)
 
-Mi wiki personal de conocimiento en **Quality Assurance**: todo lo que voy aprendiendo, escrito con mis palabras, organizado y consultable. Me sirve como referencia mientras trabajo y como parte de mi portfolio.
+My personal **Quality Assurance** knowledge wiki: everything I keep learning, written in my own words, organized and searchable. It serves as a reference while I work and as part of my portfolio.
 
 **🌐 Web**: https://pedro-morago.github.io/formacion/
 
-Construida con [VitePress](https://vitepress.dev): las entradas son archivos Markdown en `docs/`, cada pull request pasa un build de validación (CI, que también detecta enlaces rotos), y cada push a `main` despliega automáticamente a GitHub Pages.
+Built with [VitePress](https://vitepress.dev): entries are Markdown files in `docs/`, every pull request goes through a validation build (CI, which also detects broken links), and every push to `main` deploys automatically to GitHub Pages.
 
-## Cómo añadir contenido
+## How to add content
 
-1. Crear un `.md` en la carpeta de su categoría (p. ej. `docs/fundamentos/mi-tema.md`). Hay una [plantilla](docs/plantilla.md) con la estructura recomendada.
-2. Añadirlo al sidebar en `docs/.vitepress/config.mts`:
+1. Create a `.md` file in its category folder (e.g. `docs/fundamentals/my-topic.md`). There's a [template](docs/template.md) with the recommended structure.
+2. Add it to the sidebar in `docs/.vitepress/sidebar.ts`:
    ```ts
-   { text: 'Mi tema', link: '/fundamentos/mi-tema' }
+   { text: 'My topic', link: '/fundamentals/my-topic' }
    ```
-3. Commit y push a `main`. En un par de minutos está publicado.
+3. Commit and push to `main`. It's published within a couple of minutes.
 
-## Desarrollo en local
+## Local development
 
 ```bash
 npm install
-npm run dev      # servidor local con hot reload
-npm run build    # build de producción
-npm run preview  # previsualizar el build
+npm run dev      # local server with hot reload
+npm run build    # production build
+npm run preview  # preview the build
 ```
 
-## Estructura
+## Structure
 
 ```
 docs/
-├── .vitepress/config.mts   # configuración, menú y sidebar
-├── index.md                # portada
-├── fundamentos/            # conceptos base de QA
-├── estrategia/             # estrategia de testing y procesos de calidad
-├── api-testing/            # testing y automatización de APIs
-├── automatizacion/         # Playwright, patrones y casos reales
-├── cicd/                   # pipelines, análisis estático, sharding
-├── glosario.md             # términos en corto
-├── plantilla.md            # plantilla para nuevas entradas
-└── sobre-mi.md             # bio y proyectos
+├── .vitepress/config.mts   # configuration and top menu
+├── .vitepress/sidebar.ts   # sidebar
+├── index.md                # home page
+├── fundamentals/           # core QA concepts
+├── strategy/               # testing strategy and quality processes
+├── api-testing/            # API testing and automation
+├── automation/             # Playwright, patterns and real cases
+├── cicd/                   # pipelines, static analysis, sharding
+├── glossary.md             # terms in short
+├── template.md             # template for new entries
+└── about.md                # bio and projects
 ```
 
-## Activar GitHub Pages (solo la primera vez)
+## Enabling GitHub Pages (first time only)
 
-En el repo: **Settings → Pages → Source → GitHub Actions**. Con eso, el workflow de `.github/workflows/deploy.yml` se encarga del resto.
+In the repo: **Settings → Pages → Source → GitHub Actions**. From there, the `.github/workflows/deploy.yml` workflow takes care of the rest.
