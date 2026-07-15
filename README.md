@@ -31,10 +31,13 @@ docs/
 ├── .vitepress/config.mts   # configuración, menú y sidebar
 ├── index.md                # portada
 ├── fundamentos/            # conceptos base de QA
-├── api-testing/            # testing de APIs
-├── automatizacion/         # estrategia y herramientas
+├── estrategia/             # estrategia de testing y procesos de calidad
+├── api-testing/            # testing y automatización de APIs
+├── automatizacion/         # Playwright, patrones y casos reales
+├── cicd/                   # pipelines, análisis estático, sharding
 ├── glosario.md             # términos en corto
-└── plantilla.md            # plantilla para nuevas entradas
+├── plantilla.md            # plantilla para nuevas entradas
+└── sobre-mi.md             # bio y proyectos
 ```
 
 ## Activar GitHub Pages (solo la primera vez)
