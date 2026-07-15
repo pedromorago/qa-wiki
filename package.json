@@ -1,0 +1,15 @@
+{
+  "name": "formacion-qa",
+  "version": "1.0.0",
+  "description": "Wiki personal de formación y conocimiento en QA",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}
