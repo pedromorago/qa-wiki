@@ -4,6 +4,9 @@
   "description": "Wiki personal de formación y conocimiento en QA",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",

@@ -1,7 +1,7 @@
-# CI/CD y calidad de código
+# CI/CD and code quality
 
-El testing no vive solo en el repositorio de tests: vive en la pipeline. Integración de pruebas en CI/CD, análisis estático y optimización de la ejecución.
+Testing doesn't live only in the test repository: it lives in the pipeline. Integrating tests into CI/CD, static analysis, and execution optimization.
 
-- [Validaciones por entorno](/cicd/validaciones-por-entorno) — qué batería corre en cada etapa (PR → integración → release) y por qué.
-- [Análisis estático](/cicd/analisis-estatico) — SonarCloud, quality gates, SonarLint, Checkstyle y ESLint, en pipeline y en el IDE.
-- [Paralelización y sharding de tests](/cicd/paralelizacion-y-sharding) — repartir la suite para que la pipeline vuele (sin pagar más infraestructura).
+- [Environment validations](/cicd/environment-validations) — which battery of tests runs at each stage (PR → integration → release) and why.
+- [Static analysis](/cicd/static-analysis) — SonarCloud, quality gates, SonarLint, Checkstyle and ESLint, in the pipeline and in the IDE.
+- [Test parallelization and sharding](/cicd/parallelization-and-sharding) — splitting the suite so the pipeline flies (without paying for more infrastructure).

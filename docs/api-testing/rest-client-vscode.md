@@ -1,67 +1,67 @@
-# Probar APIs desde el editor: REST Client
+# Testing APIs from the editor: REST Client
 
-[REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) es una extensión de VS Code para enviar peticiones HTTP desde ficheros de texto plano. Para el trabajo exploratorio con APIs se ha ganado un hueco frente a Postman por tres razones:
+[REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) is a VS Code extension for sending HTTP requests from plain text files. For exploratory API work it has earned its place next to Postman for three reasons:
 
-- **Los ficheros `.http` viven en el repositorio**: se versionan, se revisan en PRs y funcionan como **documentación ejecutable** de la API para todo el equipo.
-- **Cero cambio de contexto**: pruebas el endpoint en la misma ventana donde escribes el código o el test.
-- Texto plano y difeable — sin colecciones propietarias ni cuenta cloud.
+- **The `.http` files live in the repository**: they get versioned, reviewed in PRs, and work as **executable documentation** of the API for the whole team.
+- **Zero context switching**: you test the endpoint in the same window where you write the code or the test.
+- Plain, diffable text — no proprietary collections, no cloud account.
 
-## Mecánica
+## Mechanics
 
-1. Crea un fichero `.http` (o `.rest`).
-2. Escribe la petición: método + URL, headers debajo y — detalle que siempre se olvida — **una línea en blanco entre headers y body**.
-3. Pulsa el enlace **"Send Request"** que aparece sobre la petición; la respuesta se abre en un panel lateral.
-4. Un mismo fichero admite todas las peticiones que quieras, **separadas por `###`**.
+1. Create a `.http` (or `.rest`) file.
+2. Write the request: method + URL, headers below, and — the detail everyone forgets — **a blank line between headers and body**.
+3. Click the **"Send Request"** link that appears above the request; the response opens in a side panel.
+4. A single file can hold as many requests as you want, **separated by `###`**.
 
-## Variables y encadenado de peticiones
+## Variables and request chaining
 
-**Variables de fichero** — se declaran con `@nombre = valor` (strings sin comillas) y se usan envolviendo el nombre en dobles llaves, como se ve en el ejemplo de abajo. La base para manejar entornos: cambias `@baseUrl` y todo el fichero apunta a otro sitio.
+**File variables** — declared with `@name = value` (strings without quotes) and used by wrapping the name in double curly braces, as shown in the example below. The foundation for handling environments: change `@baseUrl` and the whole file points somewhere else.
 
-**Variables de petición** — la joya: nombras una petición con `# @name` y extraes datos de su respuesta con JSONPath. Es el flujo de autenticación típico: un POST devuelve el JWT y las siguientes peticiones lo usan como bearer.
+**Request variables** — the gem: you name a request with `# @name` and extract data from its response with JSONPath. It's the typical authentication flow: a POST returns the JWT and subsequent requests use it as a bearer.
 
 ```http
 @baseUrl = http://localhost:8080/api/v1
 @contentType = application/json
 
-### Crear un recurso
+### Create a resource
 POST {{baseUrl}}/libraries
 Content-Type: {{contentType}}
 
 {
-  "name": "Mi biblioteca",
-  "description": "Creada desde REST Client"
+  "name": "My library",
+  "description": "Created from REST Client"
 }
 
-### Autenticarse y capturar el token
+### Authenticate and capture the token
 # @name authRequest
 POST {{baseUrl}}/auth/token
 Content-Type: {{contentType}}
 
 {
-  "username": "usuario-de-pruebas",
+  "username": "test-user",
   "password": "{{password}}"
 }
 
-### Usar el token en una ruta protegida
+### Use the token on a protected route
 @accessToken = {{authRequest.response.body.$.accessToken}}
 
 GET {{baseUrl}}/security-classifications
 Authorization: Bearer {{accessToken}}
 ```
 
-La sintaxis general de extracción:
+The general extraction syntax:
 
 ```
-{{nombreRequest.(response|request).(body|headers).(JSONPath|NombreHeader)}}
+{{requestName.(response|request).(body|headers).(JSONPath|HeaderName)}}
 ```
 
-## Dónde encaja (y dónde no)
+## Where it fits (and where it doesn't)
 
-| Necesidad | Herramienta |
+| Need | Tool |
 |---|---|
-| Explorar un endpoint mientras desarrollas/testeas | **REST Client** |
-| Compartir ejemplos de uso de la API con el equipo | **REST Client** (versionado en el repo) |
-| Regresión automatizada de API en CI | Framework de tests ([REST Assured](/api-testing/arquitectura-framework-api), pytest, Vitest…) |
-| Colecciones complejas con scripting y monitores | Postman |
+| Exploring an endpoint while developing/testing | **REST Client** |
+| Sharing API usage examples with the team | **REST Client** (versioned in the repo) |
+| Automated API regression in CI | Test framework ([REST Assured](/api-testing/api-framework-architecture), pytest, Vitest…) |
+| Complex collections with scripting and monitors | Postman |
 
-Mi uso real: los `.http` son el **cuaderno de laboratorio** — reproduzco el bug, afino la petición, y ese fichero acaba pegado en el bug report o convertido en un test automatizado.
+My actual usage: the `.http` files are the **lab notebook** — I reproduce the bug, fine-tune the request, and that file ends up pasted into the bug report or turned into an automated test.
