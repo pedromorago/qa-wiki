@@ -9,6 +9,13 @@ import type { DefaultTheme } from 'vitepress'
 
 export const sidebarEn: DefaultTheme.Sidebar = [
   {
+    text: 'Start here',
+    collapsed: false,
+    items: [
+      { text: 'QA learning path', link: '/learning-path' },
+    ],
+  },
+  {
     text: 'QA Fundamentals',
     collapsed: false,
     items: [
@@ -73,6 +80,14 @@ export const sidebarEn: DefaultTheme.Sidebar = [
     ],
   },
   {
+    text: 'ISTQB Certification',
+    collapsed: false,
+    items: [
+      { text: 'The CTFL v4.0 exam', link: '/istqb/exam-format' },
+      { text: 'Study plan', link: '/istqb/study-plan' },
+    ],
+  },
+  {
     text: 'Reference',
     collapsed: false,
     items: [
@@ -84,6 +99,13 @@ export const sidebarEn: DefaultTheme.Sidebar = [
 ]
 
 export const sidebarEs: DefaultTheme.Sidebar = [
+  {
+    text: 'Empieza aquí',
+    collapsed: false,
+    items: [
+      { text: 'Ruta de aprendizaje QA', link: '/es/learning-path' },
+    ],
+  },
   {
     text: 'Fundamentos de QA',
     collapsed: false,
@@ -146,6 +168,14 @@ export const sidebarEs: DefaultTheme.Sidebar = [
       { text: 'Validaciones por entorno', link: '/es/cicd/environment-validations' },
       { text: 'Análisis estático', link: '/es/cicd/static-analysis' },
       { text: 'Paralelización y sharding', link: '/es/cicd/parallelization-and-sharding' },
+    ],
+  },
+  {
+    text: 'Certificación ISTQB',
+    collapsed: false,
+    items: [
+      { text: 'El examen CTFL v4.0', link: '/es/istqb/exam-format' },
+      { text: 'Plan de estudio', link: '/es/istqb/study-plan' },
     ],
   },
   {

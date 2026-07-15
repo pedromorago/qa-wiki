@@ -7,8 +7,8 @@ hero:
   tagline: My knowledge base as a QA Engineer — strategy, API testing, Playwright, CI/CD and quality processes, written in my own words.
   actions:
     - theme: brand
-      text: Start with the fundamentals
-      link: /fundamentals/what-is-qa
+      text: Start here, the learning path
+      link: /learning-path
     - theme: alt
       text: About me
       link: /about
@@ -34,6 +34,10 @@ features:
     title: CI/CD and code quality
     details: Environment validations, static analysis (Sonar, linters) and suite parallelization/sharding.
     link: /cicd/
+  - icon: 🎓
+    title: ISTQB Certification
+    details: The CTFL v4.0 exam explained — format, chapters, K-levels — and a study plan built on the official documents.
+    link: /istqb/
   - icon: 📖
     title: Constantly growing
     details: A living document — everything I learn while working or studying ends up here, distilled and hype-free.
