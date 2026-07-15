@@ -5,16 +5,19 @@
 
 My personal **Quality Assurance** knowledge wiki: everything I keep learning, written in my own words, organized and searchable. It serves as a reference while I work and as part of my portfolio.
 
-**🌐 Web**: https://pedro-morago.github.io/formacion/
+**🌐 Web**: https://pedro-morago.github.io/formacion/ (English) · https://pedro-morago.github.io/formacion/es/ (Español)
 
 Built with [VitePress](https://vitepress.dev): entries are Markdown files in `docs/`, every pull request goes through a validation build (CI, which also detects broken links), and every push to `main` deploys automatically to GitHub Pages.
 
+The wiki is **bilingual**: English lives at the root (`docs/`) and Spanish under `docs/es/`, mirroring the same file paths so the language switcher can jump between versions of the same page.
+
 ## How to add content
 
-1. Create a `.md` file in its category folder (e.g. `docs/fundamentals/my-topic.md`). There's a [template](docs/template.md) with the recommended structure.
-2. Add it to the sidebar in `docs/.vitepress/sidebar.ts`:
+1. Create the `.md` file in its category folder (e.g. `docs/fundamentals/my-topic.md`) and its Spanish version at the same path under `docs/es/` (e.g. `docs/es/fundamentals/my-topic.md`). There's a [template](docs/template.md) with the recommended structure.
+2. Add it to both sidebars in `docs/.vitepress/sidebar.ts` (`sidebarEn` and `sidebarEs`):
    ```ts
-   { text: 'My topic', link: '/fundamentals/my-topic' }
+   { text: 'My topic', link: '/fundamentals/my-topic' }        // sidebarEn
+   { text: 'Mi tema', link: '/es/fundamentals/my-topic' }      // sidebarEs
    ```
 3. Commit and push to `main`. It's published within a couple of minutes.
 

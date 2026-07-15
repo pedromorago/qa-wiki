@@ -1,8 +1,13 @@
 import type { DefaultTheme } from 'vitepress'
 
-// Sidebar of the wiki. To add a new article: create the .md file in its
-// section folder and add one { text, link } entry to the matching group.
-export const sidebar: DefaultTheme.Sidebar = [
+// Sidebars for both locales. Page slugs are identical across locales
+// (English slugs, Spanish under /es/) so the language switcher can jump
+// between versions of the same page.
+//
+// To add a new article: create the .md file in BOTH trees
+// (docs/<section>/ and docs/es/<section>/) and add one entry per sidebar.
+
+export const sidebarEn: DefaultTheme.Sidebar = [
   {
     text: 'QA Fundamentals',
     collapsed: false,
@@ -74,6 +79,82 @@ export const sidebar: DefaultTheme.Sidebar = [
       { text: 'Glossary', link: '/glossary' },
       { text: 'Entry template', link: '/template' },
       { text: 'About me', link: '/about' },
+    ],
+  },
+]
+
+export const sidebarEs: DefaultTheme.Sidebar = [
+  {
+    text: 'Fundamentos de QA',
+    collapsed: false,
+    items: [
+      { text: '¿Qué es QA?', link: '/es/fundamentals/what-is-qa' },
+      { text: 'Tipos de testing', link: '/es/fundamentals/types-of-testing' },
+      { text: 'La pirámide de testing', link: '/es/fundamentals/the-testing-pyramid' },
+      { text: 'Diseño de casos de prueba', link: '/es/fundamentals/test-case-design' },
+      { text: 'Reporte de bugs', link: '/es/fundamentals/bug-reporting' },
+      { text: 'La evolución del rol de QA', link: '/es/fundamentals/the-evolving-qa-role' },
+    ],
+  },
+  {
+    text: 'Estrategia y procesos',
+    collapsed: false,
+    items: [
+      { text: 'Estrategia de testing ágil', link: '/es/strategy/agile-testing-strategy' },
+      { text: 'Definir las pruebas de una feature', link: '/es/strategy/defining-tests-for-a-feature' },
+      { text: 'Capas de testing: backend', link: '/es/strategy/backend-testing-layers' },
+      { text: 'Capas de testing: frontend', link: '/es/strategy/frontend-testing-layers' },
+      { text: 'Qué debe cubrir un E2E', link: '/es/strategy/what-e2e-tests-should-cover' },
+      { text: 'Testing de microservicios', link: '/es/strategy/microservices-testing' },
+      { text: 'Shift-left y madurez', link: '/es/strategy/shift-left-and-maturity' },
+      { text: 'Criterios de aceptación y DoR', link: '/es/strategy/acceptance-criteria-and-dor' },
+      { text: 'Causa raíz de bugs', link: '/es/strategy/bug-root-cause-analysis' },
+      { text: 'Cómo revisar una tarea', link: '/es/strategy/how-to-review-a-task' },
+    ],
+  },
+  {
+    text: 'API Testing',
+    collapsed: false,
+    items: [
+      { text: 'Fundamentos de HTTP', link: '/es/api-testing/http-fundamentals' },
+      { text: 'Qué probar en una API', link: '/es/api-testing/what-to-test-in-an-api' },
+      { text: 'Arquitectura de un framework', link: '/es/api-testing/api-framework-architecture' },
+      { text: 'Anatomía de un test de API', link: '/es/api-testing/anatomy-of-an-api-test' },
+      { text: 'Validación de JSON Schema', link: '/es/api-testing/json-schema-validation' },
+      { text: 'Datos de prueba y autenticación', link: '/es/api-testing/test-data-and-authentication' },
+      { text: 'APIs asíncronas: Awaitility', link: '/es/api-testing/async-apis-with-awaitility' },
+      { text: 'REST Client (VS Code)', link: '/es/api-testing/rest-client-vscode' },
+    ],
+  },
+  {
+    text: 'Automatización',
+    collapsed: false,
+    items: [
+      { text: 'Cuándo automatizar', link: '/es/automation/when-to-automate' },
+      { text: 'Playwright: primeros pasos', link: '/es/automation/playwright-first-steps' },
+      { text: 'Page Object Model', link: '/es/automation/page-object-model' },
+      { text: 'Configurar y organizar la suite', link: '/es/automation/configuring-and-organizing-playwright' },
+      { text: 'TypeScript para QA', link: '/es/automation/typescript-for-qa' },
+      { text: 'Migrar de TestCafe a Playwright', link: '/es/automation/migrating-from-testcafe-to-playwright' },
+      { text: 'IA en automatización', link: '/es/automation/ai-in-test-automation' },
+    ],
+  },
+  {
+    text: 'CI/CD y calidad de código',
+    collapsed: false,
+    items: [
+      { text: 'Validaciones por entorno', link: '/es/cicd/environment-validations' },
+      { text: 'Análisis estático', link: '/es/cicd/static-analysis' },
+      { text: 'Paralelización y sharding', link: '/es/cicd/parallelization-and-sharding' },
+    ],
+  },
+  {
+    text: 'Referencia',
+    collapsed: false,
+    items: [
+      { text: 'Glosario', link: '/es/glossary' },
+      { text: 'Plantilla de entrada', link: '/es/template' },
+      { text: 'Sobre mí', link: '/es/about' },
     ],
   },
 ]
