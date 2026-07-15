@@ -1,10 +1,13 @@
 # 📚 QA Wiki — Formación
 
+[![Deploy](https://github.com/pedro-morago/formacion/actions/workflows/deploy.yml/badge.svg)](https://github.com/pedro-morago/formacion/actions/workflows/deploy.yml)
+[![CI](https://github.com/pedro-morago/formacion/actions/workflows/ci.yml/badge.svg)](https://github.com/pedro-morago/formacion/actions/workflows/ci.yml)
+
 Mi wiki personal de conocimiento en **Quality Assurance**: todo lo que voy aprendiendo, escrito con mis palabras, organizado y consultable. Me sirve como referencia mientras trabajo y como parte de mi portfolio.
 
 **🌐 Web**: https://pedro-morago.github.io/formacion/
 
-Construida con [VitePress](https://vitepress.dev): las entradas son archivos Markdown en `docs/`, y cada push a `main` despliega automáticamente a GitHub Pages.
+Construida con [VitePress](https://vitepress.dev): las entradas son archivos Markdown en `docs/`, cada pull request pasa un build de validación (CI, que también detecta enlaces rotos), y cada push a `main` despliega automáticamente a GitHub Pages.
 
 ## Cómo añadir contenido
 

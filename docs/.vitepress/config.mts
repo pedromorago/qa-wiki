@@ -8,7 +8,27 @@ export default defineConfig({
   lastUpdated: true,
   cleanUrls: true,
 
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/formacion/logo.svg' }],
+    ['meta', { name: 'theme-color', content: '#646cff' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:locale', content: 'es_ES' }],
+    ['meta', { property: 'og:title', content: 'QA Wiki — Formación y conocimiento en Quality Assurance' }],
+    ['meta', { property: 'og:description', content: 'Base de conocimiento de QA: estrategia de testing, API testing, Playwright, CI/CD y procesos de calidad, en español.' }],
+    ['meta', { property: 'og:site_name', content: 'QA Wiki' }],
+    ['meta', { property: 'og:url', content: 'https://pedro-morago.github.io/formacion/' }],
+  ],
+
+  sitemap: {
+    hostname: 'https://pedro-morago.github.io/formacion/',
+  },
+
+  markdown: {
+    image: { lazyLoading: true },
+  },
+
   themeConfig: {
+    logo: '/logo.svg',
     nav: [
       { text: 'Inicio', link: '/' },
       { text: 'Fundamentos', link: '/fundamentos/' },
@@ -117,6 +137,21 @@ export default defineConfig({
           },
         },
       },
+    },
+
+    editLink: {
+      pattern: 'https://github.com/pedro-morago/formacion/edit/main/docs/:path',
+      text: 'Editar esta página en GitHub',
+    },
+
+    externalLinkIcon: true,
+
+    notFound: {
+      title: 'PÁGINA NO ENCONTRADA',
+      quote: 'Como buen QA sé que un 404 también hay que probarlo — pero este no debería estar aquí.',
+      linkText: 'Volver al inicio',
+      linkLabel: 'volver al inicio',
+      code: '404',
     },
 
     outline: { label: 'En esta página' },
