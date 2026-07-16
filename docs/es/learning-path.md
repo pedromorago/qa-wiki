@@ -45,7 +45,7 @@ Antes de automatizar interfaces hay que entender lo que viaja por debajo.
 6. [APIs asíncronas: Awaitility](/es/api-testing/async-apis-with-awaitility)
 7. [Arquitectura de un framework de API testing](/es/api-testing/api-framework-architecture)
 8. [REST Client (VS Code)](/es/api-testing/rest-client-vscode)
-9. SQL para QA <Badge type="warning" text="pendiente" /> — validar en base de datos lo que la API afirma.
+9. [SQL para QA](/es/api-testing/sql-for-qa) — validar en base de datos lo que la API afirma.
 10. Contract testing (Pact) <Badge type="warning" text="pendiente" />
 
 ## Etapa 5 — Automatización E2E

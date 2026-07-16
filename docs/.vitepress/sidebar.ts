@@ -56,6 +56,7 @@ export const sidebarEn: DefaultTheme.Sidebar = [
       { text: 'Test data and authentication', link: '/api-testing/test-data-and-authentication' },
       { text: 'Async APIs with Awaitility', link: '/api-testing/async-apis-with-awaitility' },
       { text: 'REST Client (VS Code)', link: '/api-testing/rest-client-vscode' },
+      { text: 'SQL for QA', link: '/api-testing/sql-for-qa' },
     ],
   },
   {
@@ -148,6 +149,7 @@ export const sidebarEs: DefaultTheme.Sidebar = [
       { text: 'Datos de prueba y autenticación', link: '/es/api-testing/test-data-and-authentication' },
       { text: 'APIs asíncronas: Awaitility', link: '/es/api-testing/async-apis-with-awaitility' },
       { text: 'REST Client (VS Code)', link: '/es/api-testing/rest-client-vscode' },
+      { text: 'SQL para QA', link: '/es/api-testing/sql-for-qa' },
     ],
   },
   {

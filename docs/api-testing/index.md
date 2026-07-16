@@ -18,3 +18,4 @@ Testing below the interface: faster, more stable, and closer to the business log
 ## Tools
 
 - [VS Code REST Client](/api-testing/rest-client-vscode) — testing APIs with `.http` files versioned in the repo.
+- [SQL for QA](/api-testing/sql-for-qa) — the 20 % of SQL that solves 80 % of the job: verifying persistence, preparing data and spotting inconsistencies.

@@ -18,3 +18,4 @@ Probar por debajo de la interfaz: más rápido, más estable y más cerca de la 
 ## Herramientas
 
 - [REST Client de VS Code](/es/api-testing/rest-client-vscode) — probar APIs con ficheros `.http` versionados en el repo.
+- [SQL para QA](/es/api-testing/sql-for-qa) — el 20 % de SQL que resuelve el 80 % del trabajo: verificar persistencia, preparar datos y detectar inconsistencias.
