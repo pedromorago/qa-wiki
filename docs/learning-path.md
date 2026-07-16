@@ -73,10 +73,12 @@ Judgment first, tooling second.
 Testing lives in CI/CD or it doesn't scale.
 
 1. [Environment validations](/cicd/environment-validations)
-2. [Static analysis](/cicd/static-analysis)
-3. [Parallelization and sharding](/cicd/parallelization-and-sharding)
-4. Docker for QA <Badge type="warning" text="planned" />
-5. Observability and logs for QA <Badge type="warning" text="planned" />
+2. [Jenkins and GitLab CI](/cicd/jenkins-and-gitlab-ci) — the concepts travel between tools.
+3. [Static analysis](/cicd/static-analysis)
+4. [Parallelization and sharding](/cicd/parallelization-and-sharding)
+5. [Docker for QA](/cicd/docker-for-qa) — the factory of reproducible environments.
+6. [AWS for QA](/cicd/aws-for-qa) — logs, data and artifacts in the cloud, without depending on anyone.
+7. Observability and logs for QA <Badge type="warning" text="planned" />
 
 ## Stage 7 — Advanced strategy
 
@@ -88,9 +90,10 @@ Designing the quality of a whole system, not of a single feature.
 4. [Microservices testing](/strategy/microservices-testing)
 5. [Shift-left and maturity](/strategy/shift-left-and-maturity)
 6. [Bug root cause analysis](/strategy/bug-root-cause-analysis)
-7. Performance testing with k6 <Badge type="warning" text="planned" />
-8. Security for QA: OWASP Top 10 <Badge type="warning" text="planned" />
-9. Accessibility testing <Badge type="warning" text="planned" />
+7. [Performance testing fundamentals](/performance/performance-fundamentals) — test types and the metrics that matter.
+8. [JMeter in practice](/performance/jmeter-in-practice) — from the design GUI to the CLI in the pipeline.
+9. Security for QA: OWASP Top 10 <Badge type="warning" text="planned" />
+10. Accessibility testing <Badge type="warning" text="planned" />
 
 ## Stage 8 — Domain specialization
 

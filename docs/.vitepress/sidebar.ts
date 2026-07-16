@@ -84,8 +84,19 @@ export const sidebarEn: DefaultTheme.Sidebar = [
     items: [
       { text: 'Git basics for QA', link: '/cicd/git-for-qa' },
       { text: 'Environment validations', link: '/cicd/environment-validations' },
+      { text: 'Jenkins and GitLab CI', link: '/cicd/jenkins-and-gitlab-ci' },
       { text: 'Static analysis', link: '/cicd/static-analysis' },
       { text: 'Parallelization and sharding', link: '/cicd/parallelization-and-sharding' },
+      { text: 'Docker for QA', link: '/cicd/docker-for-qa' },
+      { text: 'AWS for QA', link: '/cicd/aws-for-qa' },
+    ],
+  },
+  {
+    text: 'Performance',
+    collapsed: false,
+    items: [
+      { text: 'Performance fundamentals', link: '/performance/performance-fundamentals' },
+      { text: 'JMeter in practice', link: '/performance/jmeter-in-practice' },
     ],
   },
   {
@@ -191,8 +202,19 @@ export const sidebarEs: DefaultTheme.Sidebar = [
     items: [
       { text: 'Git básico para QA', link: '/es/cicd/git-for-qa' },
       { text: 'Validaciones por entorno', link: '/es/cicd/environment-validations' },
+      { text: 'Jenkins y GitLab CI', link: '/es/cicd/jenkins-and-gitlab-ci' },
       { text: 'Análisis estático', link: '/es/cicd/static-analysis' },
       { text: 'Paralelización y sharding', link: '/es/cicd/parallelization-and-sharding' },
+      { text: 'Docker para QA', link: '/es/cicd/docker-for-qa' },
+      { text: 'AWS para QA', link: '/es/cicd/aws-for-qa' },
+    ],
+  },
+  {
+    text: 'Rendimiento',
+    collapsed: false,
+    items: [
+      { text: 'Fundamentos de rendimiento', link: '/es/performance/performance-fundamentals' },
+      { text: 'JMeter en la práctica', link: '/es/performance/jmeter-in-practice' },
     ],
   },
   {

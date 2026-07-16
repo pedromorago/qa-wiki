@@ -73,10 +73,12 @@ Con criterio primero, herramienta después.
 El testing vive en CI/CD o no escala.
 
 1. [Validaciones por entorno](/es/cicd/environment-validations)
-2. [Análisis estático](/es/cicd/static-analysis)
-3. [Paralelización y sharding](/es/cicd/parallelization-and-sharding)
-4. Docker para QA <Badge type="warning" text="pendiente" />
-5. Observabilidad y logs para QA <Badge type="warning" text="pendiente" />
+2. [Jenkins y GitLab CI](/es/cicd/jenkins-and-gitlab-ci) — los conceptos viajan entre herramientas.
+3. [Análisis estático](/es/cicd/static-analysis)
+4. [Paralelización y sharding](/es/cicd/parallelization-and-sharding)
+5. [Docker para QA](/es/cicd/docker-for-qa) — la máquina de fabricar entornos reproducibles.
+6. [AWS para QA](/es/cicd/aws-for-qa) — logs, datos y artefactos en la nube, sin depender de nadie.
+7. Observabilidad y logs para QA <Badge type="warning" text="pendiente" />
 
 ## Etapa 7 — Estrategia avanzada
 
@@ -88,9 +90,10 @@ Diseñar la calidad de un sistema completo, no de una feature.
 4. [Testing de microservicios](/es/strategy/microservices-testing)
 5. [Shift-left y madurez](/es/strategy/shift-left-and-maturity)
 6. [Causa raíz de bugs](/es/strategy/bug-root-cause-analysis)
-7. Testing de rendimiento con k6 <Badge type="warning" text="pendiente" />
-8. Seguridad para QA: OWASP Top 10 <Badge type="warning" text="pendiente" />
-9. Testing de accesibilidad <Badge type="warning" text="pendiente" />
+7. [Fundamentos del testing de rendimiento](/es/performance/performance-fundamentals) — tipos de prueba y las métricas que importan.
+8. [JMeter en la práctica](/es/performance/jmeter-in-practice) — de la GUI de diseño a la CLI en la pipeline.
+9. Seguridad para QA: OWASP Top 10 <Badge type="warning" text="pendiente" />
+10. Testing de accesibilidad <Badge type="warning" text="pendiente" />
 
 ## Etapa 8 — Especialización de dominio
 
