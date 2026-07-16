@@ -13,7 +13,7 @@ The vocabulary and concepts everything else is built on.
 3. [The testing pyramid](/fundamentals/the-testing-pyramid)
 4. [Test case design](/fundamentals/test-case-design) — the core skill of the craft.
 5. [Bug reporting](/fundamentals/bug-reporting) — a badly reported bug is a bug that doesn't get fixed.
-6. Exploratory testing <Badge type="warning" text="planned" />
+6. [Exploratory testing](/fundamentals/exploratory-testing) — the technique that finds what scripts don't anticipate.
 
 ## Stage 2 — The craft in a real team
 

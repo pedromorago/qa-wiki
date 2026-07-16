@@ -13,7 +13,7 @@ El vocabulario y los conceptos sobre los que se construye todo lo demás.
 3. [La pirámide de testing](/es/fundamentals/the-testing-pyramid)
 4. [Diseño de casos de prueba](/es/fundamentals/test-case-design) — la habilidad central del oficio.
 5. [Reporte de bugs](/es/fundamentals/bug-reporting) — un bug mal reportado es un bug que no se arregla.
-6. Testing exploratorio <Badge type="warning" text="pendiente" />
+6. [Testing exploratorio](/es/fundamentals/exploratory-testing) — la técnica que encuentra lo que los scripts no anticipan.
 
 ## Etapa 2 — El oficio en un equipo real
 
