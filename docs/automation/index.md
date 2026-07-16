@@ -17,3 +17,6 @@ Strategy, Playwright, and E2E automation patterns.
 ## Real-world cases
 
 - [Migrating from TestCafe to Playwright](/automation/migrating-from-testcafe-to-playwright) — the full migration: numbers, method, and lessons learned.
+- [The E2E tools landscape](/automation/e2e-tools-landscape) — Selenium, WebDriverIO, Cypress and Playwright: the architecture behind each one and how to choose.
+- [Python for QA](/automation/python-for-qa) — pytest, requests and what else the QA's utility language is good for.
+- [BDD with Cucumber](/automation/bdd-with-cucumber) — Gherkin and step definitions, and when BDD genuinely pays off.

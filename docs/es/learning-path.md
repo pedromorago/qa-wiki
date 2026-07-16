@@ -44,25 +44,29 @@ Antes de automatizar interfaces hay que entender lo que viaja por debajo.
 5. [Datos de prueba y autenticación](/es/api-testing/test-data-and-authentication)
 6. [APIs asíncronas: Awaitility](/es/api-testing/async-apis-with-awaitility)
 7. [Arquitectura de un framework de API testing](/es/api-testing/api-framework-architecture)
-8. [REST Client (VS Code)](/es/api-testing/rest-client-vscode)
-9. [Postman y SoapUI](/es/api-testing/postman-and-soapui) — probar APIs sin framework, incluido SOAP con su WSDL.
-10. [SQL para QA](/es/api-testing/sql-for-qa) — validar en base de datos lo que la API afirma.
-11. [NoSQL para QA](/es/api-testing/nosql-for-qa) — validar cuando no hay esquema que te defienda.
-12. Contract testing (Pact) <Badge type="warning" text="pendiente" />
+8. [Karate: API testing con BDD](/es/api-testing/karate-api-testing) — la vía rápida y legible.
+9. [REST Client (VS Code)](/es/api-testing/rest-client-vscode)
+10. [Postman y SoapUI](/es/api-testing/postman-and-soapui) — probar APIs sin framework, incluido SOAP con su WSDL.
+11. [SQL para QA](/es/api-testing/sql-for-qa) — validar en base de datos lo que la API afirma.
+12. [NoSQL para QA](/es/api-testing/nosql-for-qa) — validar cuando no hay esquema que te defienda.
+13. Contract testing (Pact) <Badge type="warning" text="pendiente" />
 
 ## Etapa 5 — Automatización E2E
 
 Con criterio primero, herramienta después.
 
 1. [Cuándo automatizar](/es/automation/when-to-automate) — y cuándo no.
-2. [Playwright: primeros pasos](/es/automation/playwright-first-steps)
-3. [Page Object Model](/es/automation/page-object-model)
-4. [Configurar y organizar la suite](/es/automation/configuring-and-organizing-playwright)
-5. [TypeScript para QA](/es/automation/typescript-for-qa)
-6. [Migrar de TestCafe a Playwright](/es/automation/migrating-from-testcafe-to-playwright) — un caso real, con números.
-7. [IA en automatización](/es/automation/ai-in-test-automation)
-8. Testing visual <Badge type="warning" text="pendiente" />
-9. Mobile testing <Badge type="warning" text="pendiente" />
+2. [El panorama de herramientas E2E](/es/automation/e2e-tools-landscape) — Selenium, WebDriverIO, Cypress, Playwright: elige con criterio.
+3. [Playwright: primeros pasos](/es/automation/playwright-first-steps)
+4. [Page Object Model](/es/automation/page-object-model)
+5. [Configurar y organizar la suite](/es/automation/configuring-and-organizing-playwright)
+6. [TypeScript para QA](/es/automation/typescript-for-qa)
+7. [Python para QA](/es/automation/python-for-qa) — el lenguaje comodín: pytest y requests.
+8. [BDD con Cucumber](/es/automation/bdd-with-cucumber) — cuándo aporta y cuándo es teatro.
+9. [Migrar de TestCafe a Playwright](/es/automation/migrating-from-testcafe-to-playwright) — un caso real, con números.
+10. [IA en automatización](/es/automation/ai-in-test-automation)
+11. Testing visual <Badge type="warning" text="pendiente" />
+12. Mobile testing <Badge type="warning" text="pendiente" />
 
 ## Etapa 6 — La pipeline
 
