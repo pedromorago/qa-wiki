@@ -19,3 +19,5 @@ Probar por debajo de la interfaz: más rápido, más estable y más cerca de la 
 
 - [REST Client de VS Code](/es/api-testing/rest-client-vscode) — probar APIs con ficheros `.http` versionados en el repo.
 - [SQL para QA](/es/api-testing/sql-for-qa) — el 20 % de SQL que resuelve el 80 % del trabajo: verificar persistencia, preparar datos y detectar inconsistencias.
+- [Postman y SoapUI](/es/api-testing/postman-and-soapui) — probar APIs sin framework: colecciones con aserciones, y SOAP con su contrato WSDL.
+- [NoSQL para QA](/es/api-testing/nosql-for-qa) — qué garantías desaparecen sin esquema fijo y qué hay que validar por ello, con MongoDB como ejemplo.

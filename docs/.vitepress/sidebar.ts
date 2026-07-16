@@ -56,7 +56,9 @@ export const sidebarEn: DefaultTheme.Sidebar = [
       { text: 'Test data and authentication', link: '/api-testing/test-data-and-authentication' },
       { text: 'Async APIs with Awaitility', link: '/api-testing/async-apis-with-awaitility' },
       { text: 'REST Client (VS Code)', link: '/api-testing/rest-client-vscode' },
+      { text: 'Postman and SoapUI', link: '/api-testing/postman-and-soapui' },
       { text: 'SQL for QA', link: '/api-testing/sql-for-qa' },
+      { text: 'NoSQL for QA', link: '/api-testing/nosql-for-qa' },
     ],
   },
   {
@@ -80,6 +82,13 @@ export const sidebarEn: DefaultTheme.Sidebar = [
       { text: 'Environment validations', link: '/cicd/environment-validations' },
       { text: 'Static analysis', link: '/cicd/static-analysis' },
       { text: 'Parallelization and sharding', link: '/cicd/parallelization-and-sharding' },
+    ],
+  },
+  {
+    text: 'Telecom',
+    collapsed: false,
+    items: [
+      { text: 'OSS/BSS for QA', link: '/telecom/oss-bss-for-qa' },
     ],
   },
   {
@@ -150,7 +159,9 @@ export const sidebarEs: DefaultTheme.Sidebar = [
       { text: 'Datos de prueba y autenticación', link: '/es/api-testing/test-data-and-authentication' },
       { text: 'APIs asíncronas: Awaitility', link: '/es/api-testing/async-apis-with-awaitility' },
       { text: 'REST Client (VS Code)', link: '/es/api-testing/rest-client-vscode' },
+      { text: 'Postman y SoapUI', link: '/es/api-testing/postman-and-soapui' },
       { text: 'SQL para QA', link: '/es/api-testing/sql-for-qa' },
+      { text: 'NoSQL para QA', link: '/es/api-testing/nosql-for-qa' },
     ],
   },
   {
@@ -174,6 +185,13 @@ export const sidebarEs: DefaultTheme.Sidebar = [
       { text: 'Validaciones por entorno', link: '/es/cicd/environment-validations' },
       { text: 'Análisis estático', link: '/es/cicd/static-analysis' },
       { text: 'Paralelización y sharding', link: '/es/cicd/parallelization-and-sharding' },
+    ],
+  },
+  {
+    text: 'Telecom',
+    collapsed: false,
+    items: [
+      { text: 'OSS/BSS para QA', link: '/es/telecom/oss-bss-for-qa' },
     ],
   },
   {

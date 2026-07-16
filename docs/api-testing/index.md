@@ -19,3 +19,5 @@ Testing below the interface: faster, more stable, and closer to the business log
 
 - [VS Code REST Client](/api-testing/rest-client-vscode) — testing APIs with `.http` files versioned in the repo.
 - [SQL for QA](/api-testing/sql-for-qa) — the 20 % of SQL that solves 80 % of the job: verifying persistence, preparing data and spotting inconsistencies.
+- [Postman and SoapUI](/api-testing/postman-and-soapui) — testing APIs without a framework: collections with assertions, and SOAP with its WSDL contract.
+- [NoSQL for QA](/api-testing/nosql-for-qa) — which guarantees disappear without a fixed schema and what to validate because of it, with MongoDB as the example.

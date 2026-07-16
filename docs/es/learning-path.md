@@ -45,8 +45,10 @@ Antes de automatizar interfaces hay que entender lo que viaja por debajo.
 6. [APIs asíncronas: Awaitility](/es/api-testing/async-apis-with-awaitility)
 7. [Arquitectura de un framework de API testing](/es/api-testing/api-framework-architecture)
 8. [REST Client (VS Code)](/es/api-testing/rest-client-vscode)
-9. [SQL para QA](/es/api-testing/sql-for-qa) — validar en base de datos lo que la API afirma.
-10. Contract testing (Pact) <Badge type="warning" text="pendiente" />
+9. [Postman y SoapUI](/es/api-testing/postman-and-soapui) — probar APIs sin framework, incluido SOAP con su WSDL.
+10. [SQL para QA](/es/api-testing/sql-for-qa) — validar en base de datos lo que la API afirma.
+11. [NoSQL para QA](/es/api-testing/nosql-for-qa) — validar cuando no hay esquema que te defienda.
+12. Contract testing (Pact) <Badge type="warning" text="pendiente" />
 
 ## Etapa 5 — Automatización E2E
 
@@ -85,6 +87,12 @@ Diseñar la calidad de un sistema completo, no de una feature.
 7. Testing de rendimiento con k6 <Badge type="warning" text="pendiente" />
 8. Seguridad para QA: OWASP Top 10 <Badge type="warning" text="pendiente" />
 9. Testing de accesibilidad <Badge type="warning" text="pendiente" />
+
+## Etapa 8 — Especialización de dominio
+
+Cada sector tiene su mapa de sistemas y su vocabulario. En mi caso, telecom:
+
+1. [OSS/BSS para QA](/es/telecom/oss-bss-for-qa) — los sistemas de una operadora, TM Forum y qué significa probar en cadenas de sistemas.
 
 ::: tip Cómo usar esta ruta
 Si empiezas de cero: etapas 1 y 2 completas antes de nada, y busca cuanto antes un proyecto real (propio o de práctica) donde aplicar cada etapa. Si ya trabajas de QA: úsala para detectar huecos — todos los tenemos.
