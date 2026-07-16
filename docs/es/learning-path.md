@@ -24,7 +24,7 @@ Cómo se trabaja la calidad dentro de un equipo ágil, más allá de ejecutar pr
 3. [Cómo revisar una tarea](/es/strategy/how-to-review-a-task)
 4. [Definir las pruebas de una feature](/es/strategy/defining-tests-for-a-feature)
 5. [La evolución del rol de QA](/es/fundamentals/the-evolving-qa-role)
-6. Git básico para QA <Badge type="warning" text="pendiente" />
+6. [Git básico para QA](/es/cicd/git-for-qa) — el flujo diario y Git como herramienta de investigación (diff, blame, bisect).
 
 ## Etapa 3 — Certificación (opcional, recomendable)
 

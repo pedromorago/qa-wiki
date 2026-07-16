@@ -76,6 +76,7 @@ export const sidebarEn: DefaultTheme.Sidebar = [
     text: 'CI/CD & Code Quality',
     collapsed: false,
     items: [
+      { text: 'Git basics for QA', link: '/cicd/git-for-qa' },
       { text: 'Environment validations', link: '/cicd/environment-validations' },
       { text: 'Static analysis', link: '/cicd/static-analysis' },
       { text: 'Parallelization and sharding', link: '/cicd/parallelization-and-sharding' },
@@ -169,6 +170,7 @@ export const sidebarEs: DefaultTheme.Sidebar = [
     text: 'CI/CD y calidad de código',
     collapsed: false,
     items: [
+      { text: 'Git básico para QA', link: '/es/cicd/git-for-qa' },
       { text: 'Validaciones por entorno', link: '/es/cicd/environment-validations' },
       { text: 'Análisis estático', link: '/es/cicd/static-analysis' },
       { text: 'Paralelización y sharding', link: '/es/cicd/parallelization-and-sharding' },

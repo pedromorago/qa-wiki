@@ -24,7 +24,7 @@ How quality is worked inside an agile team, beyond executing tests.
 3. [How to review a task](/strategy/how-to-review-a-task)
 4. [Defining tests for a feature](/strategy/defining-tests-for-a-feature)
 5. [The evolving QA role](/fundamentals/the-evolving-qa-role)
-6. Git basics for QA <Badge type="warning" text="planned" />
+6. [Git basics for QA](/cicd/git-for-qa) — the daily flow and Git as an investigation tool (diff, blame, bisect).
 
 ## Stage 3 — Certification (optional, recommended)
 
