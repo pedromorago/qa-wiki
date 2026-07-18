@@ -1,6 +1,6 @@
 # Frontend testing layers, with examples
 
-The frontend counterpart of the [backend layers](/strategy/backend-testing-layers). Running example: **the user creation form** on the admin page of a SaaS.
+The frontend counterpart of the [backend layers](/strategy/backend-testing-layers). Running example: **the component creation form** inside a project on a threat modeling platform.
 
 ## Unit: component logic, no browser
 
@@ -8,8 +8,8 @@ No real DOM or browser; simulated events and **all API calls mocked** — never 
 
 For the creation form:
 
-- It renders correctly in readOnly mode.
-- The password field validations are displayed (passwords don't match, weak password…).
+- It renders correctly in readOnly mode (viewer role).
+- The name field validations are displayed (empty, too long, duplicated in the project…).
 - Labels show the correct text.
 
 The four usual focus areas:
@@ -36,11 +36,11 @@ Tools: Playwright Component Testing, Cypress Component Testing, Storybook.
 
 The application fully deployed (DB included), real data via API. The example flow:
 
-1. Log in and navigate to the users page.
+1. Log in and navigate to the project's component list.
 2. Click "Create".
-3. Fill in the form with valid data.
-4. Check that the dropdowns show the **correct roles** (real data from the backend).
-5. Submit and confirm: notification banner + the user appears in the list.
+3. Fill in the form with a valid name and type.
+4. Check that the dropdown shows the **correct component types** (real data from the backend).
+5. Submit and confirm: notification banner + the component appears in the list.
 
 Two golden rules for this layer:
 

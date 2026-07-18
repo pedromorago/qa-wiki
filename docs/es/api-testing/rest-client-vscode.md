@@ -23,13 +23,13 @@
 @baseUrl = http://localhost:8080/api/v1
 @contentType = application/json
 
-### Crear un recurso
+### Crear una biblioteca de contramedidas
 POST {{baseUrl}}/libraries
 Content-Type: {{contentType}}
 
 {
-  "name": "Mi biblioteca",
-  "description": "Creada desde REST Client"
+  "name": "Contramedidas propias",
+  "description": "Biblioteca de contramedidas creada desde REST Client"
 }
 
 ### Autenticarse y capturar el token

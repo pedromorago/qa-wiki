@@ -9,25 +9,25 @@ The pattern I use (Java + Lombok, but the concept is universal): models with a *
 ```java
 @Data
 @Builder
-public class GenericProductBody {
+public class CatalogProductBody {
 
     @Default
-    private String name = FeederHelper.generateRandomValue("Product_", 5);
+    private String name = FeederHelper.generateRandomValue("Fiber_", 5);
 
     @Default
     private String referenceId = FeederHelper.generateRandomValue("Product-", 5);
 
     @Default
-    private String description = FeederHelper.generateRandomValue("Product_", 100);
+    private String description = FeederHelper.generateRandomValue("Fiber_", 100);
 }
 ```
 
-- `GenericProductBody.builder().build()` → a complete, valid object with random values.
+- `CatalogProductBody.builder().build()` → a complete, valid object with random values.
 - For a specific case, **you override only the field that matters**:
 
 ```java
 // Negative case: empty name. The test declares ONLY what's relevant.
-GenericProductBody product = GenericProductBody.builder()
+CatalogProductBody product = CatalogProductBody.builder()
         .name("")
         .build();
 ```
@@ -38,7 +38,7 @@ In TypeScript the same pattern is **typed factories** in a shared data folder (`
 
 ## Create the data via API, not through the UI or the DB
 
-When a test needs a pre-existing entity (a user, a project), it creates it **by calling the API itself** during setup:
+When a test needs a pre-existing entity (a customer, a catalog product), it creates it **by calling the API itself** during setup:
 
 - **Environment independence**: you don't depend on the data dump having exactly that row.
 - **Speed and stability**: creating a user through the UI is 20 fragile seconds; via API, 200 ms.
@@ -66,7 +66,7 @@ Each test class creates its users via API with **exactly** the permissions the c
 @BeforeAll
 static void beforeAll() {
     // user with just the right permission for the endpoint under test
-    userWithPermission = UserUtils.createNewUserAndAssignPermissions("GLOBAL-ORDERS_UPDATE");
+    userWithPermission = UserUtils.createNewUserAndAssignPermissions("SERVICE-ORDERS_UPDATE");
     // user with no permissions, for the 403 case
     noPermissionUser = UserUtils.createNewUserAndAssignPermissions();
 }
@@ -77,8 +77,8 @@ Internally the helper runs the full flow via API — create role → assign perm
 The 403 case comes out naturally:
 
 ```java
-OrdersService ordersService = new OrdersService(noPermissionUser.getToken());
-ValidatableResponse response = ordersService.deleteOrder(FeederHelper.generateUuid());
+ServiceOrdersService serviceOrdersService = new ServiceOrdersService(noPermissionUser.getToken());
+ValidatableResponse response = serviceOrdersService.cancelOrder(FeederHelper.generateUuid());
 
 TestCaseReport.assertResponseCodeAndBodySchema("", response, HttpStatus.SC_FORBIDDEN,
         AUTH_SCHEMA_PATH + "/wrong-request.json");

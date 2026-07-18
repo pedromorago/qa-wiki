@@ -22,13 +22,13 @@ Here the key principle: **the ecosystem is treated as a black box with a single 
 The integrated-state tests **only run if the isolated-service tests have passed**. If the service is broken on the inside, testing its integration is burning pipeline time to learn what you already know.
 :::
 
-## A real case: reporting module
+## A real case: risk reporting module
 
-How this was applied to a report-generation microservice integrated with the core of a SaaS:
+How this was applied to the risk-report generation microservice integrated with the core of a threat modeling platform:
 
-- **Isolated**: backend unit tests per architectural piece (adapters, controllers, services); API E2E starting the service and validating **the content of the generated report** — that it includes all its sections and components, not just that it returns a 200.
+- **Isolated**: backend unit tests per architectural piece (adapters, controllers, services); API E2E starting the service and validating **the content of the generated report** — that it includes all its sections (project components, identified threats, applied countermeasures), not just that it returns a 200.
 - Frontend unit tests **were attempted and then deprecated** due to their complexity: that risk moved to being covered by the E2E tests. Retiring a layer is a legitimate strategy decision if the risk stays covered in another one — and documented.
-- **Integrated**: core→module API E2E (the request that triggers the report responds correctly) and frontend E2E (generating and **downloading** the report as a user).
+- **Integrated**: core→module API E2E (the request that triggers a project's report responds correctly) and frontend E2E (generating and **downloading** the risk report as a user).
 
 Out of this comes a test plan template for any new module: two phases (isolated/integrated) → layers per phase with their goal → decide which layers are worth it (and document the discarded ones) → if it produces artifacts, validate their content → gates between phases.
 

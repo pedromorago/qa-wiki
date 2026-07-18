@@ -6,13 +6,13 @@ Como el testing exhaustivo es imposible, el diseño de casos de prueba consiste 
 
 Dividir las entradas en grupos (particiones) donde el sistema debería comportarse igual, y probar **un solo valor representativo de cada grupo**.
 
-**Ejemplo**: un campo "edad" que acepta de 18 a 65 años.
+**Ejemplo**: un campo "ancho de banda contratado" (en Mbps) que acepta de 100 a 1000.
 
 | Partición | Rango | Valor de prueba | ¿Válida? |
 |---|---|---|---|
-| Menores | < 18 | 10 | ❌ Inválida |
-| Aceptados | 18–65 | 40 | ✅ Válida |
-| Mayores | > 65 | 70 | ❌ Inválida |
+| Por debajo del mínimo | < 100 | 50 | ❌ Inválida |
+| Aceptados | 100–1000 | 500 | ✅ Válida |
+| Por encima del máximo | > 1000 | 2000 | ❌ Inválida |
 | No numérico | "abc" | "abc" | ❌ Inválida |
 | Vacío | — | "" | ❌ Inválida |
 
@@ -22,7 +22,7 @@ Con 5 casos cubro lo que a fuerza bruta serían infinitos. Ojo: las particiones 
 
 Los bugs viven en las fronteras: los clásicos `>` donde debía ser `>=`. Por cada límite se prueban el valor del límite y sus vecinos inmediatos.
 
-Para el rango 18–65: probar **17, 18, 19** y **64, 65, 66**.
+Para el rango 100–1000: probar **99, 100, 101** y **999, 1000, 1001**.
 
 Esta técnica se combina siempre con la anterior: particiones para cubrir los grupos, límites para afinar las fronteras.
 
@@ -30,22 +30,22 @@ Esta técnica se combina siempre con la anterior: particiones para cubrir los gr
 
 Cuando el comportamiento depende de **combinaciones de condiciones**, una tabla de decisión garantiza que no se te escapa ninguna combinación.
 
-**Ejemplo**: descuento en un e-commerce.
+**Ejemplo**: descuento por convergencia en una operadora (cliente que añade una tarifa móvil).
 
 | Condición | R1 | R2 | R3 | R4 |
 |---|---|---|---|---|
-| ¿Cliente premium? | Sí | Sí | No | No |
-| ¿Compra > 100 €? | Sí | No | Sí | No |
-| **Resultado: descuento** | **20%** | **10%** | **5%** | **0%** |
+| ¿Tiene fibra contratada? | Sí | Sí | No | No |
+| ¿Añade una segunda línea móvil? | Sí | No | Sí | No |
+| **Resultado: descuento en la cuota móvil** | **20%** | **10%** | **5%** | **0%** |
 
 Cada columna (regla) es un caso de prueba. Con N condiciones binarias hay 2^N combinaciones; luego se pueden colapsar las que llevan al mismo resultado.
 
 ## Transición de estados
 
-Para sistemas con estados (un pedido: `creado → pagado → enviado → entregado`), se modelan los estados y las transiciones válidas, y se prueba:
+Para sistemas con estados (un pedido de servicio: `created → validated → provisioning → active`), se modelan los estados y las transiciones válidas, y se prueba:
 
 - Cada transición válida (cobertura de transiciones).
-- Las transiciones **inválidas**: ¿qué pasa si intento cancelar un pedido ya entregado?
+- Las transiciones **inválidas**: ¿qué pasa si intento cancelar un pedido de servicio ya activo?
 
 ## Pairwise (combinatorio)
 

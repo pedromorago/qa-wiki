@@ -20,11 +20,11 @@ Dos opciones para inyectar el `page`:
 
 ```ts
 // A: por método — explícito pero repetitivo y propenso a pasar el page equivocado
-await userFormTasks.fillForm(page, userData);
+await componentFormTasks.fillForm(page, componentData);
 
 // B: por constructor — limpio, OOP, y CADA TEST CREA SU PROPIA INSTANCIA
-const userForm = new UserFormPage(page);
-await userForm.fillForm(userData);
+const componentForm = new ComponentFormPage(page);
+await componentForm.fillForm(componentData);
 ```
 
 Elegimos B. El motivo decisivo no es la estética: con una instancia por test, el POM queda **aislado en ejecución paralela** — sin estado compartido entre workers.
@@ -95,7 +95,7 @@ export class Dialog {
 export class DeleteDialog extends Dialog {
   async validateDeleteMessage(): Promise<void> {
     await expect(this.page.locator('.dialog-message'))
-      .toHaveText('Are you sure you want to delete this item?');
+      .toHaveText('Are you sure you want to delete this component?');
   }
 }
 ```
@@ -105,4 +105,4 @@ Añadir un diálogo nuevo = añadir una subclase, **sin tocar la base** (OCP). T
 ## Dos patrones satélite
 
 - **Objeto de "copies"**: los textos de la UI (títulos, labels de botones) centralizados en un objeto compartido — `getByRole('button', { name: copies.actions.import })`. Un cambio de texto se arregla en un sitio.
-- **Composición**: un page object puede contener otros (`this.details = new UserFormPage(page)`), y un test compone varios (menú + página + diálogo). Componer > heredar, salvo para lo genuinamente común.
+- **Composición**: un page object puede contener otros (`this.details = new ComponentFormPage(page)`), y un test compone varios (menú + página + diálogo). Componer > heredar, salvo para lo genuinamente común.

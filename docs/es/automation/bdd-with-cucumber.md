@@ -7,12 +7,12 @@
 Los ejemplos se escriben en Gherkin, un formato legible por cualquiera:
 
 ```gherkin
-Característica: Descuento por volumen
+Característica: Descuento convergente
 
-  Escenario: Pedido que supera el umbral de descuento
-    Dado un cliente con 3 artículos de 40 € en el carrito
-    Cuando confirma el pedido
-    Entonces el total aplicará un descuento del 10 %
+  Escenario: Cliente con fibra que añade una línea móvil
+    Dado un cliente con fibra contratada
+    Cuando confirma el pedido de una línea móvil
+    Entonces la cuota mensual aplicará el descuento convergente
 ```
 
 - **Dado** (Given) — el estado de partida.
@@ -25,9 +25,9 @@ Característica: Descuento por volumen
 Cada paso de Gherkin se une a código mediante una *step definition* (en Java, JavaScript, etc.):
 
 ```java
-@Cuando("confirma el pedido")
-public void confirmaElPedido() {
-    checkoutPage.confirm();
+@Cuando("confirma el pedido de una línea móvil")
+public void confirmaElPedidoDeUnaLineaMovil() {
+    serviceOrderPage.confirm();
 }
 ```
 

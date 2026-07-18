@@ -19,18 +19,18 @@ Equivalencias directas con lo que ya haces en SQL:
 
 | En SQL | En MongoDB |
 |---|---|
-| `SELECT * FROM users WHERE email = '…'` | `db.users.find({ email: '…' })` |
-| `SELECT status FROM orders WHERE id = …` | `db.orders.find({ _id: … }, { status: 1 })` |
-| `SELECT COUNT(*) …` | `db.orders.countDocuments({ status: 'pending' })` |
-| `GROUP BY … HAVING COUNT(*) > 1` | `db.users.aggregate([{ $group: { _id: '$email', n: { $sum: 1 } } }, { $match: { n: { $gt: 1 } } }])` |
+| `SELECT * FROM customers WHERE document = '…'` | `db.customers.find({ document: '…' })` |
+| `SELECT status FROM service_orders WHERE id = …` | `db.service_orders.find({ _id: … }, { status: 1 })` |
+| `SELECT COUNT(*) …` | `db.service_orders.countDocuments({ status: 'provisioning' })` |
+| `GROUP BY … HAVING COUNT(*) > 1` | `db.customers.aggregate([{ $group: { _id: '$document', n: { $sum: 1 } } }, { $match: { n: { $gt: 1 } } }])` |
 
 ```js
-// ¿Se persistió el pedido con la estructura esperada?
-db.orders.find({ orderId: 'ORD-10442' })
+// ¿Se persistió el pedido de servicio con la estructura esperada?
+db.service_orders.find({ orderId: 'ORD-10442' })
 
-// Duplicados que la validación debería impedir
-db.users.aggregate([
-  { $group: { _id: '$email', n: { $sum: 1 } } },
+// Clientes duplicados que la validación debería impedir
+db.customers.aggregate([
+  { $group: { _id: '$document', n: { $sum: 1 } } },
   { $match: { n: { $gt: 1 } } }
 ])
 ```

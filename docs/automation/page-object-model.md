@@ -20,11 +20,11 @@ Two options for injecting the `page`:
 
 ```ts
 // A: per method — explicit but repetitive and prone to passing the wrong page
-await userFormTasks.fillForm(page, userData);
+await componentFormTasks.fillForm(page, componentData);
 
 // B: via constructor — clean, OOP, and EACH TEST CREATES ITS OWN INSTANCE
-const userForm = new UserFormPage(page);
-await userForm.fillForm(userData);
+const componentForm = new ComponentFormPage(page);
+await componentForm.fillForm(componentData);
 ```
 
 We chose B. The deciding factor isn't aesthetics: with one instance per test, the POM stays **isolated under parallel execution** — no shared state between workers.
@@ -95,7 +95,7 @@ export class Dialog {
 export class DeleteDialog extends Dialog {
   async validateDeleteMessage(): Promise<void> {
     await expect(this.page.locator('.dialog-message'))
-      .toHaveText('Are you sure you want to delete this item?');
+      .toHaveText('Are you sure you want to delete this component?');
   }
 }
 ```
@@ -105,4 +105,4 @@ Adding a new dialog = adding a subclass, **without touching the base** (OCP). Ty
 ## Two satellite patterns
 
 - **A "copies" object**: UI texts (titles, button labels) centralized in a shared object — `getByRole('button', { name: copies.actions.import })`. A copy change gets fixed in one place.
-- **Composition**: a page object can contain others (`this.details = new UserFormPage(page)`), and a test composes several (menu + page + dialog). Compose > inherit, except for what's genuinely common.
+- **Composition**: a page object can contain others (`this.details = new ComponentFormPage(page)`), and a test composes several (menu + page + dialog). Compose > inherit, except for what's genuinely common.

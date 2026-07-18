@@ -23,13 +23,13 @@
 @baseUrl = http://localhost:8080/api/v1
 @contentType = application/json
 
-### Create a resource
+### Create a countermeasure library
 POST {{baseUrl}}/libraries
 Content-Type: {{contentType}}
 
 {
-  "name": "My library",
-  "description": "Created from REST Client"
+  "name": "Custom countermeasures",
+  "description": "Countermeasure library created from REST Client"
 }
 
 ### Authenticate and capture the token

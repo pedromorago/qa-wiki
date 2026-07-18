@@ -5,7 +5,7 @@ Automation isn't free: every automated test is code you have to write, maintain,
 ## Good candidates
 
 - **Regression**: tests that repeat on every release. The number one use case.
-- **Critical business flows**: login, sign-up, checkout, payment. The things that can never break.
+- **Critical business flows**: login, customer onboarding, ordering and activating a service. The things that can never break.
 - **Repetitive data**: the same flow with 50 data combinations (data-driven testing).
 - **Smoke tests**: the minimal battery that runs on every deployment.
 - **Anything tedious and prone to human error**: calculations, bulk comparisons, data preparation.

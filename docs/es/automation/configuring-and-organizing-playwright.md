@@ -100,7 +100,7 @@ Las variables vienen del entorno: el mismo comando sirve para cualquier combinac
 Si saltas un test, el `test.skip()` va **después** del `qase.id()` — si no, el gestor de casos no asocia el resultado y ese caso desaparece del radar del test run:
 
 ```ts
-test('Delete pattern when the ref is duplicated', { tag: ['@regression'] }, async () => {
+test('Delete component when the ref is duplicated', { tag: ['@regression'] }, async () => {
   qase.id(1043);
   test.skip(true, 'Pending to fix');
 });

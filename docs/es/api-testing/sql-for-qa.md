@@ -17,34 +17,34 @@ No hace falta ser DBA. Con esto se cubre casi todo el día a día:
 
 ## Ejemplos sobre un esquema mínimo
 
-Con dos tablas de ejemplo, `users` y `orders` (un usuario tiene muchos pedidos):
+Con dos tablas de ejemplo, `customers` y `service_orders` (un cliente tiene muchos pedidos de servicio, y cada pedido recorre `created → validated → provisioning → active`):
 
 ```sql
--- ¿Se creó el usuario que registré desde la UI?
-SELECT id, email, status, created_at
-FROM users
-WHERE email = 'test-2026-07@example.com';
+-- ¿Se creó el cliente al contratar la fibra de 1 Gbps?
+SELECT id, document, status, created_at
+FROM customers
+WHERE document = '12345678A';
 
--- ¿El pedido pasó a 'shipped' tras el flujo completo?
-SELECT status FROM orders WHERE id = 10442;
+-- ¿El pedido de servicio llegó a 'active' tras el flujo completo de aprovisionamiento?
+SELECT status FROM service_orders WHERE id = 10442;
 
--- Duplicados que la validación debería impedir
-SELECT email, COUNT(*)
-FROM users
-GROUP BY email
+-- Clientes duplicados que la validación debería impedir
+SELECT document, COUNT(*)
+FROM customers
+GROUP BY document
 HAVING COUNT(*) > 1;
 
--- Pedidos huérfanos: apuntan a un usuario que ya no existe
+-- Pedidos de servicio huérfanos: apuntan a un cliente que ya no existe
 SELECT o.id
-FROM orders o
-LEFT JOIN users u ON u.id = o.user_id
-WHERE u.id IS NULL;
+FROM service_orders o
+LEFT JOIN customers c ON c.id = o.customer_id
+WHERE c.id IS NULL;
 
--- Datos de prueba: usuarios activos con pedidos pendientes
-SELECT u.id, u.email
-FROM users u
-JOIN orders o ON o.user_id = u.id
-WHERE u.status = 'active' AND o.status = 'pending'
+-- Datos de prueba: clientes activos con pedidos aún en provisioning
+SELECT c.id, c.document
+FROM customers c
+JOIN service_orders o ON o.customer_id = c.id
+WHERE c.status = 'active' AND o.status = 'provisioning'
 LIMIT 5;
 ```
 
@@ -68,7 +68,7 @@ En tests de API, la aserción más completa valida las dos caras: la **respuesta
 ## Errores comunes
 
 - **Validar solo la respuesta.** Un 200 con body correcto no garantiza que se persistiera bien (ni que no se persistiera dos veces).
-- **Tests que dependen de datos vivos.** Si la query del test asume "el usuario 42 existe y tiene 3 pedidos", el test se rompe cuando alguien toque esos datos. Crea o localiza tus datos, no los des por supuestos.
+- **Tests que dependen de datos vivos.** Si la query del test asume "el cliente 42 existe y tiene 3 pedidos de servicio", el test se rompe cuando alguien toque esos datos. Crea o localiza tus datos, no los des por supuestos.
 - **`SELECT *` en tablas enormes**, por costumbre. Pide las columnas que necesitas.
 - **Copiar queries sin entender el JOIN.** Un `INNER JOIN` donde tocaba `LEFT JOIN` oculta exactamente las filas que buscabas (las que no tienen pareja).
 

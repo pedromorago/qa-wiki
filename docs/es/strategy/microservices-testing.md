@@ -22,13 +22,13 @@ Aquí el principio clave: **el ecosistema se trata como una caja negra con un ú
 Los tests del estado integrado **solo corren si los del servicio aislado han pasado**. Si el servicio está roto por dentro, probar su integración es quemar pipeline para aprender lo que ya sabes.
 :::
 
-## Un caso real: módulo de informes
+## Un caso real: módulo de informes de riesgo
 
-Cómo se aplicó esto a un microservicio de generación de informes integrado con el core de un SaaS:
+Cómo se aplicó esto al microservicio de generación de informes de riesgo integrado con el core de una plataforma de threat modeling:
 
-- **Aislado**: unit tests de backend por pieza de la arquitectura (adapters, controllers, services); API E2E arrancando el servicio y validando **el contenido del informe generado** — que incluye todas sus secciones y componentes, no solo que responde 200.
+- **Aislado**: unit tests de backend por pieza de la arquitectura (adapters, controllers, services); API E2E arrancando el servicio y validando **el contenido del informe generado** — que incluye todas sus secciones (componentes del proyecto, amenazas identificadas, contramedidas aplicadas), no solo que responde 200.
 - Los unit tests de frontend **se intentaron y se depreciaron** por su complejidad: ese riesgo pasó a cubrirse desde los E2E. Retirar una capa es una decisión de estrategia legítima si el riesgo queda cubierto en otra — y documentado.
-- **Integrado**: API E2E core→módulo (la petición que dispara el informe responde bien) y frontend E2E (generar y **descargar** el informe como usuario).
+- **Integrado**: API E2E core→módulo (la petición que dispara el informe de un proyecto responde bien) y frontend E2E (generar y **descargar** el informe de riesgo como usuario).
 
 De aquí sale una plantilla de test plan para cualquier módulo nuevo: dos fases (aislado/integrado) → capas por fase con su objetivo → decidir qué capas compensan (y documentar las descartadas) → si genera artefactos, validar su contenido → gates entre fases.
 

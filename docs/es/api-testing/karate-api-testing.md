@@ -5,23 +5,24 @@
 ## Cómo se ve un test
 
 ```gherkin
-Feature: API de usuarios
+Feature: API de pedidos de servicio
 
   Background:
     * url baseUrl
 
-  Scenario: Crear un usuario y verificar la respuesta
-    Given path 'users'
-    And request { name: 'Ana', email: 'ana@example.com' }
+  Scenario: Crear un pedido de servicio y verificar la respuesta
+    Given path 'service-orders'
+    And request { customerId: 987, productId: 'fiber-1gbps' }
     When method post
     Then status 201
-    And match response == { id: '#number', name: 'Ana', email: 'ana@example.com' }
+    And match response == { id: '#number', customerId: 987, productId: 'fiber-1gbps', status: 'created' }
 
-  Scenario: El usuario creado aparece en el listado
-    Given path 'users'
+  Scenario: El pedido creado aparece en los pedidos del cliente
+    Given path 'service-orders'
+    And param customerId = 987
     When method get
     Then status 200
-    And match response[*].email contains 'ana@example.com'
+    And match response[*].productId contains 'fiber-1gbps'
 ```
 
 Lo distintivo está en `match`: un lenguaje de aserciones que entiende JSON de forma nativa, con marcadores como `#number`, `#string`, `#uuid` o `#notnull` para validar estructura sin fijar valores exactos — una forma ligera de [validación de esquema](/es/api-testing/json-schema-validation).

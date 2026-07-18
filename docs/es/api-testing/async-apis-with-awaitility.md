@@ -1,6 +1,6 @@
 # Testing de APIs asíncronas con Awaitility
 
-Hay operaciones que la API no resuelve en la propia petición: importaciones, generación de informes, borrados masivos… El patrón habitual es la **operación asíncrona**: la llamada responde al instante con un `operationId`, y el estado real se consulta en otro endpoint. ¿Cómo se testea eso sin `Thread.sleep`?
+Hay operaciones que la API no resuelve en la propia petición: en una plataforma de threat modeling, piensa en importar un modelo grande, generar el informe de riesgos de un proyecto o los borrados masivos… El patrón habitual es la **operación asíncrona**: la llamada responde al instante con un `operationId`, y el estado real se consulta en otro endpoint. ¿Cómo se testea eso sin `Thread.sleep`?
 
 ## El patrón async en la API
 
@@ -44,7 +44,7 @@ Y el test queda declarativo:
 
 ```java
 String operationId = response.extract().body().path("operationId");
-TestCaseReport.assertEquals("La operación termina con éxito",
+TestCaseReport.assertEquals("La importación del modelo termina con éxito",
         operationService.isOperationSuccess(operationId), true);
 ```
 
@@ -52,7 +52,7 @@ TestCaseReport.assertEquals("La operación termina con éxito",
 
 - **Completitud y resultado son dos cosas distintas.** El ejemplo espera a que la operación esté *terminada* ("finished") y **después** comprueba si terminó *bien* ("success"). Si solo esperas "success", una operación fallida agota el timeout y el error que verás será "timeout" en vez de "la operación falló" — diagnóstico mucho peor.
 - **Encapsula el polling en un helper con nombre de negocio** (`isOperationSuccess`). Los tests no deberían saber de `pollInterval`s.
-- **Ajusta los tiempos por operación**, no globales: un borrado tarda 2 s, una importación 2 min.
+- **Ajusta los tiempos por operación**, no globales: borrar un proyecto tarda 2 s; importar un modelo grande o generar un informe de riesgos, hasta 2 min.
 - El mismo concepto existe en otros stacks: `expect.poll` / `expect(...).toPass()` en Playwright, `cy.waitUntil` en Cypress, `tenacity` en Python.
 
 ::: warning La misma lógica dentro de la UI

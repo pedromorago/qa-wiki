@@ -1,6 +1,6 @@
 # Testing async APIs with Awaitility
 
-Some operations aren't resolved by the API within the request itself: imports, report generation, bulk deletions… The usual pattern is the **asynchronous operation**: the call responds instantly with an `operationId`, and the actual status is polled on another endpoint. How do you test that without `Thread.sleep`?
+Some operations aren't resolved by the API within the request itself: in a threat modeling platform, think of importing a large model, generating a project's risk report, or bulk deletions… The usual pattern is the **asynchronous operation**: the call responds instantly with an `operationId`, and the actual status is polled on another endpoint. How do you test that without `Thread.sleep`?
 
 ## The async pattern in the API
 
@@ -44,7 +44,7 @@ And the test stays declarative:
 
 ```java
 String operationId = response.extract().body().path("operationId");
-TestCaseReport.assertEquals("The operation finishes successfully",
+TestCaseReport.assertEquals("The model import finishes successfully",
         operationService.isOperationSuccess(operationId), true);
 ```
 
@@ -52,7 +52,7 @@ TestCaseReport.assertEquals("The operation finishes successfully",
 
 - **Completion and outcome are two different things.** The example waits for the operation to be *done* ("finished") and **afterwards** checks whether it ended *well* ("success"). If you only wait for "success", a failed operation exhausts the timeout and the error you'll see is "timeout" instead of "the operation failed" — a much worse diagnosis.
 - **Encapsulate the polling in a helper with a business name** (`isOperationSuccess`). Tests shouldn't know about `pollInterval`s.
-- **Tune the timings per operation**, not globally: a deletion takes 2 s, an import 2 min.
+- **Tune the timings per operation**, not globally: deleting a project takes 2 s, importing a large model or generating a risk report can take 2 min.
 - The same concept exists in other stacks: `expect.poll` / `expect(...).toPass()` in Playwright, `cy.waitUntil` in Cypress, `tenacity` in Python.
 
 ::: warning The same logic inside the UI

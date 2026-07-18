@@ -14,7 +14,7 @@ Three terms that get mixed up constantly:
 | **QC** (Quality Control) | Product, detection | Does the built product meet the requirements? |
 | **Testing** | Execution, verification | Does this specific behavior work as expected? |
 
-Testing is an activity *within* QC, and QC is a part *of* QA. A good QA doesn't just find bugs: they question ambiguous requirements before those turn into bugs.
+Testing is an activity *within* QC, and QC is a part *of* QA. A good QA doesn't just find bugs: they question ambiguous requirements before those turn into bugs. For example, on a threat modeling platform, given the requirement "the countermeasure is marked as applied", I would ask: applied by whom, and what happens to the threats it mitigated if it gets unmarked?
 
 ## The 7 principles of testing (ISTQB)
 

@@ -8,7 +8,7 @@ Lo esencial para arrancar con Playwright en un proyecto serio: estructura, prime
 npm init playwright@latest   # proyecto nuevo
 npx playwright install       # descargar los navegadores
 npx playwright test          # ejecutar todo
-npx playwright test src/tests/usuarios/crear-usuario.spec.ts   # un spec concreto
+npx playwright test src/tests/proyectos/crear-proyecto.spec.ts   # un spec concreto
 ```
 
 En un proyecto real hay un paso previo que se olvida en los tutoriales: **preparar el acceso por API** de la aplicación bajo prueba (activarla, generar un token para el usuario de pruebas), porque los tests bien hechos preparan sus datos vía API antes de tocar la UI.
@@ -57,7 +57,7 @@ De menos a más interactivo:
    ```
 
    Snapshot del DOM antes/después de cada acción, consola, red, código. Es la forma estándar de responder a "en CI falla y en local no".
-3. **UI mode** — `npx playwright test --ui` (filtrable: `npx playwright test tests/usuarios --ui`). *Time travel* por cada acción, watch mode, elección de navegador. Para desarrollar tests, imbatible.
+3. **UI mode** — `npx playwright test --ui` (filtrable: `npx playwright test tests/proyectos --ui`). *Time travel* por cada acción, watch mode, elección de navegador. Para desarrollar tests, imbatible.
 
 ::: warning No midas tiempos en UI mode
 El UI mode es notablemente más lento que la ejecución por consola (en una medición interna: 54,9 s vs 30,5 s la misma suite). Para comparar rendimiento, siempre consola.

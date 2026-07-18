@@ -7,9 +7,9 @@ Python is the QA's Swiss army knife: test data scripts, internal tools, results 
 A test is a function that starts with `test_` and uses plain `assert`:
 
 ```python
-def test_active_status():
-    user = create_user(status="active")
-    assert user.status == "active"
+def test_active_order():
+    order = create_service_order(status="active")
+    assert order.status == "active"
 ```
 
 The three pieces worth knowing:
@@ -32,9 +32,9 @@ def test_health(api_client):
 - **Parametrize** — the same test over several inputs, ideal for [partitions and boundary values](/fundamentals/test-case-design):
 
 ```python
-@pytest.mark.parametrize("email", ["no-at-sign", "@nodomain", "a@b", ""])
-def test_invalid_email_rejected(api_client, email):
-    r = api_client.post("/users", json={"email": email})
+@pytest.mark.parametrize("msisdn", ["12345", "abcdefghi", "+34-600", ""])
+def test_invalid_msisdn_rejected(api_client, msisdn):
+    r = api_client.post("/service-orders", json={"productId": "mobile-20gb", "msisdn": msisdn})
     assert r.status_code == 400
 ```
 
@@ -45,9 +45,10 @@ def test_invalid_email_rejected(api_client, email):
 ```python
 import requests
 
-r = requests.post(f"{BASE_URL}/users", json={"name": "Ana"}, timeout=10)
+order = {"customerId": "C-100", "productId": "fiber-1gbps"}
+r = requests.post(f"{BASE_URL}/service-orders", json=order, timeout=10)
 assert r.status_code == 201
-assert r.json()["name"] == "Ana"
+assert r.json()["status"] == "created"
 ```
 
 With `pytest + requests + jsonschema` you get the lightweight equivalent of REST Assured: the [anatomy of an API test](/api-testing/anatomy-of-an-api-test) is the same, only the syntax changes.

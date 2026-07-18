@@ -45,22 +45,22 @@ They get mixed up constantly and they're not the same thing:
 
 ## Full example
 
-> **Title**: Checkout: the total doesn't apply the "VERANO10" coupon if the cart contains a discounted product
+> **Title**: Ordering: the order summary doesn't reflect the convergence discount when adding a mobile tariff for a customer with active fiber
 >
-> **Environment**: staging v2.14.0 · Chrome 138 / macOS · user `qa_test_01`
+> **Environment**: staging v2.14.0 · Chrome 138 / macOS · test customer `qa_test_01`
 >
 > **Steps**:
-> 1. Add "Basic T-shirt" (discounted, €15) and "Trousers" (€30) to the cart
-> 2. At checkout, apply the coupon `VERANO10` (−10%)
-> 3. Observe the total
+> 1. With customer `qa_test_01`, who has 1 Gbps fiber in `active` state, start contracting the "20 GB" mobile tariff (€15/month)
+> 2. Proceed to the order summary, where the convergence promotion should be applied (−10% on the mobile fee)
+> 3. Observe the fee breakdown
 >
-> **Actual result**: total = €45 (the coupon isn't applied). The UI shows the coupon as "applied" ✅ but the breakdown doesn't change. The response from `POST /cart/discount` returns `200` with `"discount": 0`.
+> **Actual result**: mobile fee = €15/month (the discount isn't applied). The UI shows the promotion as "applied" ✅ but the breakdown doesn't change. The response from `POST /service-orders` returns `201` with `"discount": 0`.
 >
-> **Expected result**: total = €40.50 (−10% off €45), per the acceptance criterion of story JIRA-1234, which does not exclude discounted products.
+> **Expected result**: mobile fee = €13.50/month (−10% off €15), per the acceptance criterion of story JIRA-1234, which applies the promotion to any customer with active fiber.
 >
-> **Severity**: High (affects payments) · **Priority**: High
+> **Severity**: High (affects billing) · **Priority**: High
 >
-> **Notes**: only happens if there's at least one discounted product in the cart. With a cart with no discounted items, the coupon applies correctly. Reproduces the same way in Firefox.
+> **Notes**: only happens if the customer's fiber is in `active` state; if the fiber order is still in `provisioning`, the promotion isn't even offered (expected behavior). Reproduces the same way in Firefox.
 
 ::: tip Attitude
 A bug report is not an accusation, it's a gift: you're saving the developer all the diagnostic work. Write it so the person reading it can start fixing it without talking to you.

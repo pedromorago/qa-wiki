@@ -19,18 +19,18 @@ Direct equivalences with what you already do in SQL:
 
 | In SQL | In MongoDB |
 |---|---|
-| `SELECT * FROM users WHERE email = '…'` | `db.users.find({ email: '…' })` |
-| `SELECT status FROM orders WHERE id = …` | `db.orders.find({ _id: … }, { status: 1 })` |
-| `SELECT COUNT(*) …` | `db.orders.countDocuments({ status: 'pending' })` |
-| `GROUP BY … HAVING COUNT(*) > 1` | `db.users.aggregate([{ $group: { _id: '$email', n: { $sum: 1 } } }, { $match: { n: { $gt: 1 } } }])` |
+| `SELECT * FROM customers WHERE document = '…'` | `db.customers.find({ document: '…' })` |
+| `SELECT status FROM service_orders WHERE id = …` | `db.service_orders.find({ _id: … }, { status: 1 })` |
+| `SELECT COUNT(*) …` | `db.service_orders.countDocuments({ status: 'provisioning' })` |
+| `GROUP BY … HAVING COUNT(*) > 1` | `db.customers.aggregate([{ $group: { _id: '$document', n: { $sum: 1 } } }, { $match: { n: { $gt: 1 } } }])` |
 
 ```js
-// Was the order persisted with the expected structure?
-db.orders.find({ orderId: 'ORD-10442' })
+// Was the service order persisted with the expected structure?
+db.service_orders.find({ orderId: 'ORD-10442' })
 
-// Duplicates that validation should have prevented
-db.users.aggregate([
-  { $group: { _id: '$email', n: { $sum: 1 } } },
+// Duplicate customers that validation should have prevented
+db.customers.aggregate([
+  { $group: { _id: '$document', n: { $sum: 1 } } },
   { $match: { n: { $gt: 1 } } }
 ])
 ```

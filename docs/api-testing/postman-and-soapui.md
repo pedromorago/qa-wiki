@@ -6,7 +6,7 @@ Two tools for testing APIs without building a code framework: **Postman** for th
 
 The basics take an afternoon; what makes the difference is using it with discipline:
 
-- **Collections**: requests organized by product or flow, versioned and shared with the team (they export to JSON and can live in the repo).
+- **Collections**: requests organized by product or flow — for example, one collection for the `/service-orders` API: create the order, query its status, cancel it — versioned and shared with the team (they export to JSON and can live in the repo).
 - **Environments and variables**: the same collection runs against dev, staging or production by switching the environment. Credentials go in variables, never written into the request.
 - **Tests**: every request can carry JavaScript assertions (`pm.expect(...)`) — status, body fields, timings. A collection without assertions isn't a suite: it's a request launcher.
 - **Newman / Postman CLI**: collections run from the command line, which lets you put them in the CI pipeline.
@@ -28,8 +28,8 @@ The WSDL is the big advantage for a QA: it's a **formal, complete contract**. If
 
 ## SoapUI: testing against the WSDL
 
-- You import the WSDL and SoapUI **generates the requests for each operation** with their XML structure ready to fill in.
-- The key assertions: *Schema Compliance* (the response matches the XSD), *XPath Match* (a specific value inside the XML) and *SOAP Fault / Not SOAP Fault* (protocol errors).
+- You import the WSDL — say, that of a provisioning service exposing an `activateService` operation — and SoapUI **generates the requests for each operation** with their XML structure ready to fill in.
+- The key assertions: *Schema Compliance* (the response matches the XSD), *XPath Match* (a specific value inside the XML, like the service's status after activation) and *SOAP Fault / Not SOAP Fault* (protocol errors).
 - It organizes work into *test suites* and *test cases* that also run from the command line, so it can integrate into CI.
 - It handles REST too, although for pure REST Postman is usually more comfortable.
 

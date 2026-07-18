@@ -18,7 +18,7 @@ This is where [partitions and boundary values](/fundamentals/test-case-design) a
 - Boundary values: extremely long strings, negative numbers, zero, decimals where integers are expected.
 - Special characters, emojis, HTML/SQL in text fields (`<script>`, `' OR 1=1 --`).
 - Malformed JSON and an incorrect `Content-Type`.
-- Unexpected extra fields in the body: does it ignore them or persist them? (*mass assignment*).
+- Unexpected extra fields in the body (e.g. sending `status: "active"` or `monthlyPrice: 0` when creating a service order): does it ignore them or persist them? (*mass assignment*).
 
 **Golden rule**: no input should ever produce a `500`. Invalid input → `4xx` with a useful error message (but one that doesn't leak stack traces or internal details).
 
@@ -27,13 +27,13 @@ This is where [partitions and boundary values](/fundamentals/test-case-design) a
 - No token → `401`.
 - Expired or tampered token → `401`.
 - Valid token but a user **without permission** → `403`.
-- The classic of classics: **IDOR** — with user A's token, request `GET /users/B/orders`. Can I see another user's data?
+- The classic of classics: **IDOR** — with customer A's token, request `GET /customers/B/service-orders`. Can I see another customer's orders?
 
 ## 4. Behavior and state
 
 - Does the operation actually persist? After a `POST`, do the `GET` and verify.
 - Idempotency: repeat the same `PUT`/`DELETE`. Does the second `DELETE` return `404` or `204`? Is that what's expected?
-- Duplicate `POST` (double click, network retry): does it create two resources?
+- Duplicate `POST` (double click, network retry): does it create two service orders?
 - Concurrency: two simultaneous updates on the same resource. Who wins? Is there version control (ETag / `version`)?
 
 ## 5. Listings: pagination, filters, and sorting

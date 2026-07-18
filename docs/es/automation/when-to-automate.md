@@ -5,7 +5,7 @@ Automatizar no es gratis: cada test automatizado es código que hay que escribir
 ## Buenos candidatos
 
 - **Regresión**: pruebas que se repiten en cada release. El caso de uso número uno.
-- **Flujos críticos de negocio**: login, registro, compra, pago. Lo que no puede romperse jamás.
+- **Flujos críticos de negocio**: login, alta de cliente, contratación y activación de un servicio. Lo que no puede romperse jamás.
 - **Datos repetitivos**: el mismo flujo con 50 combinaciones de datos (data-driven testing).
 - **Smoke tests**: la batería mínima que corre en cada despliegue.
 - **Lo tedioso y propenso a error humano**: cálculos, comparaciones masivas, preparación de datos.

@@ -21,8 +21,8 @@ The most practical way to explore with rigor is **session-based testing**: time-
 
 Examples:
 
-- *Explore the sign-up form with boundary-length data to discover validation problems.*
-- *Explore session management with two browsers at once to discover race conditions.*
+- *Explore the diagram editor with nested components to discover problems when moving elements.*
+- *Explore importing a large threat model with two tabs at once to discover race conditions.*
 
 The session: **60–90 minutes**, uninterrupted, taking notes as you go (what you tried, what you saw, what you left unexplored). When it ends, a short debrief: bugs found, risks spotted, new charters that emerged along the way.
 

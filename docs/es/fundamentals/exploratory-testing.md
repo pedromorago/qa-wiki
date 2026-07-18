@@ -21,8 +21,8 @@ La forma más práctica de explorar con rigor es el **session-based testing**: s
 
 Ejemplos:
 
-- *Explora el formulario de registro con datos en el límite de longitud para descubrir problemas de validación.*
-- *Explora la gestión de sesiones con dos navegadores a la vez para descubrir condiciones de carrera.*
+- *Explora el editor de diagramas con componentes anidados para descubrir problemas al mover elementos.*
+- *Explora la importación de un modelo de amenazas grande con dos pestañas a la vez para descubrir condiciones de carrera.*
 
 La sesión: **60–90 minutos**, sin interrupciones, tomando notas sobre la marcha (qué probaste, qué viste, qué dejaste sin mirar). Al acabar, un mini repaso: bugs encontrados, riesgos detectados, charters nuevos que salieron por el camino.
 

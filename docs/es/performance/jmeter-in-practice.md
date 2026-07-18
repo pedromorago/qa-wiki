@@ -18,8 +18,8 @@ Un plan de JMeter es un árbol de elementos:
 
 ## El flujo de trabajo que funciona
 
-1. **Diseña en la GUI** con pocos threads: la petición, sus aserciones (status, algún contenido, duración máxima) y los extractores.
-2. **Parametriza los datos** con *CSV Data Set Config*: cien usuarios con el mismo login y el mismo producto prueban la caché, no el sistema.
+1. **Diseña en la GUI** con pocos threads: la petición (p. ej. una consulta de catálogo o un alta de pedido de servicio), sus aserciones (status, algún contenido, duración máxima) y los extractores.
+2. **Parametriza los datos** con *CSV Data Set Config*: cien usuarios con el mismo cliente y el mismo producto del catálogo prueban la caché, no el sistema.
 3. **Correlaciona lo dinámico**: tokens, ids de sesión y valores generados se extraen de las respuestas (JSON/Regex Extractor) y se reutilizan (`${token}`) — es el equivalente al encadenado de peticiones en cualquier API test.
 4. **Ejecuta en CLI**, nunca con la GUI:
 

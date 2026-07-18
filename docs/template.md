@@ -40,3 +40,4 @@ A concrete case, ideally from my day-to-day work.
 3. **Add the page to the sidebar**: edit `docs/.vitepress/config.mts` and add a line `{ text: '...', link: '/category/my-new-topic' }` in its section. Note: the sidebar definition now lives in `docs/.vitepress/sidebar.ts`.
 4. For a **new category**: create the folder with its `index.md` and add the section to the sidebar and to the top menu.
 5. Write **in my own words**: the wiki is worth what I understand, not what I copy.
+6. **Two recurring example domains**: the wiki's examples use a threat modeling platform and a telecommunications operator as fictional domains, so they speak the language of real projects without naming companies or products.

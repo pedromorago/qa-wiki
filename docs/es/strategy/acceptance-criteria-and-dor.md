@@ -26,11 +26,11 @@ Las condiciones que el software debe cumplir para ser aceptado por el usuario, e
 **Given/When/Then** (herencia de BDD) — mi preferido cuando el comportamiento tiene estados y acciones claras:
 
 ```
-Scenario: Login con contraseña incorrecta
-  Given un usuario registrado con email ana@example.com
-  When introduce una contraseña incorrecta 3 veces
-  Then la cuenta se bloquea temporalmente
-  And se muestra el mensaje de cuenta bloqueada
+Scenario: Un viewer intenta editar una contramedida
+  Given un usuario con rol viewer en el proyecto "Pagos"
+  When intenta cambiar el estado de una contramedida a "aplicada"
+  Then el cambio no se guarda
+  And se muestra el aviso de permisos insuficientes
 ```
 
 Ventaja extra: si el equipo usa un framework BDD, el formato ya es de casa — alineación dev-QA gratis.

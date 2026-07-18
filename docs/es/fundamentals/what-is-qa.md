@@ -14,7 +14,7 @@ Tres términos que se confunden constantemente:
 | **QC** (Quality Control) | Producto, detección | ¿El producto construido cumple los requisitos? |
 | **Testing** | Ejecución, verificación | ¿Este comportamiento concreto funciona como se espera? |
 
-El testing es una actividad *dentro* de QC, y QC es una parte *dentro* de QA. Un buen QA no solo encuentra bugs: cuestiona requisitos ambiguos antes de que se conviertan en bugs.
+El testing es una actividad *dentro* de QC, y QC es una parte *dentro* de QA. Un buen QA no solo encuentra bugs: cuestiona requisitos ambiguos antes de que se conviertan en bugs. Por ejemplo, en una plataforma de threat modeling, ante el requisito "la contramedida se marca como aplicada", preguntaría: ¿aplicada por quién, y qué pasa con las amenazas que mitigaba si se desmarca?
 
 ## Los 7 principios del testing (ISTQB)
 

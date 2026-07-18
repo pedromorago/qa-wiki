@@ -7,12 +7,12 @@
 Examples are written in Gherkin, a format anyone can read:
 
 ```gherkin
-Feature: Volume discount
+Feature: Convergent discount
 
-  Scenario: Order that exceeds the discount threshold
-    Given a customer with 3 items of €40 in the cart
-    When they confirm the order
-    Then the total applies a 10 % discount
+  Scenario: Fiber customer adding a mobile line
+    Given a customer with an active fiber subscription
+    When they confirm the order for a mobile line
+    Then the monthly fee applies the convergent discount
 ```
 
 - **Given** — the starting state.
@@ -25,9 +25,9 @@ Feature: Volume discount
 Each Gherkin step binds to code through a *step definition* (in Java, JavaScript, etc.):
 
 ```java
-@When("they confirm the order")
-public void theyConfirmTheOrder() {
-    checkoutPage.confirm();
+@When("they confirm the order for a mobile line")
+public void theyConfirmTheOrderForAMobileLine() {
+    serviceOrderPage.confirm();
 }
 ```
 

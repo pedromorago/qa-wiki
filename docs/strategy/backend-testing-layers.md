@@ -1,13 +1,13 @@
 # Backend testing layers, with examples
 
-What gets tested at each layer when the system under test is a backend. To make it concrete, a running example: **a REST API for user management** in a SaaS — user CRUD authenticated with JWT, roles, input validation, and the business rule "duplicate emails are not allowed".
+What gets tested at each layer when the system under test is a backend. To make it concrete, a running example: **the projects REST API of a threat modeling platform** — CRUD for projects and their components authenticated with JWT, editor/viewer roles, input validation, and the business rule "duplicate components are not allowed within the same project".
 
 ## Unit: the logic, in isolation
 
 Each function/method is tested with **all dependencies mocked** (repository, external services):
 
-- `validatePasswordStrength()` returns `false` for weak passwords.
-- `UserService.createUser()` throws an error if the email already exists (mocked repository).
+- `PermissionService.canEdit()` returns `false` for a user with the viewer role.
+- `ProjectService.addComponent()` throws an error if the component already exists in the project (mocked repository).
 - `JWTUtils.decodeToken()` parses the token correctly.
 
 It's the fastest and cheapest layer to maintain. Tools: JUnit, pytest, Jest/Vitest…
@@ -16,9 +16,9 @@ It's the fastest and cheapest layer to maintain. Tools: JUnit, pytest, Jest/Vite
 
 Here there's already a **real database** (or a realistic one: in-memory H2/SQLite, or containers with Testcontainers):
 
-- `POST /users` creates the user and **persists** it in the DB.
-- `GET /users/{id}` returns what's in the DB.
-- `PUT /users/{id}` updates **and records the change in the audit service**.
+- `POST /projects` creates the project and **persists** it in the DB.
+- `GET /projects/{id}` returns what's in the DB.
+- `PUT /projects/{id}` updates **and records the change in the audit service**.
 
 A tip I apply: include **OpenAPI contract validation** at this layer — it's cheap contract testing within your own team.
 
@@ -26,11 +26,11 @@ A tip I apply: include **OpenAPI contract validation** at this layer — it's ch
 
 The whole stack up and running (auth, DB, services), and the test walks through a real business flow:
 
-1. `POST /auth/login` → get the JWT.
-2. With the token, `POST /users` with a valid payload.
-3. Validate the response and **confirm persistence** with `GET /users/{id}`.
-4. `PUT /users/{id}` and validate the new data.
-5. `DELETE /users/{id}` and check that it no longer exists.
+1. `POST /auth/login` → get the JWT of a user with the editor role.
+2. With the token, `POST /projects` with a valid payload.
+3. Validate the response and **confirm persistence** with `GET /projects/{id}`.
+4. `PUT /projects/{id}` adding a component and validate the new data (with a viewer token, check it returns `403`).
+5. `DELETE /projects/{id}` and check that it no longer exists.
 
 ## Operational summary
 

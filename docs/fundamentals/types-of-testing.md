@@ -4,7 +4,7 @@ Classifying test types helps you speak a common language with the team and spot 
 
 ## Functional vs non-functional
 
-- **Functional testing**: verifies *what* the system does. Does the login work? Does the cart calculate the total correctly?
+- **Functional testing**: verifies *what* the system does. Does signing up for a fiber product generate the service order? Is the applied tariff the one from the catalog?
 - **Non-functional testing**: verifies *how* it does it. Performance, load, security, usability, accessibility, compatibility.
 
 ## Black box, white box, gray box

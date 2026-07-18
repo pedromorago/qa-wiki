@@ -6,19 +6,19 @@ To test REST APIs you need to master HTTP: it's the language the API uses to tel
 
 ```
 ── Request ───────────────────────────────
-POST /api/v1/users HTTP/1.1          ← method + path
+POST /api/v1/service-orders HTTP/1.1     ← method + path
 Host: api.example.com
-Authorization: Bearer eyJhbGc...     ← headers
+Authorization: Bearer eyJhbGc...         ← headers
 Content-Type: application/json
 
-{ "email": "ana@test.com" }          ← body
+{ "customerId": "C-100", "productId": "fiber-1gbps" }    ← body
 
 ── Response ──────────────────────────────
-HTTP/1.1 201 Created                 ← status code
+HTTP/1.1 201 Created                     ← status code
 Content-Type: application/json
-Location: /api/v1/users/42
+Location: /api/v1/service-orders/42
 
-{ "id": 42, "email": "ana@test.com" }
+{ "id": 42, "customerId": "C-100", "productId": "fiber-1gbps", "status": "created" }
 ```
 
 ## HTTP methods
@@ -45,7 +45,7 @@ Location: /api/v1/users/42
 - **401 Unauthorized** — not authenticated (token missing or invalid).
 - **403 Forbidden** — authenticated but **without permission**. The 401/403 mix-up is a classic bug.
 - **404 Not Found** — the resource doesn't exist. Careful: some APIs return 404 instead of 403 to avoid revealing that the resource exists — that's a design decision, and you need to know which one applies.
-- **409 Conflict** — state conflict (e.g. creating a duplicate email).
+- **409 Conflict** — state conflict (e.g. creating a duplicate service order for a customer who already has that same service in progress).
 - **422 Unprocessable Entity** — correct syntax but semantically invalid data.
 - **429 Too Many Requests** — rate limiting.
 

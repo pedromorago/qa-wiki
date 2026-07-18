@@ -24,7 +24,7 @@ Dimensions worth identifying in any product:
 
 - **Editions/commercial variants** — each one enables different features; they're validated separately.
 - **Supported DB versions** — the release is validated against every version customers run, not just the latest.
-- **Cross-functionalities** — cross-cutting concerns that belong to no single domain (licensing, session expiration…): they deserve their own suite.
+- **Cross-functionalities** — cross-cutting concerns that belong to no single domain (licensing, session expiration, exporting a project's reports…): they deserve their own suite.
 - **Addons and integrations** with external services.
 
 ## Two database states

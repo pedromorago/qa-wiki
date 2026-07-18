@@ -7,9 +7,9 @@ Python es la navaja suiza del QA: scripts de datos de prueba, herramientas inter
 Un test es una función que empieza por `test_` y usa `assert` a secas:
 
 ```python
-def test_status_activo():
-    user = crear_usuario(status="active")
-    assert user.status == "active"
+def test_pedido_activo():
+    pedido = crear_pedido_de_servicio(status="active")
+    assert pedido.status == "active"
 ```
 
 Las tres piezas que hay que conocer:
@@ -32,9 +32,9 @@ def test_health(api_client):
 - **Parametrize** — el mismo test con varios datos, ideal para [particiones y valores límite](/es/fundamentals/test-case-design):
 
 ```python
-@pytest.mark.parametrize("email", ["sin-arroba", "@sindominio", "a@b", ""])
-def test_email_invalido_rechazado(api_client, email):
-    r = api_client.post("/users", json={"email": email})
+@pytest.mark.parametrize("msisdn", ["12345", "abcdefghi", "+34-600", ""])
+def test_msisdn_invalido_rechazado(api_client, msisdn):
+    r = api_client.post("/service-orders", json={"productId": "mobile-20gb", "msisdn": msisdn})
     assert r.status_code == 400
 ```
 
@@ -45,9 +45,10 @@ def test_email_invalido_rechazado(api_client, email):
 ```python
 import requests
 
-r = requests.post(f"{BASE_URL}/users", json={"name": "Ana"}, timeout=10)
+pedido = {"customerId": "C-100", "productId": "fiber-1gbps"}
+r = requests.post(f"{BASE_URL}/service-orders", json=pedido, timeout=10)
 assert r.status_code == 201
-assert r.json()["name"] == "Ana"
+assert r.json()["status"] == "created"
 ```
 
 Con `pytest + requests + jsonschema` tienes el equivalente ligero de REST Assured: la [anatomía del test de API](/es/api-testing/anatomy-of-an-api-test) es la misma, cambia la sintaxis.

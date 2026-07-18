@@ -18,8 +18,8 @@ A JMeter plan is a tree of elements:
 
 ## The workflow that works
 
-1. **Design in the GUI** with a handful of threads: the request, its assertions (status, some content, max duration) and the extractors.
-2. **Parameterize the data** with *CSV Data Set Config*: a hundred users with the same login and the same product test the cache, not the system.
+1. **Design in the GUI** with a handful of threads: the request (e.g. a catalog query or a service order creation), its assertions (status, some content, max duration) and the extractors.
+2. **Parameterize the data** with *CSV Data Set Config*: a hundred users with the same customer and the same catalog product test the cache, not the system.
 3. **Correlate the dynamic parts**: tokens, session ids and generated values get extracted from responses (JSON/Regex Extractor) and reused (`${token}`) — the equivalent of request chaining in any API test.
 4. **Run in the CLI**, never the GUI:
 

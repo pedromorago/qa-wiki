@@ -10,10 +10,10 @@ Los E2E son los tests más caros de escribir, ejecutar y mantener. Estas son las
 
 ## Qué probar
 
-- Los **happy paths de los flujos clave**: login, registro, creación del recurso principal, checkout…
+- Los **happy paths de los flujos clave**: login, alta de cliente, contratación — un cliente registrado contrata fibra 1 Gbps y el pedido de servicio llega a estado `active`…
 - **1–2 variaciones significativas por flujo** (login válido vs inválido). No veinte.
-- **Errores visibles que bloquean al usuario** (pago rechazado).
-- **Reglas de negocio core del flujo** (no hay checkout con carrito vacío).
+- **Errores visibles que bloquean al usuario** (validación de cobertura fallida, pago rechazado de la primera factura).
+- **Reglas de negocio core del flujo** (no se puede enviar un pedido sin productos seleccionados).
 - **Integraciones críticas** frontend ↔ API ↔ servicios.
 
 ## Qué NO probar
@@ -24,7 +24,7 @@ Los E2E son los tests más caros de escribir, ejecutar y mantener. Estas son las
 - Escenarios sin impacto en la experiencia del usuario.
 
 ::: tip La regla 8–12
-**8–12 E2E bien elegidos valen más que 100 frágiles y redundantes.** Cada E2E debe poder responder a la pregunta: "¿qué parte del negocio me confirma que no está rota?". Un set mínimo típico: login OK y KO, crear el recurso principal, actualizarlo o cancelarlo, la acción crítica (pago) con error, y logout.
+**8–12 E2E bien elegidos valen más que 100 frágiles y redundantes.** Cada E2E debe poder responder a la pregunta: "¿qué parte del negocio me confirma que no está rota?". Un set mínimo típico: login OK y KO, contratar un producto, actualizar o cancelar el pedido de servicio, la acción crítica (pago de la primera factura) con error, y logout.
 :::
 
 ## El hueco invisible: tests atómicos vs flujos cross-domain
@@ -33,9 +33,9 @@ Un aprendizaje que me costó bugs reales: puedes tener una suite E2E grande y ve
 
 Ejemplos del patrón (abstraídos de casos reales):
 
-- Un test crea una entidad de catálogo y la lee… pero nunca comprueba que esa entidad **puede usarse después en otra parte de la aplicación**.
-- Una configuración de visibilidad definida en administración no se aplicaba en la vista de otro módulo. Los tests de cada módulo, en verde.
-- Restaurar una versión anterior fallaba solo cuando el elemento contenía datos creados en *otro* flujo. Ningún test atómico podía verlo.
+- Un test crea un producto en el catálogo y lo lee… pero nunca comprueba que ese producto **puede contratarse después en un pedido de servicio**.
+- Un descuento convergente definido en el catálogo no se aplicaba en el resumen del pedido. Los tests de cada módulo, en verde.
+- Restaurar una versión anterior de un modelo de amenazas fallaba solo cuando el diagrama contenía componentes creados en *otro* flujo (una importación). Ningún test atómico podía verlo.
 
 **Los tests atómicos dan verde mientras las costuras se rompen.** La respuesta:
 
@@ -50,7 +50,7 @@ La regla general que resume todo esto:
 
 ## Buenas prácticas de escritura
 
-- Nombres en lenguaje de negocio: *"Un usuario registrado puede completar una compra con tarjeta válida"*.
+- Nombres en lenguaje de negocio: *"Un cliente registrado puede contratar fibra 1 Gbps y el pedido llega a estado active"*.
 - Tests **independientes y paralelizables** (datos propios, [creados vía API](/es/api-testing/test-data-and-authentication)).
 - Datos controlados: usa la búsqueda para aislar tu dato — nunca asumas que está en la primera página de la tabla.
 - No dupliques cobertura que ya dan unit/integración: cada E2E tiene que justificar su coste.

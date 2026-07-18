@@ -1,6 +1,6 @@
 # JSON Schema validation in API tests
 
-Validating that `name == "Product X"` confirms a value. Validating the **JSON Schema** confirms the whole contract: that the response has the structure, types, and required fields the API promises. It's the validation with the best effort-to-value ratio in an API test.
+Validating that `name == "Fiber 1 Gbps"` confirms a value. Validating the **JSON Schema** confirms the whole contract: that the response has the structure, types, and required fields the API promises. It's the validation with the best effort-to-value ratio in an API test.
 
 ## Why
 
@@ -16,7 +16,34 @@ Validating that `name == "Product X"` confirms a value. Validating the **JSON Sc
 
 ## Example
 
-Standard error response (RFC 7807 style):
+Response when creating a catalog product (a fiber plan):
+
+```json
+{
+  "id": "prod-042",
+  "name": "Fiber 1 Gbps",
+  "downloadSpeedMbps": 1000,
+  "monthlyPrice": 35.90
+}
+```
+
+Its schema (`create-product.json`):
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id":                { "type": "string" },
+    "name":              { "type": "string" },
+    "downloadSpeedMbps": { "type": "integer" },
+    "monthlyPrice":      { "type": "number" }
+  },
+  "required": ["id", "name", "downloadSpeedMbps", "monthlyPrice"]
+}
+```
+
+And a reusable generic schema, the standard error response (RFC 7807 style):
 
 ```json
 {
@@ -50,7 +77,7 @@ In the test (REST Assured ships the matcher; here it's wrapped in the framework'
 ```java
 // status code + schema in a single call — the usual combo
 TestCaseReport.assertResponseCodeAndBodySchema("Status and schema", response,
-        HttpStatus.SC_CREATED, PRODUCTS_SCHEMA_PATH + "/create-product.json");
+        HttpStatus.SC_CREATED, CATALOG_SCHEMA_PATH + "/create-product.json");
 ```
 
 In JavaScript/TypeScript the equivalent is the `ajv` library; in Playwright it plugs into a custom `expect`.
@@ -60,4 +87,4 @@ In JavaScript/TypeScript the equivalent is the `ajv` library; in Playwright it p
 - **`required` is where the value is.** A schema without `required` validates almost anything. Consciously decide which fields are mandatory.
 - **Validate the errors too.** The bodies of `400/401/403/404` have a contract just like the `200` ones — and they break more often, because nobody looks at them.
 - **Beware of overly strict schemas**: if the API adds a new field (a backwards-compatible change), do you want your tests to fail? Decide your `additionalProperties` policy based on what "breaking the contract" means for your consumers.
-- The schema **does not replace** functional assertions: it confirms the shape, not that the computed discount is correct.
+- The schema **does not replace** functional assertions: it confirms the shape, not that the computed monthly price is correct.

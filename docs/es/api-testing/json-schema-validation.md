@@ -1,6 +1,6 @@
 # Validación de JSON Schema en tests de API
 
-Validar que `name == "Producto X"` confirma un valor. Validar el **JSON Schema** confirma el contrato completo: que la respuesta tiene la estructura, los tipos y los campos obligatorios que promete la API. Es la validación con mejor ratio esfuerzo/valor de un test de API.
+Validar que `name == "Fibra 1 Gbps"` confirma un valor. Validar el **JSON Schema** confirma el contrato completo: que la respuesta tiene la estructura, los tipos y los campos obligatorios que promete la API. Es la validación con mejor ratio esfuerzo/valor de un test de API.
 
 ## Por qué
 
@@ -16,7 +16,34 @@ Validar que `name == "Producto X"` confirma un valor. Validar el **JSON Schema**
 
 ## Ejemplo
 
-Respuesta de error estándar (estilo RFC 7807):
+Respuesta al crear un producto del catálogo (una tarifa de fibra):
+
+```json
+{
+  "id": "prod-042",
+  "name": "Fibra 1 Gbps",
+  "downloadSpeedMbps": 1000,
+  "monthlyPrice": 35.90
+}
+```
+
+Su schema (`create-product.json`):
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id":                { "type": "string" },
+    "name":              { "type": "string" },
+    "downloadSpeedMbps": { "type": "integer" },
+    "monthlyPrice":      { "type": "number" }
+  },
+  "required": ["id", "name", "downloadSpeedMbps", "monthlyPrice"]
+}
+```
+
+Y un schema genérico reutilizable, la respuesta de error estándar (estilo RFC 7807):
 
 ```json
 {
@@ -50,7 +77,7 @@ En el test (REST Assured trae el matcher; aquí envuelto en la fachada de aserci
 ```java
 // status code + schema en una sola llamada — el combo habitual
 TestCaseReport.assertResponseCodeAndBodySchema("Status y schema", response,
-        HttpStatus.SC_CREATED, PRODUCTS_SCHEMA_PATH + "/create-product.json");
+        HttpStatus.SC_CREATED, CATALOG_SCHEMA_PATH + "/create-product.json");
 ```
 
 En JavaScript/TypeScript el equivalente es la librería `ajv`; en Playwright se integra en un `expect` custom.
@@ -60,4 +87,4 @@ En JavaScript/TypeScript el equivalente es la librería `ajv`; en Playwright se 
 - **`required` es donde está el valor.** Un schema sin `required` valida casi cualquier cosa. Decide conscientemente qué campos son obligatorios.
 - **Valida también los errores.** Los bodies de `400/401/403/404` tienen contrato igual que los de `200` — y se rompen más a menudo, porque nadie los mira.
 - **Cuidado con schemas demasiado estrictos**: si la API añade un campo nuevo (cambio retrocompatible), ¿quieres que tus tests fallen? Decide la política de `additionalProperties` según lo que signifique "romper el contrato" para tus consumidores.
-- El schema **no sustituye** las aserciones funcionales: confirma la forma, no que el descuento calculado sea correcto.
+- El schema **no sustituye** las aserciones funcionales: confirma la forma, no que el precio mensual calculado sea correcto.

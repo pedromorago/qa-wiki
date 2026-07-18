@@ -28,10 +28,10 @@ A testing framework is an internal product. Its mission is to provide a **workin
 The key piece is the **service object**: the equivalent of a UI Page Object, but for APIs. Each service encapsulates *all* the interactions with its endpoint. If the endpoint changes, its service object changes — **the tests never notice**.
 
 ```java
-public class UsersService extends ServiceBase {
-    public ValidatableResponse createUser(Object body) { ... }
-    public ValidatableResponse getUser(String userId) { ... }
-    public ValidatableResponse deleteUser(String userId) { ... }
+public class ServiceOrdersService extends ServiceBase {
+    public ValidatableResponse createOrder(Object body) { ... }
+    public ValidatableResponse getOrder(String orderId) { ... }
+    public ValidatableResponse cancelOrder(String orderId) { ... }
 }
 ```
 
@@ -44,7 +44,7 @@ src/test/java/
 ├── cases/       # tests, organized by API version → domain → feature
 │   └── v2/catalog/products/CreateProductTest.java
 ├── suites/      # JUnit suites per domain
-├── services/    # service objects (same organization criteria)
+├── services/    # service objects (CatalogService, ServiceOrdersService…)
 ├── model/       # request/response POJOs
 └── helpers/     # utilities: random data, user creation…
 src/test/resources/

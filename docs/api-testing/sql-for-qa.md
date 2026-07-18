@@ -17,34 +17,34 @@ You don't need to be a DBA. This covers almost all the day-to-day:
 
 ## Examples over a minimal schema
 
-With two example tables, `users` and `orders` (a user has many orders):
+With two example tables, `customers` and `service_orders` (a customer has many service orders, and each order moves through `created → validated → provisioning → active`):
 
 ```sql
--- Was the user I registered from the UI actually created?
-SELECT id, email, status, created_at
-FROM users
-WHERE email = 'test-2026-07@example.com';
+-- Was the customer created when they signed up for the 1 Gbps fibre plan?
+SELECT id, document, status, created_at
+FROM customers
+WHERE document = '12345678A';
 
--- Did the order move to 'shipped' after the full flow?
-SELECT status FROM orders WHERE id = 10442;
+-- Did the service order reach 'active' after the full provisioning flow?
+SELECT status FROM service_orders WHERE id = 10442;
 
--- Duplicates that validation should have prevented
-SELECT email, COUNT(*)
-FROM users
-GROUP BY email
+-- Duplicate customers that validation should have prevented
+SELECT document, COUNT(*)
+FROM customers
+GROUP BY document
 HAVING COUNT(*) > 1;
 
--- Orphan orders: they point to a user that no longer exists
+-- Orphan service orders: they point to a customer that no longer exists
 SELECT o.id
-FROM orders o
-LEFT JOIN users u ON u.id = o.user_id
-WHERE u.id IS NULL;
+FROM service_orders o
+LEFT JOIN customers c ON c.id = o.customer_id
+WHERE c.id IS NULL;
 
--- Test data: active users with pending orders
-SELECT u.id, u.email
-FROM users u
-JOIN orders o ON o.user_id = u.id
-WHERE u.status = 'active' AND o.status = 'pending'
+-- Test data: active customers with orders still in provisioning
+SELECT c.id, c.document
+FROM customers c
+JOIN service_orders o ON o.customer_id = c.id
+WHERE c.status = 'active' AND o.status = 'provisioning'
 LIMIT 5;
 ```
 
@@ -68,7 +68,7 @@ In API tests, the most complete assertion validates both sides: the **response**
 ## Common mistakes
 
 - **Validating only the response.** A 200 with a correct body doesn't guarantee it was persisted correctly (or that it wasn't persisted twice).
-- **Tests that depend on live data.** If the test's query assumes "user 42 exists and has 3 orders", the test breaks the moment someone touches that data. Create or locate your data, don't assume it.
+- **Tests that depend on live data.** If the test's query assumes "customer 42 exists and has 3 service orders", the test breaks the moment someone touches that data. Create or locate your data, don't assume it.
 - **`SELECT *` on huge tables**, out of habit. Ask for the columns you need.
 - **Copying queries without understanding the JOIN.** An `INNER JOIN` where a `LEFT JOIN` was needed hides exactly the rows you were looking for (the ones without a match).
 

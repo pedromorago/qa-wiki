@@ -45,6 +45,6 @@ features:
 
 ## About this wiki
 
-I'm [Pedro Morago](/about), QA Engineer. This is my **personal knowledge base**: here I collect, organize and explain in my own words what I keep learning — from testing strategy to Playwright, through API testing, CI/CD and quality processes. It helps me look things up while I work, cement what I've learned by writing it down, and share it in case it's useful to someone else.
+I'm [Pedro Morago](/about), QA Engineer. This is my **personal knowledge base**: here I collect, organize and explain in my own words what I keep learning — from testing strategy to Playwright, through API testing, CI/CD and quality processes. It helps me look things up while I work, cement what I've learned by writing it down, and share it in case it's useful to someone else. The examples revolve around two recurring domains — a threat modeling platform and a telecommunications operator — to keep them close to real projects.
 
 If something looks incomplete, it's because it's alive: I'll keep expanding it.

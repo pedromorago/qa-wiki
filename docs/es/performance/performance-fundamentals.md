@@ -1,6 +1,6 @@
 # Fundamentos del testing de rendimiento
 
-Una prueba de rendimiento sin objetivo definido solo produce gráficas bonitas. Antes de abrir cualquier herramienta hay que saber **qué pregunta se quiere responder**: ¿aguanta el pico del Black Friday? ¿cuántos usuarios soporta antes de degradarse? ¿hay fugas de memoria tras horas de uso?
+Una prueba de rendimiento sin objetivo definido solo produce gráficas bonitas. Antes de abrir cualquier herramienta hay que saber **qué pregunta se quiere responder**: ¿aguanta el pico del lanzamiento de una nueva tarifa o de una campaña de portabilidad? ¿cuántos usuarios soporta antes de degradarse? ¿hay fugas de memoria tras horas de uso?
 
 ## Los tipos de prueba (y la pregunta que responde cada uno)
 
@@ -23,7 +23,7 @@ La señal clásica: al subir la carga, el throughput crece hasta un punto y se a
 ## Cómo plantear una prueba que signifique algo
 
 1. **Objetivos medibles antes de empezar**: "p95 < 500 ms y errores < 0,1 % con 200 usuarios concurrentes". Sin objetivo no hay veredicto.
-2. **Modelo de carga realista**: mezcla de operaciones como en producción (¿80 % lecturas, 20 % escrituras?), ramp-up gradual, datos variados. Cien usuarios haciendo la misma petición cacheada no prueban nada.
+2. **Modelo de carga realista**: mezcla de operaciones como en producción (¿80 % consultas de catálogo, 20 % altas de pedido?), ramp-up gradual, datos variados. Cien usuarios haciendo la misma petición cacheada no prueban nada.
 3. **Entorno representativo**: los resultados escalan mal entre entornos; si pruebas en uno 4 veces más pequeño, documenta la diferencia y no extrapoles alegremente.
 4. **Un cambio por iteración**: mide, cambia una cosa, vuelve a medir. Como en cualquier experimento.
 

@@ -6,7 +6,7 @@ Dos herramientas para probar APIs sin montar un framework de código: **Postman*
 
 Lo básico se aprende en una tarde; lo que marca la diferencia es usarlo con disciplina:
 
-- **Colecciones**: las peticiones se organizan por producto o por flujo, versionadas y compartidas con el equipo (se pueden exportar a JSON y guardar en el repo).
+- **Colecciones**: las peticiones se organizan por producto o por flujo — por ejemplo, una colección para la API de `/service-orders`: crear el pedido, consultar su estado, cancelarlo —, versionadas y compartidas con el equipo (se pueden exportar a JSON y guardar en el repo).
 - **Entornos y variables**: la misma colección corre contra dev, staging o producción cambiando solo el entorno. Las credenciales van en variables, nunca escritas en la petición.
 - **Tests**: cada petición puede llevar aserciones en JavaScript (`pm.expect(...)`) — status, campos del body, tiempos. Una colección sin aserciones no es una suite: es un lanzador de peticiones.
 - **Newman / Postman CLI**: las colecciones se ejecutan por línea de comandos, lo que permite meterlas en la pipeline de CI.
@@ -28,8 +28,8 @@ El WSDL es la gran ventaja para un QA: es un **contrato formal y completo**. Si 
 
 ## SoapUI: probar contra el WSDL
 
-- Importas el WSDL y SoapUI **genera las peticiones de cada operación** con su estructura XML lista para rellenar.
-- Las aserciones clave: *Schema Compliance* (la respuesta cumple el XSD), *XPath Match* (un valor concreto en el XML) y *SOAP Fault / Not SOAP Fault* (errores del protocolo).
+- Importas el WSDL — por ejemplo, el de un servicio de aprovisionamiento con una operación `activateService` — y SoapUI **genera las peticiones de cada operación** con su estructura XML lista para rellenar.
+- Las aserciones clave: *Schema Compliance* (la respuesta cumple el XSD), *XPath Match* (un valor concreto en el XML, como el estado del servicio tras la activación) y *SOAP Fault / Not SOAP Fault* (errores del protocolo).
 - Organiza en *test suites* y *test cases* ejecutables también por línea de comandos, así que puede integrarse en CI.
 - También maneja REST, aunque para REST puro Postman suele ser más cómodo.
 

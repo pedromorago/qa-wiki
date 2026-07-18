@@ -1,6 +1,6 @@
 # Performance testing fundamentals
 
-A performance test without a defined objective only produces pretty charts. Before opening any tool you need to know **what question you want answered**: does it survive the Black Friday peak? How many users before it degrades? Are there memory leaks after hours of use?
+A performance test without a defined objective only produces pretty charts. Before opening any tool you need to know **what question you want answered**: does it survive the peak of a new plan launch or a number-portability campaign? How many users before it degrades? Are there memory leaks after hours of use?
 
 ## The test types (and the question each one answers)
 
@@ -23,7 +23,7 @@ The classic signal: as load grows, throughput rises up to a point and flattens, 
 ## How to design a test that means something
 
 1. **Measurable objectives before starting**: "p95 < 500 ms and errors < 0.1 % with 200 concurrent users". No objective, no verdict.
-2. **A realistic load model**: an operation mix like production's (80 % reads, 20 % writes?), gradual ramp-up, varied data. A hundred users hitting the same cached request prove nothing.
+2. **A realistic load model**: an operation mix like production's (80 % catalog queries, 20 % new service orders?), gradual ramp-up, varied data. A hundred users hitting the same cached request prove nothing.
 3. **A representative environment**: results scale poorly between environments; if you test on one 4× smaller, document the difference and don't extrapolate cheerfully.
 4. **One change per iteration**: measure, change one thing, measure again. Like any experiment.
 

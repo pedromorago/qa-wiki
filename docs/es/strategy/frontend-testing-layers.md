@@ -1,15 +1,15 @@
 # Capas de testing en frontend, con ejemplos
 
-El equivalente frontend de las [capas de backend](/es/strategy/backend-testing-layers). Ejemplo conductor: **el formulario de alta de usuario** en la página de administración de un SaaS.
+El equivalente frontend de las [capas de backend](/es/strategy/backend-testing-layers). Ejemplo conductor: **el formulario de creación de un componente** dentro de un proyecto de una plataforma de threat modeling.
 
 ## Unit: lógica del componente, sin navegador
 
 Sin DOM real ni navegador; eventos simulados y **todas las llamadas a la API mockeadas** — nunca datos reales. Ficheros `*.test.tsx` junto al código (stack React/TS típico).
 
-Para el formulario de alta:
+Para el formulario de creación:
 
-- Se renderiza correctamente en modo readOnly.
-- Se muestran las validaciones del campo contraseña (no coinciden, contraseña débil…).
+- Se renderiza correctamente en modo readOnly (rol viewer).
+- Se muestran las validaciones del campo nombre (vacío, demasiado largo, duplicado en el proyecto…).
 - Las labels muestran el texto correcto.
 
 Las cuatro áreas de foco habituales:
@@ -36,11 +36,11 @@ Herramientas: Playwright Component Testing, Cypress Component Testing, Storybook
 
 Aplicación desplegada entera (BD incluida), datos reales vía API. El flujo del ejemplo:
 
-1. Login y navegar a la página de usuarios.
+1. Login y navegar al listado de componentes del proyecto.
 2. Clic en "Crear".
-3. Rellenar el formulario con datos válidos.
-4. Comprobar que los desplegables muestran los **roles correctos** (datos reales del backend).
-5. Enviar y confirmar: banner de notificación + el usuario aparece en el listado.
+3. Rellenar el formulario con nombre y tipo válidos.
+4. Comprobar que el desplegable muestra los **tipos de componente correctos** (datos reales del backend).
+5. Enviar y confirmar: banner de notificación + el componente aparece en el listado.
 
 Dos reglas de oro de esta capa:
 

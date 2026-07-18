@@ -45,22 +45,22 @@ Se confunden constantemente y no son lo mismo:
 
 ## Ejemplo completo
 
-> **Título**: Checkout: el total no aplica el cupón "VERANO10" si el carrito contiene un producto rebajado
+> **Título**: Contratación: el resumen del pedido no refleja el descuento convergente al añadir una tarifa móvil a un cliente con fibra activa
 >
-> **Entorno**: staging v2.14.0 · Chrome 138 / macOS · usuario `qa_test_01`
+> **Entorno**: staging v2.14.0 · Chrome 138 / macOS · cliente de prueba `qa_test_01`
 >
 > **Pasos**:
-> 1. Añadir al carrito "Camiseta básica" (rebajada, 15 €) y "Pantalón" (30 €)
-> 2. En el checkout, aplicar el cupón `VERANO10` (−10%)
-> 3. Observar el total
+> 1. Con el cliente `qa_test_01`, que tiene fibra 1 Gbps en estado `active`, iniciar la contratación de la tarifa móvil "20 GB" (15 €/mes)
+> 2. Avanzar hasta el resumen del pedido, donde debe aplicarse la promoción convergente (−10% en la cuota móvil)
+> 3. Observar el desglose de cuotas
 >
-> **Resultado actual**: total = 45 € (el cupón no se aplica). La UI muestra el cupón como "aplicado" ✅ pero el desglose no cambia. La respuesta de `POST /cart/discount` devuelve `200` con `"discount": 0`.
+> **Resultado actual**: cuota móvil = 15 €/mes (el descuento no se aplica). La UI muestra la promoción como "aplicada" ✅ pero el desglose no cambia. La respuesta de `POST /service-orders` devuelve `201` con `"discount": 0`.
 >
-> **Resultado esperado**: total = 40,50 € (−10% sobre 45 €), según el criterio de aceptación de la historia JIRA-1234, que no excluye productos rebajados.
+> **Resultado esperado**: cuota móvil = 13,50 €/mes (−10% sobre 15 €), según el criterio de aceptación de la historia JIRA-1234, que aplica la promoción a cualquier cliente con fibra activa.
 >
-> **Severidad**: Alta (afecta a cobros) · **Prioridad**: Alta
+> **Severidad**: Alta (afecta a facturación) · **Prioridad**: Alta
 >
-> **Notas**: solo ocurre si hay al menos un producto rebajado en el carrito. Con carrito sin rebajas el cupón aplica bien. En Firefox se reproduce igual.
+> **Notas**: solo ocurre si la fibra del cliente está en estado `active`; si el pedido de fibra sigue en `provisioning`, la promoción ni se ofrece (comportamiento esperado). En Firefox se reproduce igual.
 
 ::: tip Actitud
 El bug report no es una acusación, es un regalo: le estás ahorrando al desarrollador todo el trabajo de diagnóstico. Escríbelo para que la persona que lo lea pueda empezar a arreglarlo sin hablar contigo.

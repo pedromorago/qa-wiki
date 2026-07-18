@@ -40,3 +40,4 @@ Un caso concreto, a poder ser de mi día a día.
 3. **Añadir la página al sidebar**: editar `docs/.vitepress/sidebar.ts` y añadir una línea `{ text: '...', link: '/categoria/mi-nuevo-tema' }` en su sección.
 4. Para una **categoría nueva**: crear la carpeta con su `index.md` y añadir la sección al sidebar y al menú superior.
 5. Escribir **con mis palabras**: la wiki vale por lo que yo entiendo, no por lo que copio.
+6. **Dos dominios de ejemplo recurrentes**: los ejemplos de la wiki usan una plataforma de threat modeling y una operadora de telecomunicaciones como dominios ficticios, para que hablen el idioma de proyectos reales sin nombrar empresas ni productos.

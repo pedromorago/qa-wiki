@@ -100,7 +100,7 @@ The variables come from the environment: the same command works for any combinat
 If you skip a test, the `test.skip()` goes **after** the `qase.id()` — otherwise the test management tool doesn't associate the result and that case drops off the test run's radar:
 
 ```ts
-test('Delete pattern when the ref is duplicated', { tag: ['@regression'] }, async () => {
+test('Delete component when the ref is duplicated', { tag: ['@regression'] }, async () => {
   qase.id(1043);
   test.skip(true, 'Pending to fix');
 });

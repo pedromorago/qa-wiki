@@ -6,19 +6,19 @@ Para testear APIs REST hay que dominar HTTP: es el idioma en el que la API te di
 
 ```
 ── Petición ──────────────────────────────
-POST /api/v1/users HTTP/1.1          ← método + ruta
+POST /api/v1/service-orders HTTP/1.1     ← método + ruta
 Host: api.ejemplo.com
-Authorization: Bearer eyJhbGc...     ← cabeceras
+Authorization: Bearer eyJhbGc...         ← cabeceras
 Content-Type: application/json
 
-{ "email": "ana@test.com" }          ← cuerpo (body)
+{ "customerId": "C-100", "productId": "fiber-1gbps" }    ← cuerpo (body)
 
 ── Respuesta ─────────────────────────────
-HTTP/1.1 201 Created                 ← código de estado
+HTTP/1.1 201 Created                     ← código de estado
 Content-Type: application/json
-Location: /api/v1/users/42
+Location: /api/v1/service-orders/42
 
-{ "id": 42, "email": "ana@test.com" }
+{ "id": 42, "customerId": "C-100", "productId": "fiber-1gbps", "status": "created" }
 ```
 
 ## Métodos HTTP
@@ -45,7 +45,7 @@ Location: /api/v1/users/42
 - **401 Unauthorized** — sin autenticar (falta token o es inválido).
 - **403 Forbidden** — autenticado pero **sin permiso**. La confusión 401/403 es un bug clásico.
 - **404 Not Found** — el recurso no existe. Ojo: algunas APIs devuelven 404 en vez de 403 para no revelar que el recurso existe — eso es una decisión de diseño, hay que saber cuál aplica.
-- **409 Conflict** — conflicto de estado (p. ej. crear un email duplicado).
+- **409 Conflict** — conflicto de estado (p. ej. crear un pedido de servicio duplicado para un cliente que ya tiene ese mismo servicio en curso).
 - **422 Unprocessable Entity** — sintaxis correcta pero datos semánticamente inválidos.
 - **429 Too Many Requests** — rate limiting.
 

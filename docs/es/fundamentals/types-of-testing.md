@@ -4,7 +4,7 @@ Clasificar los tipos de prueba ayuda a hablar un lenguaje común con el equipo y
 
 ## Funcional vs no funcional
 
-- **Testing funcional**: verifica *qué* hace el sistema. ¿El login funciona? ¿El carrito calcula bien el total?
+- **Testing funcional**: verifica *qué* hace el sistema. ¿El alta de un pedido de fibra genera el pedido de servicio? ¿La tarifa aplicada es la del catálogo?
 - **Testing no funcional**: verifica *cómo* lo hace. Rendimiento, carga, seguridad, usabilidad, accesibilidad, compatibilidad.
 
 ## Caja negra, caja blanca, caja gris

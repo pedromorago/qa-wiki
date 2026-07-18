@@ -24,7 +24,7 @@ Dimensiones que conviene identificar en cualquier producto:
 
 - **Ediciones/variantes comerciales** — cada una activa features distintas; se validan por separado.
 - **Versiones de BD soportadas** — la release se valida contra todas las que existen en clientes, no solo la última.
-- **Cross-functionalities** — transversales que no pertenecen a ningún dominio (licenciamiento, expiración de sesión…): merecen suite propia.
+- **Cross-functionalities** — transversales que no pertenecen a ningún dominio (licenciamiento, expiración de sesión, exportación de informes de un proyecto…): merecen suite propia.
 - **Addons e integraciones** con servicios externos.
 
 ## Dos estados de base de datos

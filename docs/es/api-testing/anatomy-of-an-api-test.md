@@ -7,12 +7,12 @@ Cómo escribo un test de API automatizado, del nombre a las aserciones. Ejemplos
 Convención **Given-When-Then** en el nombre del método + descripción en lenguaje natural en `@DisplayName`:
 
 ```java
-@DisplayName("Create Product - valid. Product with all fields filled.")
+@DisplayName("Create Catalog Product - valid. Product with all fields filled.")
 @Test
 void givenValidUser_WhenCreateProductWithAllFields_ThenCreateSuccess() {
 ```
 
-`givenNoPermissionUser_WhenDeleteOrder_ThenOperationForbidden` se lee como la especificación del caso. Los nombres largos y descriptivos en tests son un *feature*: nadie los teclea (los ejecuta el runner) y todos los leen (en cada fallo).
+`givenNoPermissionUser_WhenDeleteServiceOrder_ThenOperationForbidden` se lee como la especificación del caso. Los nombres largos y descriptivos en tests son un *feature*: nadie los teclea (los ejecuta el runner) y todos los leen (en cada fallo).
 
 ## Cuerpo en tres bloques
 
@@ -20,16 +20,16 @@ void givenValidUser_WhenCreateProductWithAllFields_ThenCreateSuccess() {
 @Test
 void givenValidUser_WhenCreateProductWithAllFields_ThenCreateSuccess() {
     // given - preparar datos
-    ProductsService productsService = new ProductsService(productUser.getToken());
-    JSONObject productData = ProductsService.fillProductWithAllFields();
+    CatalogService catalogService = new CatalogService(catalogUser.getToken());
+    JSONObject productData = CatalogService.fillProductWithAllFields();
     String name = productData.getString("name");
 
     // when - hacer la petición
-    ValidatableResponse response = productsService.createProduct(productData);
+    ValidatableResponse response = catalogService.createProduct(productData);
 
     // then - validar la respuesta
     TestCaseReport.assertResponseCodeAndBodySchema("Status y schema", response,
-            HttpStatus.SC_OK, PRODUCTS_SCHEMA_PATH + "/create-product.json");
+            HttpStatus.SC_OK, CATALOG_SCHEMA_PATH + "/create-product.json");
     TestCaseReport.assertPropertyIsNotNull("", response, "id");
     TestCaseReport.assertBodyContainsProperty("", response, "name", name);
 }
@@ -51,10 +51,10 @@ Los casos se derivan de la **especificación** (contrato primero), no del códig
 | **400 Bad Request** | Parámetro con formato inválido; body al que le faltan campos obligatorios. |
 | **401 Unauthorized** | Token inválido o ausente. |
 | **403 Forbidden** | Usuario creado ex profeso **sin** el permiso necesario. |
-| **404 Not Found** | ID inexistente… y el matiz importante: ID que **existe pero pertenece a otro usuario**. |
+| **404 Not Found** | ID inexistente… y el matiz importante: ID que **existe pero pertenece a otro cliente**. |
 
 ::: tip 403 vs 404: decisión de seguridad
-Si un usuario pide un objeto sobre el que no tiene acceso, muchas APIs responden `404` en vez de `403` deliberadamente: un `403` confirmaría que el objeto existe. Hay que saber cuál es la política de tu API y probarla — es autorización a nivel de objeto, el bug clásico ([IDOR](/es/glossary)). 
+Si un usuario pide un objeto sobre el que no tiene acceso (p. ej. el pedido de servicio de otro cliente), muchas APIs responden `404` en vez de `403` deliberadamente: un `403` confirmaría que el objeto existe. Hay que saber cuál es la política de tu API y probarla — es autorización a nivel de objeto, el bug clásico ([IDOR](/es/glossary)). 
 :::
 
 ## Qué valido en cada respuesta
@@ -79,7 +79,7 @@ Cada test automatizado tiene su entrada en el gestor de casos de prueba (Qase, T
 
 ```java
 @QaseId(1234)
-@DisplayName("Products - BE - Create - valid. All fields filled.")
+@DisplayName("Catalog - BE - Create Product - valid. All fields filled.")
 @Test
 void givenValidUser_WhenCreateProduct_ThenCreateSuccess() { ... }
 ```

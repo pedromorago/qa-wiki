@@ -26,11 +26,11 @@ The conditions the software must meet to be accepted by the user, the client or 
 **Given/When/Then** (a BDD inheritance) — my favorite when the behavior has clear states and actions:
 
 ```
-Scenario: Login with wrong password
-  Given a registered user with email ana@example.com
-  When they enter a wrong password 3 times
-  Then the account is temporarily locked
-  And the account-locked message is shown
+Scenario: A viewer tries to edit a countermeasure
+  Given a user with the viewer role on the "Payments" project
+  When they try to change a countermeasure's status to "applied"
+  Then the change is not saved
+  And the insufficient-permissions warning is shown
 ```
 
 Extra advantage: if the team uses a BDD framework, the format is already familiar — dev-QA alignment for free.
