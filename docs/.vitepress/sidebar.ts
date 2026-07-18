@@ -68,6 +68,8 @@ export const sidebarEn: DefaultTheme.Sidebar = [
     items: [
       { text: 'When to automate', link: '/automation/when-to-automate' },
       { text: 'The E2E tools landscape', link: '/automation/e2e-tools-landscape' },
+      { text: 'Cypress: first steps', link: '/automation/cypress-first-steps' },
+      { text: 'Cypress: patterns that work', link: '/automation/cypress-patterns' },
       { text: 'Playwright: first steps', link: '/automation/playwright-first-steps' },
       { text: 'Page Object Model', link: '/automation/page-object-model' },
       { text: 'Configuring and organizing the suite', link: '/automation/configuring-and-organizing-playwright' },
@@ -186,6 +188,8 @@ export const sidebarEs: DefaultTheme.Sidebar = [
     items: [
       { text: 'Cuándo automatizar', link: '/es/automation/when-to-automate' },
       { text: 'El panorama de herramientas E2E', link: '/es/automation/e2e-tools-landscape' },
+      { text: 'Cypress: primeros pasos', link: '/es/automation/cypress-first-steps' },
+      { text: 'Cypress: patrones que funcionan', link: '/es/automation/cypress-patterns' },
       { text: 'Playwright: primeros pasos', link: '/es/automation/playwright-first-steps' },
       { text: 'Page Object Model', link: '/es/automation/page-object-model' },
       { text: 'Configurar y organizar la suite', link: '/es/automation/configuring-and-organizing-playwright' },

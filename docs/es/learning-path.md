@@ -57,16 +57,18 @@ Con criterio primero, herramienta después.
 
 1. [Cuándo automatizar](/es/automation/when-to-automate) — y cuándo no.
 2. [El panorama de herramientas E2E](/es/automation/e2e-tools-landscape) — Selenium, WebDriverIO, Cypress, Playwright: elige con criterio.
-3. [Playwright: primeros pasos](/es/automation/playwright-first-steps)
-4. [Page Object Model](/es/automation/page-object-model)
-5. [Configurar y organizar la suite](/es/automation/configuring-and-organizing-playwright)
-6. [TypeScript para QA](/es/automation/typescript-for-qa)
-7. [Python para QA](/es/automation/python-for-qa) — el lenguaje comodín: pytest y requests.
-8. [BDD con Cucumber](/es/automation/bdd-with-cucumber) — cuándo aporta y cuándo es teatro.
-9. [Migrar de TestCafe a Playwright](/es/automation/migrating-from-testcafe-to-playwright) — un caso real, con números.
-10. [IA en automatización](/es/automation/ai-in-test-automation)
-11. Testing visual <Badge type="warning" text="pendiente" />
-12. Mobile testing <Badge type="warning" text="pendiente" />
+3. [Cypress: primeros pasos](/es/automation/cypress-first-steps) — el modelo mental: encadenamiento y reintento automático.
+4. [Cypress: patrones que funcionan](/es/automation/cypress-patterns) — cy.session, cy.intercept y estado por API.
+5. [Playwright: primeros pasos](/es/automation/playwright-first-steps)
+6. [Page Object Model](/es/automation/page-object-model)
+7. [Configurar y organizar la suite](/es/automation/configuring-and-organizing-playwright)
+8. [TypeScript para QA](/es/automation/typescript-for-qa)
+9. [Python para QA](/es/automation/python-for-qa) — el lenguaje comodín: pytest y requests.
+10. [BDD con Cucumber](/es/automation/bdd-with-cucumber) — cuándo aporta y cuándo es teatro.
+11. [Migrar de TestCafe a Playwright](/es/automation/migrating-from-testcafe-to-playwright) — un caso real, con números.
+12. [IA en automatización](/es/automation/ai-in-test-automation)
+13. Testing visual <Badge type="warning" text="pendiente" />
+14. Mobile testing <Badge type="warning" text="pendiente" />
 
 ## Etapa 6 — La pipeline
 

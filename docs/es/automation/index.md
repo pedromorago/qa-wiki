@@ -20,3 +20,5 @@ Estrategia, Playwright y patrones de automatización E2E.
 - [El panorama de herramientas E2E](/es/automation/e2e-tools-landscape) — Selenium, WebDriverIO, Cypress y Playwright: qué arquitectura hay detrás de cada una y cómo elegir.
 - [Python para QA](/es/automation/python-for-qa) — pytest, requests y para qué más sirve el lenguaje comodín del QA.
 - [BDD con Cucumber](/es/automation/bdd-with-cucumber) — Gherkin y step definitions, y cuándo BDD aporta de verdad.
+- [Cypress: primeros pasos](/es/automation/cypress-first-steps) — el runner, los comandos esenciales y el modelo mental de encadenamiento y reintento automático.
+- [Cypress: patrones que funcionan](/es/automation/cypress-patterns) — cy.session, cy.intercept, estado por API y organización que escala.

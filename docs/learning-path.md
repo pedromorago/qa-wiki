@@ -57,16 +57,18 @@ Judgment first, tooling second.
 
 1. [When to automate](/automation/when-to-automate) — and when not to.
 2. [The E2E tools landscape](/automation/e2e-tools-landscape) — Selenium, WebDriverIO, Cypress, Playwright: choose with criteria.
-3. [Playwright: first steps](/automation/playwright-first-steps)
-4. [Page Object Model](/automation/page-object-model)
-5. [Configuring and organizing the suite](/automation/configuring-and-organizing-playwright)
-6. [TypeScript for QA](/automation/typescript-for-qa)
-7. [Python for QA](/automation/python-for-qa) — the utility language: pytest and requests.
-8. [BDD with Cucumber](/automation/bdd-with-cucumber) — when it pays off and when it's theater.
-9. [Migrating from TestCafe to Playwright](/automation/migrating-from-testcafe-to-playwright) — a real case, with numbers.
-10. [AI in test automation](/automation/ai-in-test-automation)
-11. Visual testing <Badge type="warning" text="planned" />
-12. Mobile testing <Badge type="warning" text="planned" />
+3. [Cypress: first steps](/automation/cypress-first-steps) — the mental model: chaining and automatic retry.
+4. [Cypress: patterns that work](/automation/cypress-patterns) — cy.session, cy.intercept and state via API.
+5. [Playwright: first steps](/automation/playwright-first-steps)
+6. [Page Object Model](/automation/page-object-model)
+7. [Configuring and organizing the suite](/automation/configuring-and-organizing-playwright)
+8. [TypeScript for QA](/automation/typescript-for-qa)
+9. [Python for QA](/automation/python-for-qa) — the utility language: pytest and requests.
+10. [BDD with Cucumber](/automation/bdd-with-cucumber) — when it pays off and when it's theater.
+11. [Migrating from TestCafe to Playwright](/automation/migrating-from-testcafe-to-playwright) — a real case, with numbers.
+12. [AI in test automation](/automation/ai-in-test-automation)
+13. Visual testing <Badge type="warning" text="planned" />
+14. Mobile testing <Badge type="warning" text="planned" />
 
 ## Stage 6 — The pipeline
 
