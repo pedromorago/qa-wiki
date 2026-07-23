@@ -68,3 +68,7 @@ docs/
 ## Enabling GitHub Pages (first time only)
 
 In the repo: **Settings → Pages → Source → GitHub Actions**. From there, the `.github/workflows/deploy.yml` workflow takes care of the rest.
+
+## License
+
+Dual-licensed — see [LICENSE.md](LICENSE.md): the code (VitePress config, workflows) is **MIT**; the wiki content under `docs/` is **CC BY-NC-SA 4.0** (share and adapt non-commercially, with attribution).
