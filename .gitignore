@@ -1,6 +1,10 @@
 node_modules/
 docs/.vitepress/dist/
 docs/.vitepress/cache/
+
+# Private overlay: a separate PRIVATE repo cloned at this path.
+# It must never be tracked here — this repo is public.
+docs/private/
 .DS_Store
 .env
 .env.*

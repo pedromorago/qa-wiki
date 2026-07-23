@@ -21,12 +21,33 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # necesario para lastUpdated
+
+      # Guardias anti-fuga (los push directos a main no pasan por el CI de PR):
+      # el overlay privado no puede estar trackeado, ningún fichero confidencial
+      # puede estar en el árbol público, y el build no puede emitir /private/.
+      - name: Leak guards
+        run: |
+          if [ -d docs/private ]; then
+            echo "::error::docs/private existe en el checkout público." && exit 1
+          fi
+          if git grep -l "confidential: true" -- docs; then
+            echo "::error::Fichero(s) confidenciales en el árbol público." && exit 1
+          fi
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
       - run: npm ci
       - run: npm run build
+      - name: Leak guard — no /private/ pages nor private-repo refs in the public build
+        run: |
+          if [ -e docs/.vitepress/dist/private ]; then
+            echo "::error::El build público contiene páginas bajo /private/." && exit 1
+          fi
+          if grep -rq 'formacion-private' docs/.vitepress/dist; then
+            echo "::error::El build público referencia el repo privado." && exit 1
+          fi
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -41,3 +62,24 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # Avisa al repo privado para que reconstruya el sitio autenticado con el
+  # contenido público nuevo. Opcional: solo actúa si existe el secret
+  # PRIVATE_WIKI_DISPATCH_TOKEN (ver README de formacion-private).
+  notify-private:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger private wiki rebuild
+        env:
+          PAT: ${{ secrets.PRIVATE_WIKI_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "$PAT" ]; then
+            echo "Sin PRIVATE_WIKI_DISPATCH_TOKEN — se omite (el sitio privado se actualizará en su próximo despliegue)."
+            exit 0
+          fi
+          curl -fsS -X POST \
+            -H "Authorization: Bearer $PAT" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/pedro-morago/formacion-private/dispatches \
+            -d '{"event_type":"public-wiki-updated"}'

@@ -13,9 +13,43 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # Guardia anti-fuga 1: el overlay privado vive en su propio repo y está
+      # en .gitignore — si alguna vez aparece trackeado aquí, algo va muy mal.
+      - name: Leak guard — docs/private must not be tracked
+        run: |
+          if [ -d docs/private ]; then
+            echo "::error::docs/private existe en el checkout público: contenido privado trackeado en el repo público."
+            exit 1
+          fi
+
+      # Guardia anti-fuga 2: el contenido de empresa lleva `confidential: true`
+      # en el frontmatter y NUNCA puede entrar en el árbol público. Promocionar
+      # algo exige reescribirlo en genérico y sin el flag.
+      - name: Leak guard — no confidential files in the public tree
+        run: |
+          if git grep -l "confidential: true" -- docs; then
+            echo "::error::Fichero(s) con 'confidential: true' en el árbol público. El contenido de empresa nunca pasa a la wiki pública."
+            exit 1
+          fi
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
       - run: npm ci
       - run: npm run build
+
+      # Guardia anti-fuga 3: el build público no debe emitir ninguna ruta /private/
+      # ni referenciar el repo privado (p. ej. una función de themeConfig
+      # serializada en el HTML — pasó con editLink).
+      - name: Leak guard — no /private/ pages nor private-repo refs in the public build
+        run: |
+          if [ -e docs/.vitepress/dist/private ]; then
+            echo "::error::El build público contiene páginas bajo /private/."
+            exit 1
+          fi
+          if grep -rq 'formacion-private' docs/.vitepress/dist; then
+            echo "::error::El build público referencia el repo privado."
+            exit 1
+          fi
