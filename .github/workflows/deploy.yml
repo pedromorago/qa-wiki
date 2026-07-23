@@ -10,13 +10,20 @@ permissions:
   pages: write
   id-token: write
 
+# Un solo run en vuelo; si llegan varios push seguidos (p. ej. guardados del
+# CMS), solo queda encolado el último — los intermedios se descartan.
 concurrency:
   group: pages
   cancel-in-progress: false
 
+# Un único job (antes eran tres): se ahorra el arranque de dos runners y, con
+# la caché de node_modules, el commit→publicado queda en ~30s.
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -37,9 +44,21 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
+
+      # Caché de node_modules completo: si el lockfile no cambió, npm ci se
+      # salta entero (la única dependencia es VitePress; instala poco pero
+      # tarda — este paso es el grueso de la mejora de latencia).
+      - uses: actions/cache@v4
+        id: node-modules
+        with:
+          path: node_modules
+          key: node-modules-${{ runner.os }}-node22-${{ hashFiles('package-lock.json') }}
+
+      - if: steps.node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+
       - run: npm run build
+
       - name: Leak guard — no /private/ pages nor private-repo refs in the public build
         run: |
           if [ -e docs/.vitepress/dist/private ]; then
@@ -48,28 +67,17 @@ jobs:
           if grep -rq 'formacion-private' docs/.vitepress/dist; then
             echo "::error::El build público referencia el repo privado." && exit 1
           fi
+
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs/.vitepress/dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
 
-  # Avisa al repo privado para que reconstruya el sitio autenticado con el
-  # contenido público nuevo. Opcional: solo actúa si existe el secret
-  # PRIVATE_WIKI_DISPATCH_TOKEN (ver README de formacion-private).
-  notify-private:
-    needs: deploy
-    runs-on: ubuntu-latest
-    steps:
+      # Avisa al repo privado para que reconstruya el sitio autenticado con el
+      # contenido público nuevo. Opcional: solo actúa si existe el secret
+      # PRIVATE_WIKI_DISPATCH_TOKEN (ver README de formacion-private).
       - name: Trigger private wiki rebuild
         env:
           PAT: ${{ secrets.PRIVATE_WIKI_DISPATCH_TOKEN }}

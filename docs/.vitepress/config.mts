@@ -1,3 +1,5 @@
+import { cpSync, existsSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitepress'
 import { sidebar } from './sidebar'
 import { hasPrivateContent, privateNav, privateSidebar } from './private'
@@ -46,6 +48,17 @@ export default defineConfig({
 
   markdown: {
     image: { lazyLoading: true },
+  },
+
+  // The private overlay may ship extra static files (the /admin CMS, media)
+  // that must exist ONLY on the authenticated site. They cannot live in
+  // docs/public/ (shared by both builds), so the full build copies them into
+  // the output here. In the public build this is a no-op twice over: the hook
+  // is gated on FULL, and in public CI docs/private/ does not exist at all.
+  buildEnd({ outDir }) {
+    if (!FULL) return
+    const privateStatic = fileURLToPath(new URL('../private/static', import.meta.url))
+    if (existsSync(privateStatic)) cpSync(privateStatic, outDir, { recursive: true })
   },
 
   themeConfig: {

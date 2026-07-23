@@ -36,8 +36,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
+
+      # Misma caché de node_modules que en deploy.yml: lockfile intacto ⇒ sin npm ci.
+      - uses: actions/cache@v4
+        id: node-modules
+        with:
+          path: node_modules
+          key: node-modules-${{ runner.os }}-node22-${{ hashFiles('package-lock.json') }}
+
+      - if: steps.node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+
       - run: npm run build
 
       # Guardia anti-fuga 3: el build público no debe emitir ninguna ruta /private/

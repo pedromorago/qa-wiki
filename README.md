@@ -26,11 +26,13 @@ The full design write-up — requirements, rejected alternatives, threat model a
 ## How to add content
 
 1. Create the `.md` file in its category folder (e.g. `docs/fundamentals/my-topic.md`). There's a [template](docs/template.md) with the recommended structure.
-2. Add it to the sidebar in `docs/.vitepress/sidebar.ts`:
-   ```ts
-   { text: 'My topic', link: '/fundamentals/my-topic' }
+2. Add it to the sidebar in `docs/.vitepress/sidebar.json`:
+   ```json
+   { "text": "My topic", "link": "/fundamentals/my-topic" }
    ```
-3. Commit and push to `main`. It's published within a couple of minutes.
+3. Commit and push to `main`. It's published in about half a minute.
+
+Both steps can also be done from the browser: the authenticated site serves a web CMS (Sveltia) that edits this repo — including the sidebar — through the GitHub API, so "save" is just a commit that goes through the same pipeline and leak guards.
 
 Private notes are even simpler: drop a `.md` file into the right folder under `docs/private/` — its sidebar is generated automatically.
 
@@ -50,7 +52,8 @@ npm run preview     # preview the build
 ```
 docs/
 ├── .vitepress/config.mts   # configuration, top menu, public/full build modes
-├── .vitepress/sidebar.ts   # curated public sidebar
+├── .vitepress/sidebar.json # curated public sidebar (data — editable via the CMS)
+├── .vitepress/sidebar.ts   # thin typed wrapper around sidebar.json
 ├── .vitepress/private.ts   # auto-generated sidebar for the private overlay
 ├── index.md                # home page
 ├── fundamentals/           # core QA concepts
