@@ -21,6 +21,8 @@ This repo is the **public** wiki. Alongside it there is a **private overlay** �
 
 The private overlay cannot leak into the public site by construction: its files are not in this repo, so the public CI never even has them on disk. Three CI leak guards additionally fail the build if `docs/private/` is ever tracked, if a file marked `confidential: true` appears in the public tree, or if the public build emits any `/private/` route.
 
+The full design write-up — requirements, rejected alternatives, threat model and the reasoning (with references) behind each guard — is published as a wiki page: [How this wiki works](https://pedro-morago.github.io/formacion/how-this-wiki-works).
+
 ## How to add content
 
 1. Create the `.md` file in its category folder (e.g. `docs/fundamentals/my-topic.md`). There's a [template](docs/template.md) with the recommended structure.

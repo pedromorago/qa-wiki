@@ -122,6 +122,7 @@ export const sidebar: DefaultTheme.SidebarItem[] = [
     items: [
       { text: 'Glossary', link: '/glossary' },
       { text: 'Entry template', link: '/template' },
+      { text: 'How this wiki works', link: '/how-this-wiki-works' },
       { text: 'About me', link: '/about' },
     ],
   },

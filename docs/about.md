@@ -29,7 +29,7 @@ A browser extension for recording your screen. Video evidence is among the most 
 → [github.com/pedro-morago/grabador-pantalla](https://github.com/pedro-morago/grabador-pantalla)
 
 ### 📚 This wiki
-The site you're on right now: a QA learning wiki built with VitePress and deployed automatically with GitHub Actions.
+The site you're on right now: a QA learning wiki built with VitePress and deployed automatically with GitHub Actions. Its public/private architecture and CI leak guards are themselves a QA exercise — [I documented the design and its reasoning](/how-this-wiki-works).
 → [github.com/pedro-morago/formacion](https://github.com/pedro-morago/formacion)
 
 ### 💼 Portfolio
