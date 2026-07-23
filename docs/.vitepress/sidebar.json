@@ -9,6 +9,8 @@
     },
     {
       "text": "QA Fundamentals",
+      "nav": "Fundamentals",
+      "dir": "fundamentals",
       "collapsed": false,
       "items": [
         { "text": "What is QA?", "link": "/fundamentals/what-is-qa" },
@@ -22,6 +24,8 @@
     },
     {
       "text": "Strategy & Processes",
+      "nav": "Strategy",
+      "dir": "strategy",
       "collapsed": false,
       "items": [
         { "text": "Agile testing strategy", "link": "/strategy/agile-testing-strategy" },
@@ -38,6 +42,8 @@
     },
     {
       "text": "API Testing",
+      "nav": "API Testing",
+      "dir": "api-testing",
       "collapsed": false,
       "items": [
         { "text": "HTTP fundamentals", "link": "/api-testing/http-fundamentals" },
@@ -56,6 +62,8 @@
     },
     {
       "text": "Automation",
+      "nav": "Automation",
+      "dir": "automation",
       "collapsed": false,
       "items": [
         { "text": "When to automate", "link": "/automation/when-to-automate" },
@@ -74,6 +82,8 @@
     },
     {
       "text": "CI/CD & Code Quality",
+      "nav": "CI/CD",
+      "dir": "cicd",
       "collapsed": false,
       "items": [
         { "text": "Git basics for QA", "link": "/cicd/git-for-qa" },
@@ -87,6 +97,8 @@
     },
     {
       "text": "Performance",
+      "nav": "Performance",
+      "dir": "performance",
       "collapsed": false,
       "items": [
         { "text": "Performance fundamentals", "link": "/performance/performance-fundamentals" },
@@ -95,6 +107,8 @@
     },
     {
       "text": "Telecom",
+      "nav": "Telecom",
+      "dir": "telecom",
       "collapsed": false,
       "items": [
         { "text": "OSS/BSS for QA", "link": "/telecom/oss-bss-for-qa" }
@@ -102,6 +116,8 @@
     },
     {
       "text": "ISTQB Certification",
+      "nav": "ISTQB",
+      "dir": "istqb",
       "collapsed": false,
       "items": [
         { "text": "The CTFL v4.0 exam", "link": "/istqb/exam-format" },

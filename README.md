@@ -34,6 +34,8 @@ The full design write-up — requirements, rejected alternatives, threat model a
 
 Both steps can also be done from the browser: the authenticated site serves a web CMS (Sveltia) that edits this repo — including the sidebar — through the GitHub API, so "save" is just a commit that goes through the same pipeline and leak guards.
 
+Whole sections work the same way: each entry in `sidebar.json` may declare a `nav` (top-menu label) and `dir` (folder under `docs/`). The top menu, the sidebar and the CMS's own collections are all derived from that file (`sidebar.ts`, `cms.ts`), and links to pages that don't exist yet are simply hidden until they do — so a new section can be created and filled entirely from the CMS, in any order, without ever breaking a build.
+
 Private notes are even simpler: drop a `.md` file into the right folder under `docs/private/` — its sidebar is generated automatically.
 
 ## Local development

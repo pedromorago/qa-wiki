@@ -1,7 +1,9 @@
-import { cpSync, existsSync } from 'node:fs'
+import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitepress'
-import { sidebar } from './sidebar'
+import { sectionNav, sidebar } from './sidebar'
+import { wikiCmsConfig } from './cms'
 import { hasPrivateContent, privateNav, privateSidebar } from './private'
 
 // Two builds from one source tree:
@@ -59,21 +61,22 @@ export default defineConfig({
     if (!FULL) return
     const privateStatic = fileURLToPath(new URL('../private/static', import.meta.url))
     if (existsSync(privateStatic)) cpSync(privateStatic, outDir, { recursive: true })
+    // The wiki CMS config is generated from sidebar.json (see cms.ts), so a
+    // section created in the Navigation editor becomes an editable collection
+    // on the next rebuild. JSON output — valid YAML for Sveltia.
+    const wikiAdmin = join(outDir, 'admin', 'wiki')
+    mkdirSync(wikiAdmin, { recursive: true })
+    writeFileSync(join(wikiAdmin, 'config.yml'), JSON.stringify(wikiCmsConfig(), null, 2))
   },
 
   themeConfig: {
     logo: '/logo.svg',
 
+    // Section entries come from sidebar.json (nav + dir per section) so the
+    // CMS can create and reorder them; Home/Glossary/About are not sections.
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Fundamentals', link: '/fundamentals/' },
-      { text: 'Strategy', link: '/strategy/' },
-      { text: 'API Testing', link: '/api-testing/' },
-      { text: 'Automation', link: '/automation/' },
-      { text: 'CI/CD', link: '/cicd/' },
-      { text: 'Performance', link: '/performance/' },
-      { text: 'Telecom', link: '/telecom/' },
-      { text: 'ISTQB', link: '/istqb/' },
+      ...sectionNav,
       { text: 'Glossary', link: '/glossary' },
       { text: 'About', link: '/about' },
       ...(FULL && hasPrivateContent() ? privateNav() : []),
