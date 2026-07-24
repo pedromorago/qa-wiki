@@ -24,15 +24,16 @@ export function privateNav(): DefaultTheme.NavItem[] {
   return [{ text: '🔒 Private', link: '/private/' }]
 }
 
+// The private area uses its own DEDICATED sidebar (multi-sidebar keyed on
+// /private/ in config.mts): private pages show only private sections, public
+// pages show only the public ones. Groups are expanded since they own the page.
 export function privateSidebar(): DefaultTheme.SidebarItem[] {
-  const sections: DefaultTheme.SidebarItem[] = []
-
   // Top-level pages directly under private/ (e.g. the landing page).
   const rootItems = mdFilesIn(PRIVATE_DIR)
     .filter((f) => f !== 'index.md')
     .map((f) => itemFor(PRIVATE_DIR, '', f))
 
-  // One collapsed group per subdirectory, index.md first.
+  // One group per subdirectory, index.md first.
   const groups = subdirsOf(PRIVATE_DIR).map((dir) => {
     const dirPath = join(PRIVATE_DIR, dir)
     const files = mdFilesIn(dirPath)
@@ -41,15 +42,17 @@ export function privateSidebar(): DefaultTheme.SidebarItem[] {
     for (const f of files.filter((f) => f !== 'index.md').sort()) {
       items.push(itemFor(dirPath, dir, f))
     }
-    return { text: sectionTitle(dir), collapsed: true, items }
+    return { text: sectionTitle(dir), collapsed: false, items }
   })
 
-  sections.push({
-    text: '🔒 Private',
-    collapsed: false,
-    items: [{ text: 'Overview', link: '/private/' }, ...rootItems, ...groups],
-  })
-  return sections
+  return [
+    {
+      text: '🔒 Private',
+      collapsed: false,
+      items: [{ text: 'Overview', link: '/private/' }, ...rootItems],
+    },
+    ...groups,
+  ]
 }
 
 function subdirsOf(dir: string): string[] {

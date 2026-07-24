@@ -93,10 +93,13 @@ export default defineConfig({
       ...(FULL && hasPrivateContent() ? privateNav() : []),
     ],
 
-    sidebar: [
-      ...sidebar,
-      ...(FULL && hasPrivateContent() ? privateSidebar() : []),
-    ],
+    // Multi-sidebar on the full build: pages under /private/ get a dedicated
+    // sidebar with only the private sections; every other page gets the
+    // public one (the 🔒 Private nav item is the way in).
+    sidebar:
+      FULL && hasPrivateContent()
+        ? { '/private/': privateSidebar(), '/': sidebar }
+        : sidebar,
 
     // Public pages are edited in the public repo; private pages in the private
     // one. The branching function is used ONLY in the full build: VitePress
