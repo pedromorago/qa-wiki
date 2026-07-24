@@ -1,8 +1,8 @@
-import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitepress'
-import { sectionNav, sidebar } from './sidebar'
+import { allSections, sectionNav, sidebar } from './sidebar'
 import { wikiCmsConfig } from './cms'
 import { hasPrivateContent, privateNav, privateSidebar } from './private'
 
@@ -25,8 +25,9 @@ export default defineConfig({
   cleanUrls: true,
 
   // In the public build the private overlay is excluded defensively; in CI it
-  // does not even exist on disk. In the full build, only repo meta files are excluded.
-  srcExclude: FULL ? ['private/README.md'] : ['private/**'],
+  // does not even exist on disk. In the full build, only repo meta files and
+  // the promotion queue (requests for the promote workflow, not content) are excluded.
+  srcExclude: FULL ? ['private/README.md', 'private/promote/**'] : ['private/**'],
 
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: `${BASE}logo.svg` }],
@@ -67,6 +68,16 @@ export default defineConfig({
     const wikiAdmin = join(outDir, 'admin', 'wiki')
     mkdirSync(wikiAdmin, { recursive: true })
     writeFileSync(join(wikiAdmin, 'config.yml'), JSON.stringify(wikiCmsConfig(), null, 2))
+    // The notes CMS "Publish to wiki" select gets the real section list, so
+    // the promotion target is always in sync with sidebar.json.
+    const notesConfig = join(outDir, 'admin', 'notes', 'config.yml')
+    if (existsSync(notesConfig)) {
+      const dirs = allSections.filter((s) => s.dir).map((s) => s.dir)
+      writeFileSync(
+        notesConfig,
+        readFileSync(notesConfig, 'utf8').replaceAll('__WIKI_SECTIONS__', JSON.stringify(dirs)),
+      )
+    }
   },
 
   themeConfig: {

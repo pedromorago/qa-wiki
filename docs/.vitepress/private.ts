@@ -13,6 +13,9 @@ const PRIVATE_DIR = fileURLToPath(new URL('../private', import.meta.url))
 /** Files that are repo meta, not wiki content. */
 const EXCLUDED_FILES = new Set(['README.md'])
 
+/** Dirs that are machinery, not note sections: CMS/static assets and the promotion queue. */
+const EXCLUDED_DIRS = new Set(['static', 'promote', 'node_modules'])
+
 export function hasPrivateContent(): boolean {
   return existsSync(join(PRIVATE_DIR, 'index.md'))
 }
@@ -51,7 +54,7 @@ export function privateSidebar(): DefaultTheme.SidebarItem[] {
 
 function subdirsOf(dir: string): string[] {
   return readdirSync(dir, { withFileTypes: true })
-    .filter((e) => e.isDirectory() && !e.name.startsWith('.') && e.name !== 'node_modules')
+    .filter((e) => e.isDirectory() && !e.name.startsWith('.') && !EXCLUDED_DIRS.has(e.name))
     .map((e) => e.name)
     .sort()
 }
