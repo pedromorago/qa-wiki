@@ -2,6 +2,9 @@ node_modules/
 docs/.vitepress/dist/
 docs/.vitepress/cache/
 
+# Cached embedding model for the search index (build-time only)
+scripts/search/.model-cache/
+
 # Private overlay: a separate PRIVATE repo cloned at this path.
 # It must never be tracked here — this repo is public.
 docs/private/

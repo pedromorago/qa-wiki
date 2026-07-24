@@ -1,0 +1,9 @@
+{
+  "name": "wiki-search-index",
+  "private": true,
+  "type": "module",
+  "description": "Build-time semantic search index for the private wiki. CI-only — not part of the site's dependencies.",
+  "dependencies": {
+    "@huggingface/transformers": "^3.3.3"
+  }
+}
