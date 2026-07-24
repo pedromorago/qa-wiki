@@ -1,0 +1,29 @@
+name: Deploy wiki-ask Worker
+
+# Deploys the RAG answer endpoint (workers/wiki-ask) to Cloudflare Workers.
+# Manual dispatch only — the Worker changes rarely, and this avoids red runs
+# before the CLOUDFLARE_WORKERS_TOKEN secret exists.
+#
+# Needs the CLOUDFLARE_WORKERS_TOKEN secret: an API token created from the
+# "Edit Cloudflare Workers" template (this time it IS the right template —
+# Workers, not Pages). The account id lives in wrangler.toml.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Worker unit tests (mocked AI)
+        run: node test.mjs
+        working-directory: workers/wiki-ask
+
+      - name: Deploy with wrangler
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_WORKERS_TOKEN }}
+          workingDirectory: workers/wiki-ask
+          command: deploy

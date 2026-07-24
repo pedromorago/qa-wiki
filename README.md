@@ -23,6 +23,10 @@ The private overlay cannot leak into the public site by construction: its files 
 
 The full design write-up — requirements, rejected alternatives, threat model and the reasoning (with references) behind each guard — is published as a wiki page: [How this wiki works](https://wiki.pedromorago.com/how-this-wiki-works).
 
+## AI search & answers
+
+`/search` offers semantic search that runs entirely in the visitor's browser: chunk embeddings are precomputed at deploy time (`scripts/search/`) and the query is embedded client-side — no backend, nothing typed ever leaves the page. On top of it, the **AI answer** button sends the question plus the top excerpts to our own Cloudflare Worker (`workers/wiki-ask`), which asks a Workers AI model for a short grounded answer with citations. Free tier with a hard cap: if the daily quota runs out it degrades to plain results — and on the **Workers Free plan** it can never bill (on Workers Paid, overage would auto-bill, so this account deliberately stays on Free).
+
 ## How to add content
 
 1. Create the `.md` file in its category folder (e.g. `docs/fundamentals/my-topic.md`). There's a [template](docs/template.md) with the recommended structure.

@@ -136,6 +136,9 @@ for (const file of files) {
       url,
       area: isPrivate ? 'private' : 'public',
       snippet: text.slice(0, 220),
+      // Longer excerpt used as grounding context by the RAG answer endpoint
+      // (public site only — see the Ask button in search.md).
+      text: text.slice(0, 1100),
       vector,
     })
   }

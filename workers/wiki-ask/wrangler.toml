@@ -1,0 +1,19 @@
+# wiki-ask — RAG answer endpoint for the PUBLIC wiki.
+# The browser does the retrieval (client-side semantic search) and sends the
+# question + top excerpts here; this Worker only does the generation step via
+# Workers AI. IMPORTANT: only hard-capped on the Workers FREE plan (past the
+# daily quota it errors, never bills). On Workers Paid, overage auto-bills
+# with no cap — keep this account on Workers Free.
+# Deployed by .github/workflows/deploy-worker.yml (manual dispatch).
+name = "wiki-ask"
+main = "src/index.mjs"
+compatibility_date = "2026-07-01"
+account_id = "a8ccb050b1be3e0a5d701b0d6f1f9ac6"
+workers_dev = true
+
+[ai]
+binding = "AI"
+
+[vars]
+# Comma-separated. localhost is allowed so `npm run dev` can test the flow.
+ALLOWED_ORIGINS = "https://wiki.pedromorago.com,http://localhost:5173"
