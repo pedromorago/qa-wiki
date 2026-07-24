@@ -40,7 +40,7 @@ export function wikiCmsConfig(): unknown {
       // account) — enables "Sign In with GitHub"; token sign-in still works.
       base_url: 'https://sveltia-cms-auth.pedromoragolv.workers.dev',
     },
-    site_url: 'https://pedro-morago.github.io/formacion/',
+    site_url: 'https://wiki.pedromorago.com/',
     media_folder: 'docs/public/images',
     public_folder: '/images',
     slug: { encoding: 'ascii', clean_accents: true },

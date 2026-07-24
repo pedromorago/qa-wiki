@@ -5,7 +5,7 @@
 
 My personal **Quality Assurance** knowledge wiki: everything I keep learning, written in my own words, organized and searchable. It serves as a reference while I work and as part of my portfolio.
 
-**🌐 Web**: https://pedro-morago.github.io/formacion/
+**🌐 Web**: https://wiki.pedromorago.com/
 
 Built with [VitePress](https://vitepress.dev): entries are Markdown files in `docs/`, every pull request goes through a validation build (CI, which also detects broken links), and every push to `main` deploys automatically to GitHub Pages.
 
@@ -21,7 +21,7 @@ This repo is the **public** wiki. Alongside it there is a **private overlay** �
 
 The private overlay cannot leak into the public site by construction: its files are not in this repo, so the public CI never even has them on disk. Three CI leak guards additionally fail the build if `docs/private/` is ever tracked, if a file marked `confidential: true` appears in the public tree, or if the public build emits any `/private/` route.
 
-The full design write-up — requirements, rejected alternatives, threat model and the reasoning (with references) behind each guard — is published as a wiki page: [How this wiki works](https://pedro-morago.github.io/formacion/how-this-wiki-works).
+The full design write-up — requirements, rejected alternatives, threat model and the reasoning (with references) behind each guard — is published as a wiki page: [How this wiki works](https://wiki.pedromorago.com/how-this-wiki-works).
 
 ## How to add content
 

@@ -7,13 +7,14 @@ import { wikiCmsConfig } from './cms'
 import { hasPrivateContent, privateNav, privateSidebar } from './private'
 
 // Two builds from one source tree:
-//   npm run build       → PUBLIC:  excludes docs/private/** (GitHub Pages, base /formacion/)
-//   npm run build:full  → FULL:    includes the private overlay (Cloudflare Pages + Access, base /)
+//   npm run build       → PUBLIC:  excludes docs/private/** (GitHub Pages at wiki.pedromorago.com)
+//   npm run build:full  → FULL:    includes the private overlay (Cloudflare Pages + Access)
 //   npm run dev         → FULL:    local dev server shows everything
 // docs/private/ is a separate private repo, gitignored here — the public repo
 // (and therefore the public CI) never contains it. See README.md.
+// Both sites serve at a domain root since the custom domain, so one base.
 const FULL = process.env.WIKI_PRIVATE === '1'
-const BASE = FULL ? '/' : '/formacion/'
+const BASE = '/'
 
 export default defineConfig({
   title: 'QA Wiki',
@@ -36,7 +37,7 @@ export default defineConfig({
     ['meta', { property: 'og:title', content: 'QA Wiki — Quality Assurance knowledge base' }],
     ['meta', { property: 'og:description', content: 'Testing strategy, API testing, Playwright, CI/CD and quality processes — a QA engineer\'s living knowledge base.' }],
     ['meta', { property: 'og:site_name', content: 'QA Wiki' }],
-    ['meta', { property: 'og:url', content: 'https://pedro-morago.github.io/formacion/' }],
+    ['meta', { property: 'og:url', content: 'https://wiki.pedromorago.com/' }],
   ],
 
   // Sitemap only makes sense for the public site; the private one sits behind
@@ -45,7 +46,7 @@ export default defineConfig({
     ? {}
     : {
         sitemap: {
-          hostname: 'https://pedro-morago.github.io/formacion/',
+          hostname: 'https://wiki.pedromorago.com/',
         },
       }),
 
