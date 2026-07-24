@@ -32,7 +32,14 @@ const standalonePage = (name: string, label: string, file: string) => ({ name, l
 
 export function wikiCmsConfig(): unknown {
   return {
-    backend: { name: 'github', repo: 'pedro-morago/formacion', branch: 'main' },
+    backend: {
+      name: 'github',
+      repo: 'pedro-morago/formacion',
+      branch: 'main',
+      // OAuth via our own Worker (sveltia-cms-auth on Pedro's Cloudflare
+      // account) — enables "Sign In with GitHub"; token sign-in still works.
+      base_url: 'https://sveltia-cms-auth.pedromoragolv.workers.dev',
+    },
     site_url: 'https://pedro-morago.github.io/formacion/',
     media_folder: 'docs/public/images',
     public_folder: '/images',
