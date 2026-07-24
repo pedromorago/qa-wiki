@@ -59,6 +59,21 @@ jobs:
 
       - run: npm run build
 
+      # Semantic search index (browser-side AI search). In the public checkout
+      # docs/private does not exist, so this indexes public content only. Runs
+      # before the leak guard so the guard also scans the generated index.
+      - name: Install search-index deps
+        run: npm ci
+        working-directory: scripts/search
+      - name: Cache the embedding model
+        uses: actions/cache@v4
+        with:
+          path: scripts/search/.model-cache
+          key: search-model-v1
+      - name: Build semantic search index
+        run: node build-index.mjs ../../docs ../../docs/.vitepress/dist/search-index.json
+        working-directory: scripts/search
+
       - name: Leak guard — no /private/ pages nor private-repo refs in the public build
         run: |
           if [ -e docs/.vitepress/dist/private ]; then
@@ -66,6 +81,9 @@ jobs:
           fi
           if grep -rq 'formacion-private' docs/.vitepress/dist; then
             echo "::error::El build público referencia el repo privado." && exit 1
+          fi
+          if [ -f docs/.vitepress/dist/search-index.json ] && grep -q '"/private/' docs/.vitepress/dist/search-index.json; then
+            echo "::error::El índice de búsqueda público contiene rutas /private/." && exit 1
           fi
 
       - uses: actions/configure-pages@v4

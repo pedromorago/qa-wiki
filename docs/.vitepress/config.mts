@@ -90,6 +90,7 @@ export default defineConfig({
       ...sectionNav,
       { text: 'Glossary', link: '/glossary' },
       { text: 'About', link: '/about' },
+      { text: '🔎 AI Search', link: '/search' },
       ...(FULL && hasPrivateContent() ? privateNav() : []),
     ],
 
