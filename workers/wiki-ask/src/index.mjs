@@ -125,7 +125,14 @@ export default {
       // Most likely the free-tier daily cap. Degrade politely; the page falls
       // back to plain results.
       console.error(e)
-      return json({ error: 'AI unavailable right now (daily free quota may be exhausted) — plain results still work' }, 503, cors)
+      return json(
+        {
+          error: 'AI unavailable right now (daily free quota may be exhausted) — plain results still work',
+          detail: String(e?.message ?? e).slice(0, 200),
+        },
+        503,
+        cors,
+      )
     }
   },
 }
