@@ -140,6 +140,8 @@ async function ask() {
     // cleanly-truncated stream doesn't silently drop its last token.
     buffer += decoder.decode()
     if (buffer) handleLine(buffer)
+    // Small models sometimes emit empty citation brackets — cosmetic cleanup.
+    answer.value = answer.value.replace(/\s?\[\]/g, '')
     if (!ctrl.signal.aborted && !answer.value) askError.value = 'No answer came back — try again.'
   } catch (e) {
     if (ctrl.signal.aborted) return // a new search superseded this answer
