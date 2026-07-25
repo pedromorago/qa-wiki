@@ -42,9 +42,21 @@ const visibleSections = allSections.map((section) => ({
   }),
 }))
 
-export const sidebar: DefaultTheme.SidebarItem[] = visibleSections
+const fullSidebar: DefaultTheme.SidebarItem[] = visibleSections
   .filter((s) => s.items.length > 0)
   .map(({ text, collapsed, items }) => ({ text, collapsed, items }))
+
+// Multi-sidebar: inside a section you only see that section's pages (58 links
+// → ~12); hub pages at the root (glossary, learning path, about…) keep the
+// full overview. Most-specific path wins in VitePress.
+export const sidebar: DefaultTheme.Sidebar = {
+  ...Object.fromEntries(
+    visibleSections
+      .filter((s) => s.dir && s.items.length > 0)
+      .map((s) => [`/${s.dir}/`, [{ text: s.text, items: s.items }]]),
+  ),
+  '/': fullSidebar,
+}
 
 export const sectionNav: DefaultTheme.NavItem[] = visibleSections
   .filter((s) => s.nav && s.dir && existsSync(join(DOCS_DIR, s.dir, 'index.md')))

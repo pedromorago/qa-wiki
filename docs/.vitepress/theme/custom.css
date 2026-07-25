@@ -1,0 +1,34 @@
+/* Nav overflow fix: at ≥768px VitePress lays the menu out with
+   `white-space: nowrap` and no overflow handling, so with a crowded menu the
+   items get clipped at intermediate widths with no way to reach them.
+   Let the menu shrink (min-width: 0 along the flex chain) and scroll
+   horizontally — wheel, trackpad or touch — with the scrollbar hidden. */
+@media (min-width: 768px) {
+  /* .content is the flex item that grows to fit its children (min-width:auto
+     on flex items forbids shrinking below content size) — the actual culprit. */
+  .VPNavBar .content {
+    min-width: 0;
+  }
+  .VPNavBar .content-body {
+    min-width: 0;
+  }
+  .VPNavBarMenu {
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+  }
+  .VPNavBarMenu::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+  /* Slightly tighter links so the 11-item menu fits whole at desktop widths;
+     mid widths fall back to scroll. */
+  .VPNavBarMenuLink {
+    padding: 0 8px;
+  }
+  /* The theme caps the navbar width only on sidebar-less pages (home, hubs),
+     which is where the menu got clipped. Full-width navbar everywhere —
+     consistent with how doc pages already render it. */
+  .VPNavBar .container {
+    max-width: 100%;
+  }
+}
