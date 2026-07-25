@@ -8,7 +8,10 @@
 // origin allow-list, strict input limits, a best-effort per-IP rate limit, and
 // a prompt that forbids answering beyond the provided excerpts.
 
-const MODEL = '@cf/meta/llama-3.1-8b-instruct'
+// Overridable via the MODEL_ID var in wrangler.toml — Workers AI deprecates
+// models periodically (llama-3.1-8b died 2026-05-30) and a var swap beats a
+// code change.
+const DEFAULT_MODEL = '@cf/meta/llama-3.2-3b-instruct'
 
 const LIMITS = {
   questionChars: 400,
@@ -113,7 +116,7 @@ export default {
     if (typeof parsed === 'string') return json({ error: parsed }, 400, cors)
 
     try {
-      const stream = await env.AI.run(MODEL, {
+      const stream = await env.AI.run(env.MODEL_ID ?? DEFAULT_MODEL, {
         messages: buildMessages(parsed.question, parsed.chunks),
         stream: true,
         max_tokens: 400,

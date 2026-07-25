@@ -17,3 +17,6 @@ binding = "AI"
 [vars]
 # Comma-separated. localhost is allowed so `npm run dev` can test the flow.
 ALLOWED_ORIGINS = "https://wiki.pedromorago.com,http://localhost:5173"
+# Workers AI text model. If it gets deprecated, pick a current one from
+# https://developers.cloudflare.com/workers-ai/models/ and redeploy.
+MODEL_ID = "@cf/meta/llama-3.2-3b-instruct"
