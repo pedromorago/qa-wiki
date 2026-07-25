@@ -87,7 +87,7 @@ function buildMessages(question, chunks) {
     {
       role: 'system',
       content:
-        "You are the search assistant of Pedro Morago's QA wiki. Answer the user's question using ONLY the numbered excerpts provided. Cite the excerpts you use inline as [1], [2], etc. If the excerpts do not contain the answer, say briefly that the wiki does not cover it — never invent information, names or URLs. Answer in the same language as the question. Be concise: at most ~150 words.",
+        "You are the search assistant of Pedro Morago's QA wiki. Answer the user's question using ONLY the numbered excerpts provided. Every claim must cite its excerpt number in square brackets — for example: 'Use polling with a timeout [1]. Also check error contracts [2].' Never write empty brackets. If the excerpts do not contain the answer, say briefly that the wiki does not cover it — never invent information, names or URLs. Answer in the same language as the question. Be concise: at most ~150 words.",
     },
     {
       role: 'user',
