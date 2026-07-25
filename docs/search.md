@@ -232,10 +232,13 @@ Ask in your own words — this searches the **meaning** of every page, not just 
 .ai-search__snippet { margin: 4px 0 0; color: var(--vp-c-text-2); font-size: .9rem; }
 
 .ai-answer { margin: 1rem 0; }
-.ai-answer__ask {
+/* Doble clase para ganar en especificidad a la regla genérica `.ai-search button`
+   (si no, el botón hereda fondo morado y la pista gris queda ilegible). */
+.ai-search .ai-answer__ask {
   padding: 8px 14px; border-radius: 8px; border: 1px dashed var(--vp-c-brand-1);
   background: transparent; color: var(--vp-c-brand-1); font-weight: 600; cursor: pointer;
 }
+.ai-search .ai-answer__ask:hover { background: var(--vp-c-brand-soft); }
 .ai-answer__hint { font-weight: 400; color: var(--vp-c-text-2); font-size: .85rem; }
 .ai-answer__box {
   border: 1px solid var(--vp-c-divider); border-left: 3px solid var(--vp-c-brand-1);
