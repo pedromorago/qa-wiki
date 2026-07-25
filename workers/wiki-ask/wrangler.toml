@@ -19,4 +19,7 @@ binding = "AI"
 ALLOWED_ORIGINS = "https://wiki.pedromorago.com,http://localhost:5173"
 # Workers AI text model. If it gets deprecated, pick a current one from
 # https://developers.cloudflare.com/workers-ai/models/ and redeploy.
-MODEL_ID = "@cf/meta/llama-3.2-3b-instruct"
+# 3.2-3b was too literal for grounded answering (refused questions whose
+# wording differed from the excerpts); 70b-fast costs more neurons per answer
+# but portfolio traffic fits comfortably in the free daily cap.
+MODEL_ID = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
