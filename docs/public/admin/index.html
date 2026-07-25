@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Wiki CMS</title>
+    <link href="./config.yml" type="application/yaml" rel="cms-config-url" />
+  </head>
+  <body>
+    <!-- Sveltia CMS for the wiki. The admin page is public but harmless: only
+         Pedro's GitHub account can write to the repo — signing in with any
+         other account yields a token with no access. config.yml is generated
+         at build time from sidebar.json (see .vitepress/cms.ts).
+         NOTE: config.yml is generated at BUILD time (buildEnd in config.mts),
+         so under `npm run dev` the CMS won't boot — use the deployed site.
+         Sveltia is unversioned on purpose: upstream keeps this URL stable and
+         a breakage would only ever affect this editor page, never the site. -->
+    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+  </body>
+</html>

@@ -2,12 +2,12 @@ import { allSections, type SidebarSection } from './sidebar'
 
 // Generator for the public wiki's Sveltia CMS configuration.
 //
-// The editable collections are derived from sidebar.json at full-build time,
-// so creating a section in the CMS Navigation editor is enough: on the next
+// The editable collections are derived from sidebar.json at build time, so
+// creating a section in the CMS Navigation editor is enough: on the next
 // rebuild the section gets its own collection here — no hand-maintained CMS
 // config, no code change. The output is written by the buildEnd hook (see
-// config.mts) to admin/wiki/config.yml on the authenticated site only, as
-// JSON — which is valid YAML, so Sveltia parses it as-is.
+// config.mts) to admin/config.yml as JSON — which is valid YAML, so Sveltia
+// parses it as-is.
 //
 // Wiki pages are plain Markdown with no frontmatter, hence `format: raw` with
 // a single body field everywhere: the editor reads/writes files verbatim.

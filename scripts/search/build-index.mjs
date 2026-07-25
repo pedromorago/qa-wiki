@@ -1,9 +1,6 @@
-// Build the semantic search index for the PRIVATE wiki.
+// Build the semantic search index for the wiki.
 //
-// Runs in the private deploy workflow AFTER `npm run build:full`, over the
-// full docs tree (public docs + the private overlay mounted at docs/private).
-// It never runs in the public deploy, so the index — which contains private
-// content — only ever ships on the authenticated site.
+// Runs in the deploy workflow AFTER `npm run build`, over the docs tree.
 //
 // Output: <dist>/search-index.json — an array of chunks, each with a
 // precomputed embedding. At query time the browser embeds only the query and
@@ -11,8 +8,6 @@
 // browser. Vectors here and in the browser MUST come from the same MODEL.
 //
 // Usage: node build-index.mjs [docsDir] [outFile]
-//   defaults match the workflow layout: wiki/docs and
-//   wiki/docs/.vitepress/dist/search-index.json
 
 import { pipeline, env } from '@huggingface/transformers'
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
@@ -24,11 +19,11 @@ import { join, relative, sep } from 'node:path'
 // most queries — MiniLM stays. Known limitation: Spanish queries rank worse.
 export const MODEL = 'Xenova/paraphrase-multilingual-MiniLM-L12-v2'
 
-const DOCS_DIR = process.argv[2] ?? 'wiki/docs'
+const DOCS_DIR = process.argv[2] ?? '../../docs'
 const OUT_FILE = process.argv[3] ?? join(DOCS_DIR, '.vitepress/dist/search-index.json')
 
 // Directories and files that are machinery or non-content, not searchable pages.
-const SKIP_DIRS = new Set(['.vitepress', 'public', 'static', 'promote', 'node_modules', '.git'])
+const SKIP_DIRS = new Set(['.vitepress', 'public', 'node_modules', '.git'])
 const SKIP_FILES = new Set(['README.md', 'template.md', 'search.md'])
 
 function walk(dir) {
@@ -43,7 +38,7 @@ function walk(dir) {
   return out
 }
 
-/** Route a docs-relative file path to its clean URL (base '/' in the full build).
+/** Route a docs-relative file path to its clean URL (site base '/').
  *  Index pages keep the trailing slash VitePress/Pages use for directories. */
 function toUrl(relPath) {
   const p = relPath.split(sep).join('/').replace(/\.md$/, '')
@@ -127,8 +122,6 @@ for (const file of files) {
   const title =
     frontmatterTitle(raw) ||
     (h1 ? toPlainText(h1[1]) : humanize(relPath.split(sep).pop().replace(/\.md$/, '')))
-  const isPrivate = relPath.split(sep)[0] === 'private'
-
   for (const { heading, text } of chunkPage(body)) {
     // Embed with the page title (and heading) for context; store a clean snippet.
     const context = [title, heading].filter(Boolean).join(' — ')
@@ -138,10 +131,9 @@ for (const file of files) {
       title,
       heading: heading || null,
       url,
-      area: isPrivate ? 'private' : 'public',
       snippet: text.slice(0, 220),
       // Longer excerpt used as grounding context by the RAG answer endpoint
-      // (public site only — see the Ask button in search.md).
+      // (see the Ask button in search.md).
       text: text.slice(0, 1100),
       vector,
     })
