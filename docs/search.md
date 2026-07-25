@@ -14,6 +14,7 @@ import { ref } from 'vue'
 // citations. That button only exists on the public site: if the loaded index
 // contains any private content, it is hidden and nothing ever leaves the
 // browser. The embedding model must match the one the index was built with.
+// Must match the index builder (scripts/search/build-index.mjs).
 const MODEL = 'Xenova/paraphrase-multilingual-MiniLM-L12-v2'
 const CDN = 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.3.3'
 const ASK_ENDPOINT = 'https://wiki-ask.pedromoragolv.workers.dev'
@@ -38,9 +39,11 @@ let askAbort = null // cancels an in-flight answer when a new search starts
 async function ensureReady() {
   if (extractor && index) return
   status.value = 'loading'
+  // The model name in the URL busts the browser cache when the embedding
+  // model changes — a stale index in another vector space would rank garbage.
   const [{ pipeline, env }, res] = await Promise.all([
     import(/* @vite-ignore */ CDN),
-    fetch(`${import.meta.env.BASE_URL}search-index.json`),
+    fetch(`${import.meta.env.BASE_URL}search-index.json?m=${encodeURIComponent(MODEL)}`),
   ])
   env.allowLocalModels = false
   index = await res.json()
@@ -158,7 +161,7 @@ async function ask() {
 
 # 🔎 AI search
 
-Ask in your own words — this searches the **meaning** of every page, not just keywords. The search itself runs in your browser; nothing you type is sent anywhere. The first search downloads the model (~50 MB, cached afterwards), so it takes a few seconds; later searches are instant.
+Ask in your own words — this searches the **meaning** of every page, not just keywords. Questions in **English** match best (the wiki is written in English). The search itself runs in your browser; nothing you type is sent anywhere. The first search downloads the model (~110 MB, cached afterwards), so it takes a little while; later searches are instant.
 
 <div class="ai-search">
   <form @submit.prevent="run">
