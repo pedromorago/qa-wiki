@@ -11,9 +11,7 @@ import { ref } from 'vue'
 // Nothing you type is sent anywhere — except if you explicitly press
 // "AI answer", which sends the question + the top excerpts to our own
 // Cloudflare Worker (wiki-ask) so a model can write a grounded answer with
-// citations. That button only exists on the public site: if the loaded index
-// contains any private content, it is hidden and nothing ever leaves the
-// browser. The embedding model must match the one the index was built with.
+// citations. The embedding model must match the one the index was built with.
 // Must match the index builder (scripts/search/build-index.mjs).
 const MODEL = 'Xenova/paraphrase-multilingual-MiniLM-L12-v2'
 const CDN = 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.3.3'
@@ -24,7 +22,6 @@ const results = ref([])
 const status = ref('idle') // idle | loading | ready | searching | error
 const searched = ref(false)
 
-const canAsk = ref(false) // public-only: hidden if the index has private chunks
 const answer = ref('')
 const asking = ref(false)
 const askError = ref('')
@@ -47,7 +44,6 @@ async function ensureReady() {
   ])
   env.allowLocalModels = false
   index = await res.json()
-  canAsk.value = !index.chunks.some((c) => c.area === 'private')
   extractor = await pipeline('feature-extraction', MODEL, { dtype: 'q8' })
   status.value = 'ready'
 }
@@ -180,7 +176,7 @@ Ask in your own words — this searches the **meaning** of every page, not just 
   <p v-else-if="status === 'searching'" class="ai-search__status">Searching…</p>
   <p v-else-if="status === 'error'" class="ai-search__status">Something went wrong — check the console and try again.</p>
 
-  <div v-if="results.length && canAsk" class="ai-answer">
+  <div v-if="results.length" class="ai-answer">
     <button v-if="!answer && !asking" class="ai-answer__ask" @click="ask">
       💬 AI answer <span class="ai-answer__hint">— writes a short answer from the results, with citations</span>
     </button>
@@ -203,7 +199,6 @@ Ask in your own words — this searches the **meaning** of every page, not just 
       <a :href="r.url">
         <span class="ai-search__title">{{ r.title }}</span>
         <span v-if="r.heading" class="ai-search__heading"> › {{ r.heading }}</span>
-        <span class="ai-search__badge" v-if="r.area === 'private'">🔒</span>
       </a>
       <p class="ai-search__snippet">{{ r.snippet }}…</p>
     </li>
@@ -228,7 +223,6 @@ Ask in your own words — this searches the **meaning** of every page, not just 
 .ai-search__results li { padding: 12px 0; border-top: 1px solid var(--vp-c-divider); }
 .ai-search__title { font-weight: 600; color: var(--vp-c-brand-1); }
 .ai-search__heading { color: var(--vp-c-text-2); }
-.ai-search__badge { margin-left: 6px; }
 .ai-search__snippet { margin: 4px 0 0; color: var(--vp-c-text-2); font-size: .9rem; }
 
 .ai-answer { margin: 1rem 0; }

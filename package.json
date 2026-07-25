@@ -8,10 +8,8 @@
     "node": ">=18"
   },
   "scripts": {
-    "dev": "WIKI_PRIVATE=1 vitepress dev docs",
-    "dev:public": "vitepress dev docs",
+    "dev": "vitepress dev docs",
     "build": "vitepress build docs",
-    "build:full": "WIKI_PRIVATE=1 vitepress build docs",
     "preview": "vitepress preview docs"
   },
   "devDependencies": {

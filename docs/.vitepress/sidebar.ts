@@ -14,9 +14,6 @@ import sidebarData from './sidebar.json'
 //    shown once their docs/<dir>/index.md exists.
 // The CMS collections for these sections are generated from the same data at
 // full-build time (see cms.ts), so creating a section needs no code change.
-//
-// The private overlay (docs/private/) is NOT listed here — its sidebar is
-// generated automatically by scanning the directory (see private.ts).
 
 export interface SidebarSection {
   text: string

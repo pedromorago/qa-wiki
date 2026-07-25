@@ -37,7 +37,7 @@ A concrete case, ideally from my day-to-day work.
 
 1. **One `.md` file per topic**, in its category folder (`docs/fundamentals/`, `docs/api-testing/`…).
 2. **File name**: lowercase with hyphens — `my-new-topic.md`.
-3. **Add the page to the sidebar**: edit `docs/.vitepress/config.mts` and add a line `{ text: '...', link: '/category/my-new-topic' }` in its section. Note: the sidebar definition now lives in `docs/.vitepress/sidebar.ts`.
-4. For a **new category**: create the folder with its `index.md` and add the section to the sidebar and to the top menu.
+3. **Add the page to the sidebar**: add `{ "text": "...", "link": "/category/my-new-topic" }` to its section in `docs/.vitepress/sidebar.json` — or do it from the CMS at `/admin/` ("Sections & sidebar"). Links to pages that don't exist yet are hidden until the page is created, so order doesn't matter.
+4. For a **new category**: add a section to `docs/.vitepress/sidebar.json` (give it `nav` and `dir` to get a top-menu entry and its own CMS collection) and create `docs/<dir>/index.md` — again, doable entirely from `/admin/`.
 5. Write **in my own words**: the wiki is worth what I understand, not what I copy.
 6. **Two recurring example domains**: the wiki's examples use a threat modeling platform and a telecommunications operator as fictional domains, so they speak the language of real projects without naming companies or products.

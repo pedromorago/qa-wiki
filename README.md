@@ -7,21 +7,15 @@ My personal **Quality Assurance** knowledge wiki: everything I keep learning, wr
 
 **🌐 Web**: https://wiki.pedromorago.com/
 
-Built with [VitePress](https://vitepress.dev): entries are Markdown files in `docs/`, every pull request goes through a validation build (CI, which also detects broken links), and every push to `main` deploys automatically to GitHub Pages.
+Built with [VitePress](https://vitepress.dev): entries are Markdown files in `docs/`, every pull request goes through a validation build (CI, which also detects broken links), and every push to `main` deploys automatically to GitHub Pages in about a minute.
 
-## Public wiki + private overlay
+The full design write-up — requirements, decisions, the search architecture and the parts that got deliberately torn down — is published as a wiki page: [How this wiki works](https://wiki.pedromorago.com/how-this-wiki-works).
 
-This repo is the **public** wiki. Alongside it there is a **private overlay** — a separate private repo cloned at `docs/private/` (gitignored here) with company docs, runbooks and rough notes. One source tree, two builds:
+## Editing: web CMS at /admin/
 
-| Command | What it builds | Where it goes |
-|---|---|---|
-| `npm run build` | Public wiki only (`docs/private/` excluded) | GitHub Pages — this site |
-| `npm run build:full` | Public + private overlay | Cloudflare Pages, behind Cloudflare Access (authenticated) |
-| `npm run dev` | Everything, locally | Local dev server |
+The site serves a static, git-backed CMS ([Sveltia](https://github.com/sveltia/sveltia-cms)) at `/admin/`. "Save" is just a commit to this repo through the GitHub API, so it goes through the same pipeline as any push. The admin page is public but harmless: write access lives entirely in GitHub's permission model. Sign-in uses a small OAuth Worker on my own Cloudflare account (no third-party service).
 
-The private overlay cannot leak into the public site by construction: its files are not in this repo, so the public CI never even has them on disk. Three CI leak guards additionally fail the build if `docs/private/` is ever tracked, if a file marked `confidential: true` appears in the public tree, or if the public build emits any `/private/` route.
-
-The full design write-up — requirements, rejected alternatives, threat model and the reasoning (with references) behind each guard — is published as a wiki page: [How this wiki works](https://wiki.pedromorago.com/how-this-wiki-works).
+Sections are data: each entry in `docs/.vitepress/sidebar.json` may declare a `nav` (top-menu label) and `dir` (folder under `docs/`). The top menu, the sidebar and the CMS's own collections are all derived from that one file (`sidebar.ts`, `cms.ts` — the CMS config is generated at build time), and links to pages that don't exist yet are simply hidden until they do — so a new section can be created and filled entirely from the CMS, in any order, without ever breaking a build.
 
 ## AI search & answers
 
@@ -29,38 +23,33 @@ The full design write-up — requirements, rejected alternatives, threat model a
 
 ## How to add content
 
+From the browser: `/admin/` → pick the section → New → write → Save. Or by hand:
+
 1. Create the `.md` file in its category folder (e.g. `docs/fundamentals/my-topic.md`). There's a [template](docs/template.md) with the recommended structure.
 2. Add it to the sidebar in `docs/.vitepress/sidebar.json`:
    ```json
    { "text": "My topic", "link": "/fundamentals/my-topic" }
    ```
-3. Commit and push to `main`. It's published in about half a minute.
-
-Both steps can also be done from the browser: the authenticated site serves a web CMS (Sveltia) that edits this repo — including the sidebar — through the GitHub API, so "save" is just a commit that goes through the same pipeline and leak guards.
-
-Whole sections work the same way: each entry in `sidebar.json` may declare a `nav` (top-menu label) and `dir` (folder under `docs/`). The top menu, the sidebar and the CMS's own collections are all derived from that file (`sidebar.ts`, `cms.ts`), and links to pages that don't exist yet are simply hidden until they do — so a new section can be created and filled entirely from the CMS, in any order, without ever breaking a build.
-
-Private notes are even simpler: drop a `.md` file into the right folder under `docs/private/` — its sidebar is generated automatically.
+3. Commit and push to `main`. It's published in about a minute.
 
 ## Local development
 
 ```bash
 npm install
-npm run dev         # local server with hot reload (includes private overlay if present)
-npm run dev:public  # local server, public content only
-npm run build       # public production build
-npm run build:full  # full production build (public + private)
-npm run preview     # preview the build
+npm run dev      # local server with hot reload
+npm run build    # production build
+npm run preview  # preview the build
 ```
 
 ## Structure
 
 ```
 docs/
-├── .vitepress/config.mts   # configuration, top menu, public/full build modes
-├── .vitepress/sidebar.json # curated public sidebar (data — editable via the CMS)
-├── .vitepress/sidebar.ts   # thin typed wrapper around sidebar.json
-├── .vitepress/private.ts   # auto-generated sidebar for the private overlay
+├── .vitepress/config.mts   # site config; generates the CMS config at build end
+├── .vitepress/sidebar.json # sections and sidebar (data — editable via the CMS)
+├── .vitepress/sidebar.ts   # derives nav + sidebar from sidebar.json
+├── .vitepress/cms.ts       # derives the CMS collections from sidebar.json
+├── public/admin/           # the CMS page (static HTML)
 ├── index.md                # home page
 ├── fundamentals/           # core QA concepts
 ├── strategy/               # testing strategy and quality processes
@@ -70,10 +59,14 @@ docs/
 ├── performance/            # performance testing
 ├── telecom/                # QA in the telecom domain
 ├── istqb/                  # ISTQB certification
-├── private/                # PRIVATE overlay (separate repo, gitignored)
+├── search.md               # browser-side semantic search + AI answers
 ├── glossary.md             # terms in short
+├── learning-path.md        # ordered QA learning path
+├── how-this-wiki-works.md  # design write-up: architecture, decisions, teardown
 ├── template.md             # template for new entries
 └── about.md                # bio and projects
+scripts/search/             # build-time embedding index (CI-only deps)
+workers/wiki-ask/           # grounded-answer Worker (+ mocked-AI tests)
 ```
 
 ## Enabling GitHub Pages (first time only)
