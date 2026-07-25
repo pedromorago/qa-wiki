@@ -18,6 +18,10 @@ import { pipeline, env } from '@huggingface/transformers'
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
 
+// Measured on this corpus against Xenova/multilingual-e5-small (2026-07-25):
+// e5 fixes ES-question→EN-article ranking but degrades short English queries
+// badly (5/8 vs 9/10 on the test battery). The wiki is English and so are
+// most queries — MiniLM stays. Known limitation: Spanish queries rank worse.
 export const MODEL = 'Xenova/paraphrase-multilingual-MiniLM-L12-v2'
 
 const DOCS_DIR = process.argv[2] ?? 'wiki/docs'
