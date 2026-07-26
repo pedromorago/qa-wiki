@@ -30,7 +30,7 @@ A browser extension for recording your screen. Video evidence is among the most 
 
 ### 📚 This wiki
 The site you're on right now: a QA learning wiki built with VitePress and deployed automatically with GitHub Actions. Its architecture — a git-backed web CMS, in-browser semantic search and grounded AI answers, all at near-zero cost — is itself a QA exercise — [I documented the design and its reasoning](/how-this-wiki-works).
-→ [github.com/pedro-morago/formacion](https://github.com/pedro-morago/formacion)
+→ [github.com/pedro-morago/qa-wiki](https://github.com/pedro-morago/qa-wiki)
 
 ### 💼 Portfolio
 My personal site with the rest of my projects.

@@ -34,7 +34,7 @@ export function wikiCmsConfig(): unknown {
   return {
     backend: {
       name: 'github',
-      repo: 'pedro-morago/formacion',
+      repo: 'pedro-morago/qa-wiki',
       branch: 'main',
       // OAuth via our own Worker (sveltia-cms-auth on Pedro's Cloudflare
       // account) — enables "Sign In with GitHub"; token sign-in still works.

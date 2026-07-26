@@ -1,7 +1,7 @@
 # 📚 QA Wiki — Formación
 
-[![Deploy](https://github.com/pedro-morago/formacion/actions/workflows/deploy.yml/badge.svg)](https://github.com/pedro-morago/formacion/actions/workflows/deploy.yml)
-[![CI](https://github.com/pedro-morago/formacion/actions/workflows/ci.yml/badge.svg)](https://github.com/pedro-morago/formacion/actions/workflows/ci.yml)
+[![Deploy](https://github.com/pedro-morago/qa-wiki/actions/workflows/deploy.yml/badge.svg)](https://github.com/pedro-morago/qa-wiki/actions/workflows/deploy.yml)
+[![CI](https://github.com/pedro-morago/qa-wiki/actions/workflows/ci.yml/badge.svg)](https://github.com/pedro-morago/qa-wiki/actions/workflows/ci.yml)
 
 My personal **Quality Assurance** knowledge wiki: everything I keep learning, written in my own words, organized and searchable. It serves as a reference while I work and as part of my portfolio.
 

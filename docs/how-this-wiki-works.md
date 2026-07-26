@@ -73,7 +73,7 @@ The domain: $10.46/year. Everything else — GitHub Pages, the CMS, the OAuth Wo
 
 ## The moving parts
 
-For the code-inclined, the whole mechanism is a handful of small files in the [public repo](https://github.com/pedro-morago/formacion):
+For the code-inclined, the whole mechanism is a handful of small files in the [public repo](https://github.com/pedro-morago/qa-wiki):
 
 - `docs/.vitepress/config.mts` — site config; at build end it generates the CMS config from `sidebar.json`.
 - `docs/.vitepress/sidebar.ts` — derives nav and sidebar from `sidebar.json`, hiding entries whose pages don't exist yet.
