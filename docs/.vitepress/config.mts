@@ -76,5 +76,16 @@ export default defineConfig({
 
     outline: { label: 'On this page' },
     docFooter: { prev: 'Previous', next: 'Next' },
+
+    // The articles are CC BY-NC-SA, which OBLIGES anyone reusing them to
+    // credit the author and share alike — and a licence nobody can see is a
+    // licence nobody follows. It lived only in LICENSE.md, invisible to
+    // whoever is actually reading an article. Now every page states it.
+    footer: {
+      message:
+        'Articles under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> — reuse them non-commercially with credit. Code under <a href="https://github.com/pedro-morago/formacion/blob/main/LICENSE.md" target="_blank" rel="noopener">MIT</a>.',
+      copyright:
+        'Copyright © 2026 <a href="https://pedromorago.com" target="_blank" rel="noopener">Pedro Morago</a> · QA Engineer',
+    },
   },
 })

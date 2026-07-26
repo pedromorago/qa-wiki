@@ -32,3 +32,17 @@
     max-width: 100%;
   }
 }
+
+/* The default theme hides the global footer on every page that has a
+   sidebar — which is every article. That left the licence notice visible
+   only on the home page, and the licence matters exactly where the
+   articles are: CC BY-NC-SA obliges whoever reuses one to credit the
+   author and share alike, and a notice nobody sees is a notice nobody
+   follows. Shown on doc pages too, with the theme's own dividing line. */
+/* !important is load-bearing: the theme's rule is scoped
+   (.VPFooter.has-sidebar[data-v-…]), and that attribute selector outweighs
+   any plain class selector here. Without it this override silently loses. */
+.VPFooter.has-sidebar {
+  display: block !important;
+  border-top: 1px solid var(--vp-c-divider);
+}
