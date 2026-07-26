@@ -59,7 +59,7 @@ export default defineConfig({
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/pedro-morago/qa-wiki' },
-      { icon: 'linkedin', link: 'https://www.linkedin.com/in/pedro-morago-lópez-vazquez' },
+      { icon: 'linkedin', link: 'https://www.linkedin.com/in/pedro-morago-lopezvazquez/' },
     ],
 
     search: {
