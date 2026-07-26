@@ -1,11 +1,16 @@
-/* Nav overflow fix: at ≥768px VitePress lays the menu out with
-   `white-space: nowrap` and no overflow handling, so with a crowded menu the
-   items get clipped at intermediate widths with no way to reach them.
-   Let the menu shrink (min-width: 0 along the flex chain) and scroll
-   horizontally — wheel, trackpad or touch — with the scrollbar hidden. */
+/* Nav overflow fix. The 11-item menu is 932px wide; on pages with a sidebar
+   the theme both centers the navbar to the 1440px layout AND reserves a
+   right gutter symmetric to the sidebar (padding-right up to 272px on
+   .VPNavBar .content), so the menu NEVER fits — items past the edge were
+   simply unreachable, at any viewport width. Three coordinated measures:
+   1. ≥1440px: free the right gutter and compact search/AI/links so all 11
+      items render inline.
+   2. 768–1439px: the theme's own hamburger + full-screen menu (the mobile
+      pattern) instead of a clipped row — every link stays reachable.
+   3. Scroll fallback kept on the inline range as a safety net. */
 @media (min-width: 768px) {
-  /* .content is the flex item that grows to fit its children (min-width:auto
-     on flex items forbids shrinking below content size) — the actual culprit. */
+  /* min-width:auto on flex items forbids shrinking below content size —
+     .content is the flex item that grows to fit its children. */
   .VPNavBar .content {
     min-width: 0;
   }
@@ -20,16 +25,49 @@
   .VPNavBarMenu::-webkit-scrollbar {
     display: none; /* Chrome/Safari */
   }
-  /* Slightly tighter links so the 11-item menu fits whole at desktop widths;
-     mid widths fall back to scroll. */
-  .VPNavBarMenuLink {
-    padding: 0 8px;
-  }
-  /* The theme caps the navbar width only on sidebar-less pages (home, hubs),
-     which is where the menu got clipped. Full-width navbar everywhere —
-     consistent with how doc pages already render it. */
   .VPNavBar .container {
     max-width: 100%;
+  }
+  /* The right gutter the theme reserves symmetric to the sidebar: the menu
+     needs that space more than the symmetry does. */
+  .VPNavBar.has-sidebar .content {
+    padding-right: 32px !important;
+  }
+  /* Compact chrome: tighter links, icon-only search and AI buttons. Saves
+     ~290px, which is what lets the full menu fit inline at 1440px.
+     !important because the theme's scoped selector ([data-v-…]) outweighs
+     any plain class here. */
+  .VPNavBarMenuLink {
+    padding: 0 6px !important;
+    font-size: 13px !important;
+  }
+  .VPNavBarSearch .DocSearch-Button-Placeholder,
+  .VPNavBarSearch .DocSearch-Button-Keys {
+    display: none;
+  }
+  .ai-btn__label {
+    display: none;
+  }
+}
+
+/* Mid widths: no room for 11 items inline no matter the compression, so use
+   the theme's own hamburger + full-screen nav (all links, social and theme
+   switch included). The overrides are !important because the theme's rules
+   are scoped ([data-v-…]) and would otherwise win. */
+@media (min-width: 768px) and (max-width: 1439px) {
+  .VPNavBarMenu {
+    display: none !important;
+  }
+  .VPNavBarHamburger {
+    display: flex !important;
+  }
+  .VPNavScreen {
+    display: block !important;
+  }
+  /* The "…" extra-links flyout duplicates what the nav screen already
+     offers; one affordance is enough. */
+  .VPNavBarExtra {
+    display: none !important;
   }
 }
 
