@@ -26,7 +26,7 @@ A tool to **optimize the distribution of E2E tests across CI shards**. Born from
 
 ### 🎥 Screen recorder
 A browser extension for recording your screen. Video evidence is among the most valuable things when reporting a bug, and I wanted a tool built to my taste.
-→ [github.com/pedro-morago/grabador-pantalla](https://github.com/pedro-morago/grabador-pantalla)
+→ [github.com/pedro-morago/screen-recorder-qa](https://github.com/pedro-morago/screen-recorder-qa)
 
 ### 📚 This wiki
 The site you're on right now: a QA learning wiki built with VitePress and deployed automatically with GitHub Actions. Its architecture — a git-backed web CMS, in-browser semantic search and grounded AI answers, all at near-zero cost — is itself a QA exercise — [I documented the design and its reasoning](/how-this-wiki-works).
