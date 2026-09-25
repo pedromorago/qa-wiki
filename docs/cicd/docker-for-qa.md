@@ -14,7 +14,7 @@ Docker solves testing's oldest problem: **"it works on my machine"**. A containe
 
 ```bash
 docker ps                        # which containers are running
-docker run -d -p 8080:80 app     # start one (mapping port 8080 → 80)
+docker run -d -p 8080:80 app     # start one (host port 8080 → container port 80)
 docker logs -f <container>       # follow its logs live
 docker exec -it <container> sh   # step inside to look around
 docker stop <container>          # stop it
@@ -41,7 +41,7 @@ docker compose down -v  # tear it down, data included (-v)
 
 ## What a QA uses it for
 
-- **Running the product locally** at the exact version you want to test: `docker run my-app:1.4.2` and you're testing 1.4.2, no installs.
+- **Running the product locally** at the exact version you want to test: `docker run -p 8080:8080 my-app:1.4.2` and you're testing 1.4.2, no installs.
 - **Ephemeral test environments**: the pipeline brings up app + database with Compose, runs the suite and destroys it. Every run starts from zero — goodbye to contaminated state between runs.
 - **Packaged test dependencies**: browsers for E2E, mocks of external services, one clean database per suite (if you work on the JVM, look at *Testcontainers*: containers managed from the test itself).
 - **Diagnosis**: when an integration test fails, `docker logs` of the involved service usually holds the answer.
@@ -49,7 +49,7 @@ docker compose down -v  # tear it down, data included (-v)
 ## Common mistakes
 
 - **Using the `latest` tag**: today it tests one thing, tomorrow another, with nobody having touched anything. Version images like you version code.
-- **Not cleaning volumes** (`down` without `-v`): data survives and the next run inherits the previous run's state — guaranteed flakiness.
+- **Not cleaning volumes** (`down` without `-v`): named volumes survive and the next run inherits the previous run's state — guaranteed flakiness; anonymous ones (like the one the `postgres` image creates) pile up on disk.
 - **Getting localhost wrong**: inside a container, `localhost` is the container itself. Compose services are reached by name (`db:5432`, not `localhost:5432`).
 - **Unbounded containers in CI**: one greedy container degrades the rest of the pipeline.
 

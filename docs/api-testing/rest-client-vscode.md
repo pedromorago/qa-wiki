@@ -23,15 +23,6 @@
 @baseUrl = http://localhost:8080/api/v1
 @contentType = application/json
 
-### Create a countermeasure library
-POST {{baseUrl}}/libraries
-Content-Type: {{contentType}}
-
-{
-  "name": "Custom countermeasures",
-  "description": "Countermeasure library created from REST Client"
-}
-
 ### Authenticate and capture the token
 # @name authRequest
 POST {{baseUrl}}/auth/token
@@ -39,7 +30,7 @@ Content-Type: {{contentType}}
 
 {
   "username": "test-user",
-  "password": "{{password}}"
+  "password": "{{$dotenv TEST_USER_PASSWORD}}"
 }
 
 ### Use the token on a protected route
@@ -47,7 +38,19 @@ Content-Type: {{contentType}}
 
 GET {{baseUrl}}/security-classifications
 Authorization: Bearer {{accessToken}}
+
+### Create a countermeasure library
+POST {{baseUrl}}/libraries
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+{
+  "name": "Custom countermeasures",
+  "description": "Countermeasure library created from REST Client"
+}
 ```
+
+The password comes from a git-ignored `.env` next to the `.http` file (REST Client's `$dotenv` variable, as in the example): the requests get versioned, the credentials don't.
 
 The general extraction syntax:
 

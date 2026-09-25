@@ -36,28 +36,28 @@ Flat config combining three layers: recommended JS + TypeScript + **`eslint-plug
 
 ```js
 // eslint.config.mjs
-import pluginJs from "@eslint/js";
-import pluginTs from "@typescript-eslint/eslint-plugin";
-import parserTs from "@typescript-eslint/parser";
-import pluginPlaywright from "eslint-plugin-playwright";
+import js from "@eslint/js";
+import tseslint from "typescript-eslint";
+import playwright from "eslint-plugin-playwright";
 
 export default [
-  pluginJs.configs.recommended,
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
-    files: ["**/*.ts"],
-    languageOptions: { parser: parserTs },
-    plugins: { "@typescript-eslint": pluginTs },
-    rules: { ...pluginTs.configs.recommended.rules },
+    files: ["src/**/*.ts"],
+    languageOptions: {
+      parserOptions: { projectService: true, tsconfigRootDir: import.meta.dirname },
+    },
+    rules: { "@typescript-eslint/no-floating-promises": "error" },
   },
   {
-    files: ["tests/**/*.ts"],
-    plugins: { playwright: pluginPlaywright },
-    rules: { ...pluginPlaywright.configs.recommended.rules },
+    ...playwright.configs["flat/recommended"],
+    files: ["src/**/*.ts"],
   },
 ];
 ```
 
-A tip learned the hard way: *type-aware* rules (`no-floating-promises` and friends) require wiring up the `tsconfig` (project service). It's tempting to disable them to get started quickly — but `no-floating-promises` is precisely the rule that catches Playwright's number one bug: **the forgotten `await`**. Wire them up as soon as you can.
+A tip learned the hard way: *type-aware* rules (`no-floating-promises` and friends) aren't part of `recommended` and require wiring up the `tsconfig` (the `projectService` above). It's tempting to leave them out to get started quickly — but `no-floating-promises` is precisely the rule that catches Playwright's number one bug: **the forgotten `await`**. Wire them up as soon as you can.
 
 In CI, ESLint emits **checkstyle** format so the pipeline renders the findings as a build report:
 
@@ -65,15 +65,17 @@ In CI, ESLint emits **checkstyle** format so the pipeline renders the findings a
 npx eslint --format=checkstyle -o checkstyle-result.xml src
 ```
 
+Since ESLint 9 the checkstyle formatter is no longer built in: install it with `npm i -D eslint-formatter-checkstyle` and the same `--format=checkstyle` picks it up.
+
 The test repository also goes through [SonarCloud like any other repo](/cicd/static-analysis) — test code is code too.
 
 ## The automation engineer's checklist
 
 My checklist before calling an automation done:
 
-- [ ] Native locators (`getByRole`, `getByTestId`…), no fragile selectors
-- [ ] Reused what exists: POM, API services, data factories, helpers
-- [ ] Test in its domain folder, with its [full metadata](/automation/configuring-and-organizing-playwright) (tags + test management tool ID)
-- [ ] No `waitForTimeout` — web-first assertions with auto-retry
-- [ ] Pipeline green: execution + ESLint + Sonar, no regressions in stable tests
-- [ ] Automation status updated in the test management tool
+- Native locators (`getByRole`, `getByTestId`…), no fragile selectors
+- Reused what exists: POM, API services, data factories, helpers
+- Test in its domain folder, with its [full metadata](/automation/configuring-and-organizing-playwright) (tags + test case manager ID)
+- No `waitForTimeout` — web-first assertions with auto-retry
+- Pipeline green: execution + ESLint + Sonar, no regressions in stable tests
+- Automation status updated in the test case manager

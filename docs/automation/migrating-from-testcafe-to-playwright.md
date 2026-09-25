@@ -17,9 +17,9 @@ Measured results (same suite, Firefox):
 | Suite | TestCafe (sequential) | Playwright (console, parallel) |
 |---|---|---|
 | Domain A — 6 tests | 2 min 56 s (with 2/6 failing) | **30.5 s (6/6 green)** |
-| Suite B — 2 tests | 1 min 20 s | **24.2 s** |
+| Domain B — 2 tests | 1 min 20 s | **24.2 s** |
 
-**~5-6× faster and more stable**: tests that failed in TestCafe passed in Playwright. The PoC also validated the critical bits: iframes (`FrameLocator`), getting the session token from the context cookies (trivial in Playwright), tags, HTML report, parallelization, and running in Docker with the official image.
+**~3-6× faster and more stable**: tests that failed in TestCafe passed in Playwright. The PoC also validated the critical bits: iframes (`FrameLocator`), getting the session token from the context cookies (trivial in Playwright), tags, HTML report, parallelization, and running in Docker with the official image.
 
 A method detail: the PoC was done **in JavaScript** (our language at the time — that way we were evaluating the framework, not the language) and the final project in **TypeScript**.
 
@@ -28,8 +28,8 @@ A method detail: the PoC was done **in JavaScript** (our language at the time �
 The part I've seen done wrong most often. Our method:
 
 1. **Inventory**: every test by domain and type (sanity/regression/key workflow) → 383 in total, 362 remaining after the PoC.
-2. **Real velocity measured in the PoC**: a senior QA migrated **6 tests/day** (including the JS→TS learning curve).
-3. **Plan**: 4 QAs × ~6 tests/day ≈ 16 days per person (~3 weeks) — explicitly declared as an optimistic scenario, with the risks listed: learning curve, hard-to-locate elements, squad priorities, releases, and reviews.
+2. **Real velocity measured in the PoC**: a senior QA migrated **6 tests/day** (measured in JavaScript, so it doesn't include the JS→TS learning curve).
+3. **Plan**: 4 QAs × ~6 tests/day ≈ 15 days per person (~3 weeks) — explicitly declared as an optimistic scenario, with the risks listed: learning curve, hard-to-locate elements, squad priorities, releases, and reviews.
 
 Two hygiene rules that worked very well:
 

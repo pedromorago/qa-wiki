@@ -1,6 +1,6 @@
 # Backend testing layers, with examples
 
-What gets tested at each layer when the system under test is a backend. To make it concrete, a running example: **the projects REST API of a threat modeling platform** — CRUD for projects and their components authenticated with JWT, editor/viewer roles, input validation, and the business rule "duplicate components are not allowed within the same project".
+What gets tested at each layer when the system under test is a backend. To make it concrete, a running example: **the projects REST API of a threat modeling platform** — CRUD for projects and their components, authenticated with JWT, editor/viewer roles, input validation, and the business rule "duplicate components are not allowed within the same project".
 
 ## Unit: the logic, in isolation
 
@@ -40,7 +40,11 @@ The whole stack up and running (auth, DB, services), and the test walks through 
 | Integration | API ↔ DB, services ↔ queues, OpenAPI contract | Spring Test, Supertest, Testcontainers | Every pull request | Yes (contracts and DB) |
 | API E2E | Business flows with the full stack | REST Assured, Postman/Newman, Karate | Main/staging and pre-release | Yes for release |
 
-Two final tips I only remember too late when I fail to apply them:
+Two final tips I learned the hard way:
 
 - **Measure unit and integration coverage separately.** Mixing them produces an aggregate figure that gives false confidence.
 - **Tag the tests** (`@unit`, `@integration`, `@e2e`) so each pipeline runs exactly its own subset.
+
+::: tip Key idea
+Each backend layer answers a different question: unit, is the logic right? Integration, does it hold up against a real database? API E2E, does the consumer's flow work end to end? Test each thing at the lowest layer that can answer it.
+:::

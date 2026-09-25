@@ -9,7 +9,7 @@ If you already know [SQL](/api-testing/sql-for-qa), the jump to NoSQL isn't abou
 | Unit of data | Row in a table | JSON document in a collection |
 | Schema | Fixed, enforced by the database | Flexible: each document can have different fields |
 | Relationships | JOINs between tables | Nested documents or references (no classic JOIN) |
-| Consistency | Strong by default | Depends on configuration; often **eventual** |
+| Consistency | Strong by default | Strong when reading from the primary (the default); **eventual** from secondaries or across services |
 
 The last two rows are the ones that change a QA's job.
 
@@ -19,10 +19,10 @@ Direct equivalences with what you already do in SQL:
 
 | In SQL | In MongoDB |
 |---|---|
-| `SELECT * FROM customers WHERE document = '…'` | `db.customers.find({ document: '…' })` |
+| `SELECT * FROM customers WHERE national_id = '…'` | `db.customers.find({ nationalId: '…' })` |
 | `SELECT status FROM service_orders WHERE id = …` | `db.service_orders.find({ _id: … }, { status: 1 })` |
 | `SELECT COUNT(*) …` | `db.service_orders.countDocuments({ status: 'provisioning' })` |
-| `GROUP BY … HAVING COUNT(*) > 1` | `db.customers.aggregate([{ $group: { _id: '$document', n: { $sum: 1 } } }, { $match: { n: { $gt: 1 } } }])` |
+| `GROUP BY … HAVING COUNT(*) > 1` | `db.customers.aggregate([{ $group: { _id: '$nationalId', n: { $sum: 1 } } }, { $match: { n: { $gt: 1 } } }])` |
 
 ```js
 // Was the service order persisted with the expected structure?
@@ -30,7 +30,7 @@ db.service_orders.find({ orderId: 'ORD-10442' })
 
 // Duplicate customers that validation should have prevented
 db.customers.aggregate([
-  { $group: { _id: '$document', n: { $sum: 1 } } },
+  { $group: { _id: '$nationalId', n: { $sum: 1 } } },
   { $match: { n: { $gt: 1 } } }
 ])
 ```
@@ -38,19 +38,19 @@ db.customers.aggregate([
 ## What to validate (precisely because there's no schema)
 
 - **The implicit schema.** The database accepts any document, so a misspelled field (`satus` instead of `status`) **doesn't fail on write: it fails on read**, in another system, weeks later. Verifying the structure of persisted documents is the test's job, not the database's.
-- **Missing fields vs. null fields.** In Mongo they're different things (`{ field: null }` exists; a document without the field doesn't). Queries like `{ field: null }` match **both** — choose assertions deliberately (`$exists`).
-- **Eventual consistency.** In distributed architectures, what you just wrote may take time to become visible. An immediate `find` that doesn't return the document isn't always a bug: validate with [active waiting](/api-testing/async-apis-with-awaitility), not with `sleep`.
+- **Missing fields vs. null fields.** In Mongo they're different things: a document with `{ field: null }` has the field (set to null); a document without it doesn't have it at all. Queries like `{ field: null }` match **both** — choose assertions deliberately (`$exists`).
+- **Eventual consistency.** In distributed architectures, what you just wrote may take time to become visible. An immediate `find` that doesn't return the document isn't always a bug: validate with [polling with a timeout](/api-testing/async-apis-with-awaitility), not with `sleep`.
 
 ## The rest of the NoSQL map, one line each
 
 - **Key-value (Redis)** — caches and sessions; in tests, the usual cause of "I deleted it from the database but I still see it".
-- **Columnar (Cassandra)** — time series and huge volumes, per-query configurable consistency.
+- **Wide-column (Cassandra)** — time series and huge volumes, per-query configurable consistency.
 - **Graph (Neo4j)** — relationships as the primary data; useful to know they exist.
 
 ## Common mistakes
 
 - **Validating with a bare `findOne`** and trusting whatever document comes first: filter by the full key of the data you created.
-- **Assuming immediate consistency** in distributed systems: active waits, not instant reads.
+- **Assuming immediate consistency** in distributed systems: polling with a timeout, not instant reads.
 - **Ignoring "old" documents.** Without forced schema migrations, different document versions coexist in the same collection; tests must account for that.
 
 ::: tip Key idea

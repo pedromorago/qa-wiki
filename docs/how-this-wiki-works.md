@@ -7,7 +7,7 @@ This site is also a QA artifact. In its first weeks it went through three archit
 1. **Public by default.** The wiki is part of my portfolio: proof that I can explain testing in clear written English. A private notebook proves nothing.
 2. **Editable from anywhere.** Publishing must work from a browser — any machine, no local checkout — or the writing habit dies.
 3. **Near-zero maintenance and cost.** Side-project infrastructure that needs babysitting eventually gets abandoned. Whatever I build has to keep working while I ignore it.
-4. **Only keep what gets used.** Anything that exists but isn't used is inventory, not asset — and inventory rots.
+4. **Only keep what gets used.** Anything that exists but isn't used is inventory, not an asset — and inventory rots.
 
 ## The architecture
 
@@ -43,11 +43,11 @@ The embedding model was chosen by measurement, not vibes. A candidate model (mul
 
 ## Answers with receipts
 
-On top of retrieval sits a thin generation layer: press **AI answer** and the browser sends the question plus the top five excerpts — public content only, by construction — to a ~100-line Cloudflare Worker, which asks a Workers AI model for a short answer *grounded exclusively in those excerpts*, streamed back with citations. The sources list under the answer is rendered client-side from the excerpts actually sent, so the model cannot invent a reference.
+On top of retrieval sits a thin generation layer: press **AI answer** and the browser sends the question plus the top five excerpts — public content only, by construction — to a ~140-line Cloudflare Worker, which asks a Workers AI model for a short answer *grounded exclusively in those excerpts*, streamed back with citations. The sources list under the answer is rendered client-side from the excerpts actually sent, so the model cannot invent a reference.
 
 The guardrail is half prompt, half calibration. The first model tried was too literal — given an excerpt about testing asynchronous operations, it refused a question about "message queues" because the words didn't match. The fix wasn't clever prompting (that was tried, and measured, and failed); it was a more capable model, verified before shipping against two cases: a question the wiki covers (must answer, with citations) and one it doesn't (must say so), both replayed against real production payloads.
 
-Abuse economics matter for a public endpoint: origin allow-list, strict input limits, per-IP rate limiting — and the real backstop is that the Workers AI free tier has a **hard cap**: past the daily quota it errors, it never bills. The page degrades to plain results with a friendly note. Failure mode: "stops", never "surprise invoice".
+Abuse economics matter for a public endpoint: origin allow-list, strict input limits, per-IP rate limiting — and the real backstop is that, on the Workers Free plan, Workers AI has a **hard cap**: past the daily quota it errors, it never bills. The page degrades to plain results with a friendly note. Failure mode: "stops", never "surprise invoice".
 
 ## The half that no longer exists
 
@@ -65,7 +65,7 @@ Three influences convinced me the public wiki was worth building:
 - **Digital gardens** (Maggie Appleton): a wiki that grows by small tending beats a blog that demands finished essays — lower the publishing bar and you publish.
 - ***Show Your Work!*** (Austin Kleon): showing process, not just outcomes, is what makes work findable — and a hiring manager reading this page is the concrete use case.
 
-Publishing still means rewriting: work material never gets pasted here — lessons are rewritten generic, in my own words, set in this wiki's two [fictional example domains](/template). Rewriting-to-publish is **elaboration** — Sönke Ahrens' *How to Take Smart Notes* argues that explaining an idea in your own words is where learning actually happens. The public wiki records what I *understand*, which is precisely why it works as a portfolio.
+Publishing still means rewriting: work material never gets pasted here — lessons are rewritten as generic examples, in my own words, set in this wiki's two [fictional example domains](/template). Rewriting-to-publish is **elaboration** — Sönke Ahrens' *How to Take Smart Notes* argues that explaining an idea in your own words is where learning actually happens. The public wiki records what I *understand*, which is precisely why it works as a portfolio.
 
 ## What it costs
 
@@ -73,7 +73,7 @@ The domain: $10.46/year. Everything else — GitHub Pages, the CMS, the OAuth Wo
 
 ## The moving parts
 
-For the code-inclined, the whole mechanism is a handful of small files in the [public repo](https://github.com/pedro-morago/qa-wiki):
+For the code-inclined, the whole mechanism is a handful of small files in the [public repo](https://github.com/pedromorago/qa-wiki):
 
 - `docs/.vitepress/config.mts` — site config; at build end it generates the CMS config from `sidebar.json`.
 - `docs/.vitepress/sidebar.ts` — derives nav and sidebar from `sidebar.json`, hiding entries whose pages don't exist yet.

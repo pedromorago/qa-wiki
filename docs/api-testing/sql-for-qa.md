@@ -2,7 +2,7 @@
 
 The UI and the API tell you what the system **claims** to have done; the database tells you what it has **actually** done. A QA who can query the database can verify persistence, prepare test data and diagnose bugs without depending on anyone.
 
-## The 20 % of SQL that solves 80 % of the job
+## The 20% of SQL that solves 80% of the job
 
 You don't need to be a DBA. This covers almost all the day-to-day:
 
@@ -12,7 +12,7 @@ You don't need to be a DBA. This covers almost all the day-to-day:
 | Verify a state change | `SELECT status FROM … WHERE id = …` |
 | Count how many there are | `COUNT(*)` with `GROUP BY` |
 | Detect duplicates | `GROUP BY … HAVING COUNT(*) > 1` |
-| Detect orphans (integrity) | `LEFT JOIN … WHERE child.id IS NULL` |
+| Detect orphans (integrity) | `FROM child LEFT JOIN parent … WHERE parent.id IS NULL` |
 | Find data for a test | `SELECT … WHERE <criteria> LIMIT 5` |
 
 ## Examples over a minimal schema
@@ -20,18 +20,18 @@ You don't need to be a DBA. This covers almost all the day-to-day:
 With two example tables, `customers` and `service_orders` (a customer has many service orders, and each order moves through `created → validated → provisioning → active`):
 
 ```sql
--- Was the customer created when they signed up for the 1 Gbps fibre plan?
-SELECT id, document, status, created_at
+-- Was the customer created when they signed up for the 1 Gbps fiber plan?
+SELECT id, national_id, status, created_at
 FROM customers
-WHERE document = '12345678A';
+WHERE national_id = '12345678A';
 
 -- Did the service order reach 'active' after the full provisioning flow?
 SELECT status FROM service_orders WHERE id = 10442;
 
 -- Duplicate customers that validation should have prevented
-SELECT document, COUNT(*)
+SELECT national_id, COUNT(*)
 FROM customers
-GROUP BY document
+GROUP BY national_id
 HAVING COUNT(*) > 1;
 
 -- Orphan service orders: they point to a customer that no longer exists
@@ -41,7 +41,7 @@ LEFT JOIN customers c ON c.id = o.customer_id
 WHERE c.id IS NULL;
 
 -- Test data: active customers with orders still in provisioning
-SELECT c.id, c.document
+SELECT c.id, c.national_id
 FROM customers c
 JOIN service_orders o ON o.customer_id = c.id
 WHERE c.status = 'active' AND o.status = 'provisioning'
@@ -63,7 +63,7 @@ LIMIT 5;
 
 ## How it fits automation
 
-In API tests, the most complete assertion validates both sides: the **response** (contract, status, body) and the **persistence** (what ended up in the database). It's also the setup-and-teardown tool: locating data that meets the test's conditions, and verifying the initial state before executing.
+In API tests, the most complete assertion validates both sides: the **response** (contract, status, body) and the **persistence** (what ended up in the database). It's also a setup aid: locating data that meets the test's conditions and verifying the initial state before executing.
 
 ## Common mistakes
 

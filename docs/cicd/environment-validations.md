@@ -15,8 +15,8 @@ Throughout the lifecycle, several "versions" of the product coexist (feature bra
 | Stage | Tests | Trigger | Editions | Databases |
 |---|---|---|---|---|
 | **Pull request** | Backend regression + frontend sanity | On opening the PR | Main one only | Main one only |
-| **Integration (develop)** | Full BE+FE regression + cross-functionalities suite | Scheduled, 1-2×/day | **All** (enterprise, professional, community…) | Main, restored **and empty** |
-| **Release (RC)** | Full BE+FE regression + cross-functionalities + addons | On merge to the release branch | All | **All supported versions** (e.g. Postgres 15 and 13) |
+| **Integration (develop)** | Full BE+FE regression + cross-cutting features suite | Scheduled, 1–2×/day | **All** (enterprise, professional, community…) | Main, restored **and empty** |
+| **Release (RC)** | Full BE+FE regression + cross-cutting features + add-ons | On merge to the release branch | All | **All supported versions** (e.g. Postgres 15 and 13) |
 | **Production mirror** | Full regression | On demand | All | Restored and empty |
 | **LTS** | Full regression | On demand (patches) | All | — |
 
@@ -24,8 +24,8 @@ Dimensions worth identifying in any product:
 
 - **Editions/commercial variants** — each one enables different features; they're validated separately.
 - **Supported DB versions** — the release is validated against every version customers run, not just the latest.
-- **Cross-functionalities** — cross-cutting concerns that belong to no single domain (licensing, session expiration, exporting a project's reports…): they deserve their own suite.
-- **Addons and integrations** with external services.
+- **Cross-cutting features** — concerns that belong to no single domain (licensing, session expiration, exporting a project's reports…): they deserve their own suite.
+- **Add-ons and integrations** with external services.
 
 ## Two database states
 
@@ -35,13 +35,13 @@ Operationally: the dumps are **regenerated automatically on every deployment** o
 
 ## The release cycle from QA's perspective
 
-1. **Release Candidate**: validated features are packaged into an RC that gets deployed to its own environment and receives the full regression. Strict rule: **once the RC exists, only critical bug fixes go in** — feature freeze.
+1. **Release Candidate**: validated features are packaged into an RC that gets deployed to its own environment and receives the full regression. Strict rule: **once the RC exists, only critical bug fixes go in** — code freeze.
 2. **Production**: a **mirror environment** is kept with the exact production version, to reproduce and validate any issue or fix against what the customer actually has.
 3. **LTS**: extended-support versions live in their own dedicated environment where only patches and security fixes are validated.
 
 ## Custom on-demand pipelines
 
-Besides the automatic ones, four parameterizable pipelines that anyone can launch:
+Besides the automatic ones, four parameterized pipelines that anyone can launch:
 
 - `backend-all-domains` / `backend-one-domain`
 - `frontend-all-domains` / `frontend-one-domain`

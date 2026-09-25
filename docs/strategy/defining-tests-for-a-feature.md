@@ -5,7 +5,7 @@ From the user story to the test cases: the process I follow when a feature enter
 ## Before starting: prerequisites
 
 - The feature meets the **Definition of Ready** — in particular, it has clear, testable **acceptance criteria (AC)**.
-- All test cases live in a **test case manager** (TMS: Qase, TestRail…) that can be linked to the ticketing system.
+- All test cases live in a **test case manager** (Qase, TestRail…) that can be linked to the ticketing system.
 
 ## During refinement
 
@@ -22,8 +22,8 @@ They verify that the feature does what it promises: expected actions, desired re
 
 The important nuance: **not every AC test goes into regression** — only the ones worth running with every future change to the application. Operational rules:
 
-- If the test should be part of regression → define it **in the TMS**, not in the ticket's "testing steps" (where it dies when the ticket closes).
-- If the feature changes the behavior of existing cases → **update them** in the TMS.
+- If the test should be part of regression → define it **in the test case manager**, not in the ticket's "testing steps" (where it dies when the ticket closes).
+- If the feature changes the behavior of existing cases → **update them** in the test case manager.
 - Before signing off on the feature: run the new tests **and** the linked ones.
 
 ### 2. Happy path tests
@@ -32,7 +32,7 @@ The main, ideal flow — and above all, that the new feature **doesn't break the
 
 ### 3. Edge case tests
 
-Boundary values, unusual data, infrequent flows, exceptional conditions. They expose the weak spots that are invisible in normal usage. They also get automated early and usually form the **regression** suite. A practical pipeline detail: on the PR only the backend regression runs (fast); the full one runs after the merge.
+Boundary values, unusual data, infrequent flows, exceptional conditions. They expose the weak spots that are invisible in normal usage. They also get automated early and usually form the **regression** suite. A practical pipeline detail: on the PR only the backend regression and the frontend sanity run; the full regression runs on the integration branch.
 
 ## From family to layer
 
@@ -46,10 +46,14 @@ The concrete layers, with examples: [backend](/strategy/backend-testing-layers) 
 
 ## Final checklist
 
-- [ ] Testable ACs defined during refinement
-- [ ] Affected existing cases: searched for and linked to the ticket
-- [ ] AC tests defined; the ones going to regression, created in the TMS
-- [ ] Happy paths covered (and automated → sanity)
-- [ ] Edge cases covered (and automated → regression)
-- [ ] Each case assigned to its layer
-- [ ] New + linked tests executed before closing
+- Testable ACs defined during refinement
+- Affected existing cases: searched for and linked to the ticket
+- AC tests defined; the ones going to regression, created in the test case manager
+- Happy paths covered (and automated → sanity)
+- Edge cases covered (and automated → regression)
+- Each case assigned to its layer
+- New + linked tests executed before closing
+
+::: tip Key idea
+The tests for a feature aren't defined when the code is ready: they start in refinement, with the acceptance criteria and the existing cases the feature touches. What should outlive the ticket goes into the test case manager; everything else dies with the validation.
+:::

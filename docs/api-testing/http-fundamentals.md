@@ -1,4 +1,4 @@
-# HTTP Fundamentals
+# HTTP fundamentals
 
 To test REST APIs you need to master HTTP: it's the language the API uses to tell you whether something went right or wrong, and quite often **the status code is itself the bug**.
 
@@ -46,7 +46,7 @@ Location: /api/v1/service-orders/42
 - **403 Forbidden** — authenticated but **without permission**. The 401/403 mix-up is a classic bug.
 - **404 Not Found** — the resource doesn't exist. Careful: some APIs return 404 instead of 403 to avoid revealing that the resource exists — that's a design decision, and you need to know which one applies.
 - **409 Conflict** — state conflict (e.g. creating a duplicate service order for a customer who already has that same service in progress).
-- **422 Unprocessable Entity** — correct syntax but semantically invalid data.
+- **422 Unprocessable Content** (formerly Unprocessable Entity) — correct syntax but semantically invalid data.
 - **429 Too Many Requests** — rate limiting.
 
 ### 5xx — Server error

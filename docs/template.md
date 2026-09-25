@@ -5,7 +5,7 @@ Copy this structure when creating a new wiki entry. You don't have to fill every
 ```markdown
 # Topic title
 
-One or two sentences: what this is and why it matters to me as a QA.
+One or two sentences: what this is and why it matters to me as a QA engineer.
 
 ## Context
 
@@ -27,6 +27,10 @@ A concrete case, ideally from my day-to-day work.
 ## Common mistakes / things that surprised me
 
 - ...
+
+::: tip Key idea
+The one sentence I'd want to remember from this page.
+:::
 
 ## References
 
