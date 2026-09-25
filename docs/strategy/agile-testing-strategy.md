@@ -1,6 +1,6 @@
 # Agile testing strategy
 
-How testing integrates into an agile product team so that **there is no separate "testing phase"**: every feature is validated as part of its own development, and by the time it's closed it's ready to ship.
+How testing integrates into an agile product team so that **there is no separate "testing phase"**: every feature is validated as part of its own development, and by the time it's closed it's ready to ship. For the day-to-day version — ceremonies, estimation and metrics — see [Scrum from the QA seat](/strategy/scrum-from-the-qa-seat).
 
 ## The philosophy
 
@@ -25,7 +25,7 @@ The key point: the **regression plan stays alive** — every initiative feeds it
 
 - **The feature's developer tests their own acceptance criteria** — they define the tests and the information needed to run them. This is the feature's *progression testing*.
 - The **reviewer** validates the behavior and adds tests if they spot gaps.
-- In parallel, **regression** runs to protect what already exists: once on the pull request, again when merging into the main branch.
+- In parallel, **regression** runs to protect what already exists: on the pull request (backend regression + frontend sanity) and in scheduled runs on the integration branch ([details](/cicd/environment-validations)).
 
 ### 3. Release
 
@@ -52,9 +52,13 @@ Beyond the classic catalog, there's one category I find especially useful:
 
 | Type | What it is |
 |---|---|
-| **Smoke** | Verifies the app is properly deployed and communicating with its dependencies. It's a *deployment* test more than a functionality test. |
-| **Sanity** | The core functionality, free of bugs. Formally: a **subset of regression**. |
+| **Smoke** | In this team's usage: verifies the app is properly deployed and communicating with its dependencies. It's a *deployment* test more than a functionality test. |
+| **Sanity** | The core functionality, free of bugs. In our setup: a **subset of regression** (ISTQB treats *sanity* as a synonym of smoke). |
 | **Regression** | What existed before still works after every change. |
 | **Progression** | **The new tests for a feature under development.** A *transitional* category: when the feature closes, each test either gets promoted to smoke/sanity/regression (and automated) or dies with the validation. |
 
 That lifecycle — every test is born as *progression* and a conscious decision is made about promoting it — avoids both the gaps ("nobody moved this case to regression") and the infinite regression suite ("we keep every test forever").
+
+::: tip Key idea
+In an agile team, testing isn't a phase: it's part of how every story gets built. Anyone can run the tests, QA answers for the strategy, and every test earns its place in regression through a conscious decision.
+:::

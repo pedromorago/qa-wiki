@@ -43,6 +43,10 @@
         {
           "text": "The evolving QA role",
           "link": "/fundamentals/the-evolving-qa-role"
+        },
+        {
+          "text": "Onboarding into a complex domain",
+          "link": "/fundamentals/onboarding-into-a-new-domain"
         }
       ]
     },
@@ -77,6 +81,14 @@
           "link": "/strategy/microservices-testing"
         },
         {
+          "text": "Test environments strategy",
+          "link": "/strategy/test-environments-strategy"
+        },
+        {
+          "text": "Mocks in integration testing",
+          "link": "/strategy/mocks-in-integration-testing"
+        },
+        {
           "text": "Shift-left and maturity",
           "link": "/strategy/shift-left-and-maturity"
         },
@@ -91,6 +103,18 @@
         {
           "text": "How to review a task",
           "link": "/strategy/how-to-review-a-task"
+        },
+        {
+          "text": "Scrum from the QA seat",
+          "link": "/strategy/scrum-from-the-qa-seat"
+        },
+        {
+          "text": "Test management with Xray",
+          "link": "/strategy/test-management-with-xray"
+        },
+        {
+          "text": "Investigating hard failures",
+          "link": "/strategy/investigating-hard-failures"
         }
       ]
     },
@@ -267,6 +291,22 @@
         {
           "text": "OSS/BSS for QA",
           "link": "/telecom/oss-bss-for-qa"
+        },
+        {
+          "text": "The catalog: CFS, RFS and resources",
+          "link": "/telecom/catalog-cfs-rfs"
+        },
+        {
+          "text": "Service orders (TMF641)",
+          "link": "/telecom/service-orders-tmf641"
+        },
+        {
+          "text": "Fallout management",
+          "link": "/telecom/fallout-management"
+        },
+        {
+          "text": "Testing workflows on a BPM engine",
+          "link": "/telecom/testing-bpm-workflows"
         }
       ]
     },
@@ -281,8 +321,24 @@
           "link": "/istqb/exam-format"
         },
         {
-          "text": "Study plan",
+          "text": "CTFL study plan",
           "link": "/istqb/study-plan"
+        },
+        {
+          "text": "Advanced Level: which module",
+          "link": "/istqb/advanced-level"
+        },
+        {
+          "text": "Advanced Test Analyst (v4.0)",
+          "link": "/istqb/advanced-test-analyst"
+        },
+        {
+          "text": "Advanced study plan",
+          "link": "/istqb/advanced-study-plan"
+        },
+        {
+          "text": "Advanced practice questions",
+          "link": "/istqb/advanced-practice-questions"
         }
       ]
     },

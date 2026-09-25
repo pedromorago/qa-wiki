@@ -1,6 +1,6 @@
 # Study plan for the CTFL
 
-How I would prepare the CTFL v4.0 today, combining the official material with the articles on this wiki. Before starting, read [the exam format](/istqb/exam-format): knowing how it's scored and which chapters weigh most changes how you study.
+How I would prepare for the CTFL v4.0 today, combining the official material with the articles on this wiki. Before starting, read [the exam format](/istqb/exam-format): knowing how it's scored and which chapters weigh most changes how you study.
 
 ## 1. Download the official material
 
@@ -12,11 +12,11 @@ The syllabus is dry if you arrive cold. These articles cover the same concepts w
 
 | Syllabus chapter | Supporting articles on this wiki |
 |---|---|
-| 1. Fundamentals of testing | [What is QA?](/fundamentals/what-is-qa) (includes the 7 principles), [Types of testing](/fundamentals/types-of-testing) |
-| 2. Testing throughout the SDLC | [The testing pyramid](/fundamentals/the-testing-pyramid), [Agile testing strategy](/strategy/agile-testing-strategy), [Shift-left and maturity](/strategy/shift-left-and-maturity) |
-| 3. Static testing | [How to review a task](/strategy/how-to-review-a-task), [Acceptance criteria & DoR](/strategy/acceptance-criteria-and-dor), [Static analysis](/cicd/static-analysis) |
-| 4. Test analysis and design | [Test case design](/fundamentals/test-case-design), [Defining tests for a feature](/strategy/defining-tests-for-a-feature) |
-| 5. Managing the test activities | [Bug reporting](/fundamentals/bug-reporting), [Bug root cause analysis](/strategy/bug-root-cause-analysis) |
+| 1. Fundamentals of testing | [What is QA?](/fundamentals/what-is-qa) (includes the 7 principles) |
+| 2. Testing throughout the SDLC | [Types of testing](/fundamentals/types-of-testing) (levels and types), [Agile testing strategy](/strategy/agile-testing-strategy), [Shift-left and maturity](/strategy/shift-left-and-maturity) |
+| 3. Static testing | [How to review a task](/strategy/how-to-review-a-task), [Static analysis](/cicd/static-analysis) |
+| 4. Test analysis and design | [Test case design](/fundamentals/test-case-design), [Defining tests for a feature](/strategy/defining-tests-for-a-feature), [Acceptance criteria & DoR](/strategy/acceptance-criteria-and-dor) (criteria formats and ATDD) |
+| 5. Managing the test activities | [The testing pyramid](/fundamentals/the-testing-pyramid), [Bug reporting](/fundamentals/bug-reporting), [Bug root cause analysis](/strategy/bug-root-cause-analysis), [Test management with Xray](/strategy/test-management-with-xray) |
 | 6. Test tools | [When to automate](/automation/when-to-automate), [AI in test automation](/automation/ai-in-test-automation) |
 
 ## 3. Read the syllabus, two passes
@@ -36,14 +36,18 @@ K1 questions ask for **exact** definitions, and third-party summaries sometimes 
 
 ## 6. Booking and logistics
 
-Pick an accredited provider (Brightest, GASQ…), choose online or in person, and if the exam isn't in your native language, request the **+25 % extra time** when booking. With a stable 30+/40 on the sample exams, book with confidence.
+Pick an accredited provider (Brightest, GASQ…), choose online or in person, and if the exam isn't in your native language, request the **25% extra time** when booking. With a stable 30+/40 on the sample exams, book with confidence.
 
 ## Common mistakes
 
-- **Ignoring the K3s.** Eight apply-the-technique questions decide the exam; reading isn't enough — you have to do exercises on partitioning, boundary values, decision tables and state transitions.
+- **Ignoring the K3s.** Eight apply-the-technique questions decide the exam; reading isn't enough — you have to do exercises on partitioning, boundary values, decision tables, state transitions and ATDD, plus effort estimation, test case prioritization and writing a defect report.
 - **Studying only from summaries.** Third-party summaries save time but drift from the terminology. The syllabus and the glossary are what the questions are written from.
 - **Memorizing without understanding.** The v4.0 exam increasingly asks "why" and "in which case": the reasons behind each concept are what save you on the K2s.
 
 ::: tip Key idea
 The syllabus tells you **what** will be asked; the sample exams show you **how** it's asked. Study with the former, train with the latter.
 :::
+
+## After the CTFL
+
+With a couple of years of practice, the next step is the [Advanced Level](/istqb/advanced-level). The Test Analyst module picks up exactly where chapter 4 leaves off.
