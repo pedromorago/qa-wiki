@@ -8,7 +8,7 @@ The essentials to get started with Playwright on a serious project: structure, y
 npm init playwright@latest   # new project
 npx playwright install       # download the browsers
 npx playwright test          # run everything
-npx playwright test src/tests/proyectos/crear-proyecto.spec.ts   # a specific spec
+npx playwright test src/tests/projects/create-project.spec.ts   # a specific spec
 ```
 
 On a real project there's a prior step that tutorials forget: **setting up API access** for the application under test (enabling it, generating a token for the test user), because well-built tests prepare their data via API before touching the UI.
@@ -50,14 +50,14 @@ The mature workflow: record to **discover selectors and actions**, then encapsul
 From least to most interactive:
 
 1. **HTML report** — after every run: `npx playwright show-report`. In CI it's published as a pipeline artifact for you to download.
-2. **Trace viewer** — Playwright's crown jewel. The report includes traces (`.zip`); you replay them locally **exactly as they happened in CI**:
+2. **Trace viewer** — Playwright's crown jewel. When tracing is enabled (`use.trace` in the config; the default template sets `'on-first-retry'`), the report includes traces (`.zip`); you replay them locally **exactly as they happened in CI**:
 
    ```bash
    npx playwright show-trace path/to/trace.zip
    ```
 
    DOM snapshot before/after every action, console, network, code. It's the standard way to answer "it fails in CI but not locally".
-3. **UI mode** — `npx playwright test --ui` (filterable: `npx playwright test tests/proyectos --ui`). *Time travel* through every action, watch mode, browser selection. For developing tests, unbeatable.
+3. **UI mode** — `npx playwright test --ui` (filterable: `npx playwright test src/tests/projects --ui`). *Time travel* through every action, watch mode, browser selection. For developing tests, unbeatable.
 
 ::: warning Don't measure timings in UI mode
 UI mode is noticeably slower than running from the console (in an internal measurement: 54.9 s vs 30.5 s for the same suite). To compare performance, always use the console.

@@ -1,6 +1,6 @@
 # AWS for QA (with a touch of Ansible)
 
-The environments you test against increasingly live in the cloud. A QA doesn't need to be an AWS architect, but does need bearings: knowing **where the logs, the data and the artifacts are**, and moving through them without depending on anyone.
+The environments you test against increasingly live in the cloud. A QA doesn't need to be an AWS architect, but does need to get their bearings: knowing **where the logs, the data and the artifacts are**, and moving through them without depending on anyone.
 
 ## The five services a QA actually touches
 
@@ -26,14 +26,14 @@ aws ec2 describe-instances --filters "Name=tag:env,Values=qa" \
   --query "Reservations[].Instances[].[InstanceId,State.Name]"
 ```
 
-`aws s3` and `aws logs tail` cover 80 % of a QA's day-to-day in AWS.
+`aws s3` and `aws logs tail` cover 80% of a QA's day-to-day in AWS.
 
 ## Ideas worth internalizing
 
-- **Credentials**: always temporary (SSO/roles) and never in the repo or in test code — the [Git doesn't forget](/cicd/git-for-qa) rule applies double here.
+- **Credentials**: always temporary (SSO/roles) and never in the repo or in test code — the [Git doesn't forget](/cicd/git-for-qa) rule applies doubly here.
 - **Least privilege**: if you can't touch production, that's on purpose. Ask for the role you need, not the master key.
 - **Environments cost money**: an instance spun up "to try something" and forgotten is the classic leak. Ephemeral environments (created for the test, destroyed after) are the healthy pattern.
-- **Regions**: resources live in one specific region; "I can't find the bucket" usually means "you're looking in the wrong region".
+- **Regions**: most resources (EC2, RDS, log groups) live in one specific region; "I can't find the instance/log group" usually means "you're looking in the wrong region".
 
 ## And Ansible?
 

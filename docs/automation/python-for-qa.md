@@ -1,10 +1,10 @@
 # Python for QA
 
-Python is the QA's Swiss army knife: test data scripts, internal tools, results analysis and, with **pytest** and **requests**, a complete and very readable testing stack. Even if your main suite is Java or TypeScript, Python shows up sooner or later.
+Python is the QA's Swiss Army knife: test data scripts, internal tools, results analysis and, with **pytest** and **requests**, a complete and very readable testing stack. Even if your main suite is Java or TypeScript, Python shows up sooner or later.
 
 ## pytest in five minutes
 
-A test is a function that starts with `test_` and uses plain `assert`:
+A test is a function that starts with `test_`, in a file named `test_*.py` or `*_test.py` (that's how pytest discovers it), and uses plain `assert`:
 
 ```python
 def test_active_order():
@@ -38,7 +38,7 @@ def test_invalid_msisdn_rejected(api_client, msisdn):
     assert r.status_code == 400
 ```
 
-- **Markers** (`@pytest.mark.smoke`) — labeling and filtering execution (`pytest -m smoke`), like tags in other frameworks.
+- **Markers** (`@pytest.mark.smoke`) — labeling and filtering execution (`pytest -m smoke`), like tags in other frameworks. Register your custom markers (`markers` in `pytest.ini` or `pyproject.toml`): pytest warns about unknown ones, and with `--strict-markers` the run fails.
 
 ## requests for APIs
 

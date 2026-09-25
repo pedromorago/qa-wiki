@@ -8,7 +8,7 @@
   "homepage": "https://wiki.pedromorago.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pedro-morago/qa-wiki.git"
+    "url": "https://github.com/pedromorago/qa-wiki.git"
   },
   "type": "module",
   "engines": {

@@ -16,7 +16,7 @@ Total pipeline time isn't the average of the shards, it's **the slowest shard** 
 ```
 Naive split (by test count):               Split by duration:
 Shard 1: ████████████████████ 22 min       Shard 1: ████████████ 13 min
-Shard 2: ████████ 9 min                    Shard 2: ███████████▌ 12.5 min
+Shard 2: ████████ 9 min                    Shard 2: ███████████ 12 min
 Shard 3: ██████ 7 min                      Shard 3: ████████████ 13 min
                  ⌛ total: 22 min                        ⌛ total: 13 min
 ```
@@ -26,14 +26,14 @@ Same hardware, same tests: **9 minutes less per run**, just by splitting better.
 ## How to split better
 
 - **Greedy by duration (LPT)**: sort the tests from longest to shortest and assign each one to the least loaded shard. Simple and very effective.
-- **Exact optimization**: the optimal split is a *bin packing / makespan minimization* problem that can be modeled as **mixed-integer linear programming (MILP)**. I did this in Python for my team's E2E suite: ~40% less validation time in CI/CD **without adding infrastructure**. That experience gave birth to my project [CI Shard Advisor](https://github.com/pedro-morago/ci-shard-advisor).
+- **Exact optimization**: the optimal split is a *bin packing / makespan minimization* problem that can be modeled as **mixed-integer linear programming (MILP)**. I did this in Python for my team's E2E suite: ~40% less validation time in CI/CD **without adding infrastructure**. That experience gave birth to my project [CI Shard Advisor](https://github.com/pedromorago/ci-shard-advisor).
 - **Real-world constraints**: tests that can't run in parallel (they share data), expensive setups worth grouping in the same shard, and durations that change — the split must be recomputed periodically with fresh data from previous runs.
 
 ## Prerequisite: independent tests
 
 None of this works if tests depend on each other. To be able to parallelize:
 
-- **Every test creates (or gets injected) its own data** — never rely on what another test left behind.
+- **Every test creates (or is given) its own data** — never rely on what another test left behind.
 - **Isolated users/accounts per test or per worker** — two tests logged in with the same user at once = false reds.
 - **No implicit ordering**: if `test B` only passes after `test A`, those aren't two tests, they're one badly split in half.
 - **Cleanup**: ideally via API in the teardown, not through the UI.

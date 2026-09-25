@@ -5,7 +5,7 @@ Selenium, Cypress, WebDriverIO, Playwright… the names change faster than the i
 ## The three architectures
 
 - **WebDriver protocol** (Selenium, WebDriverIO): commands travel over HTTP to a driver that controls the browser. It's a **W3C standard**: maximum browser and language compatibility, in exchange for more latency and manual waits.
-- **Inside the browser** (Cypress): the test runs next to the application, in the browser itself. Excellent feedback and debugging, but structural limitations (multi-tab, multiple origins, supported browsers).
+- **Inside the browser** (Cypress): the test runs next to the application, in the browser itself. Excellent feedback and debugging, but structural limitations (multi-tab, supported browsers; multiple origins need `cy.origin()`, available since Cypress 12).
 - **Native browser protocols** (Playwright, via CDP and equivalents): direct, bidirectional control of the browser from outside. Auto-waiting, cheap isolated contexts and easy parallelization.
 
 ## Quick comparison
@@ -33,7 +33,7 @@ A JavaScript framework on top of the WebDriver protocol (today also BiDi/CDP), w
 ## How to choose
 
 - **New project, TS/JS team, heavy CI** → Playwright (my default choice; [first steps](/automation/playwright-first-steps)).
-- **Existing suite or compatibility/language requirements** → Selenium or WebDriverIO; you don't migrate for fashion, [you migrate with numbers](/automation/migrating-from-testcafe-to-playwright).
+- **Existing suite or compatibility/language requirements** → Selenium or WebDriverIO; you don't migrate because it's trendy, [you migrate with numbers](/automation/migrating-from-testcafe-to-playwright).
 - **A team that values visual debugging above all** → Cypress remains a great experience.
 
 ::: tip Key idea

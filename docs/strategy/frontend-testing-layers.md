@@ -4,7 +4,7 @@ The frontend counterpart of the [backend layers](/strategy/backend-testing-layer
 
 ## Unit: component logic, no browser
 
-No real DOM or browser; simulated events and **all API calls mocked** — never real data. `*.test.tsx` files next to the code (typical React/TS stack).
+No real browser (a simulated DOM such as jsdom); simulated events and **all API calls mocked** — never real data. `*.test.tsx` files next to the code (typical React/TS stack).
 
 For the creation form:
 
@@ -28,7 +28,7 @@ Accepted limitations: they don't evaluate how styles affect the layout, and the 
 The middle ground that gets forgotten the most: the component **alone**, but in an actual browser — logic and appearance at the same time, with real interactions.
 
 - The "Create" button is only visible when all required fields are valid.
-- Fill in the form and click "Create".
+- Filling in the form and clicking "Create" submits the entered values.
 
 Tools: Playwright Component Testing, Cypress Component Testing, Storybook.
 
@@ -49,13 +49,13 @@ Two golden rules for this layer:
 
 ## Who writes what
 
-A split that works very well in practice: **frontend developers write the unit tests** (they know the component's internal logic) and **QA writes the E2E tests** (they know the user flows and the risk). Component tests are split depending on the team.
+A split that works very well in practice: **frontend developers write the unit tests** (they know the component's internal logic) and **QA writes the E2E tests** (they know the user flows and the risk). Who writes component tests depends on the team.
 
 ## Operational summary
 
 | Layer | What it validates | Typical tools | When it runs |
 |---|---|---|---|
-| Unit | Logic without DOM/browser, mocked APIs | Jest, Vitest, Testing Library | Every commit |
+| Unit | Logic in a simulated DOM, mocked APIs | Jest, Vitest, Testing Library | Every commit |
 | Component | Behavior + appearance in a real browser | Playwright CT, Cypress CT, Storybook | Every pull request |
 | E2E | User flows with real backend and DB | Playwright, Cypress | Main/staging, pre-release |
 

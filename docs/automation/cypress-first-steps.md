@@ -1,6 +1,6 @@
 # Cypress: first steps
 
-Cypress runs the tests **inside the browser**, next to the application ([its architecture explains its strengths and limits](/automation/e2e-tools-landscape)): immediate visual feedback, excellent debugging and an API that reads itself. It's one of the most widespread E2E tools, and the one I've worked with the longest.
+Cypress runs the tests **inside the browser**, next to the application ([its architecture explains its strengths and limits](/automation/e2e-tools-landscape)): immediate visual feedback, excellent debugging and an API that reads like plain English. It's one of the most widespread E2E tools, and the one I've worked with the longest.
 
 ## Install and start
 
@@ -78,7 +78,7 @@ CSS-class or structural selectors (`div > ul li:nth-child(3)`) are what turn a s
 - **Ignoring the interactive mode.** `cypress open` with time-travel over each command is the best E2E debugging tool there is; use it before fighting logs.
 
 ::: tip Key idea
-Cypress's learning curve is short because the API reads itself, but the mental model (chaining + automatic retry) is different from a normal script. Internalize that first and the tool plays on your side.
+Cypress's learning curve is short because the API reads like plain English, but the mental model (chaining + automatic retry) is different from a normal script. Internalize that first and the tool works in your favor.
 :::
 
 ## References

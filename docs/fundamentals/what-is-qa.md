@@ -14,7 +14,7 @@ Three terms that get mixed up constantly:
 | **QC** (Quality Control) | Product, detection | Does the built product meet the requirements? |
 | **Testing** | Execution, verification | Does this specific behavior work as expected? |
 
-Testing is an activity *within* QC, and QC is a part *of* QA. A good QA doesn't just find bugs: they question ambiguous requirements before those turn into bugs. For example, on a threat modeling platform, given the requirement "the countermeasure is marked as applied", I would ask: applied by whom, and what happens to the threats it mitigated if it gets unmarked?
+Testing is a major form of QC; QA and QC are both parts of quality management — QA looks after the process, QC checks the product. A good QA doesn't just find bugs: they question ambiguous requirements before those turn into bugs. For example, on a threat modeling platform, given the requirement "the countermeasure is marked as applied", I would ask: applied by whom, and what happens to the threats it mitigated if it gets unmarked?
 
 ## The 7 principles of testing (ISTQB)
 
@@ -22,9 +22,9 @@ Testing is an activity *within* QC, and QC is a part *of* QA. A good QA doesn't 
 2. **Exhaustive testing is impossible.** You can't test everything; you have to prioritize by risk.
 3. **Testing early saves time and money** (*shift-left*). A defect found at the requirements stage costs far less than one found in production.
 4. **Defects cluster together.** A buggy module usually has more bugs hiding in it (Pareto principle: ~80% of defects in ~20% of modules).
-5. **The pesticide paradox.** Always repeating the same tests stops finding new bugs; you have to review and refresh your test cases.
+5. **Tests wear out** (formerly the *pesticide paradox*). Always repeating the same tests stops finding new bugs; you have to review and refresh your test cases.
 6. **Testing is context-dependent.** You don't test a banking app the same way you test a video game.
-7. **Absence of errors is a fallacy.** Bug-free software that doesn't solve the user's need is still a bad product.
+7. **Absence-of-defects fallacy.** Bug-free software that doesn't solve the user's need is still a bad product.
 
 ## The QA role on an agile team
 
@@ -35,5 +35,5 @@ Testing is an activity *within* QC, and QC is a part *of* QA. A good QA doesn't 
 - Be the voice of the user within the team.
 
 ::: tip Key idea
-Quality is not the QA's sole responsibility: it belongs to the whole team. The QA **enables** it, **measures** it, and **defends** it.
+Quality is not QA's sole responsibility: it belongs to the whole team. QA **enables** it, **measures** it, and **defends** it.
 :::

@@ -4,12 +4,12 @@ What is quality, who produces it, and where is the QA role headed? My take, buil
 
 ## What quality (really) is
 
-The formal definition: the degree to which a product meets functional and non-functional requirements, ensuring reliability, efficiency, and maintainability. Correct, and not very useful. The operational version that works for me stands on two legs:
+The ISTQB definition: *"the degree to which a work product satisfies stated and implied needs of its stakeholders"*. Correct, and not very useful. The operational version that works for me stands on two legs:
 
 1. **Knowing the user** — knowing how they use the product and what they need to do with it.
 2. **Responding fast** — the ability to react to those needs.
 
-And one idea that changes everything: final quality is the **sum of all the teams and processes involved**. *"It's an aggregation of small gains that produces a high-quality workflow — and a quality workflow is what produces a quality product, not isolated actions."* There's no QA hero who can make up for a broken process.
+And one idea that changes everything: final quality is the **sum of all the teams and processes involved**: an aggregation of small gains produces a high-quality workflow — and a quality workflow is what produces a quality product, not isolated actions. There's no QA hero who can make up for a broken process.
 
 ## The manual testing trap
 
@@ -31,7 +31,7 @@ An exercise I recommend to any team: break down what it *really* costs to valida
 
 (Reading the ticket 10 min, setting up the environment 15, running the cases 1 h, aligning with dev 30 min… and if there's a bug: verifying it, discussing it, documenting it, re-testing the fix.)
 
-With data like this, the "QA is a bottleneck" conversation stops being an opinion and becomes an optimization problem: classify your tasks by **effort × frequency** and attack the dominant cell. It's almost always the manual validation of features — which is why phase 2 of every ticket (automating what was tested by hand) is non-negotiable.
+With data like this, the "QA is a bottleneck" conversation stops being an opinion and becomes an optimization problem: classify your tasks by **effort × frequency** and attack the dominant cell. It's almost always the manual validation of features, which is why the second phase of every ticket — automating what was tested by hand — is non-negotiable.
 
 ## The four axes of the evolution
 

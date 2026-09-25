@@ -11,13 +11,13 @@ The pattern I use (Java + Lombok, but the concept is universal): models with a *
 @Builder
 public class CatalogProductBody {
 
-    @Default
+    @Builder.Default
     private String name = FeederHelper.generateRandomValue("Fiber_", 5);
 
-    @Default
+    @Builder.Default
     private String referenceId = FeederHelper.generateRandomValue("Product-", 5);
 
-    @Default
+    @Builder.Default
     private String description = FeederHelper.generateRandomValue("Fiber_", 100);
 }
 ```

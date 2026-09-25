@@ -6,20 +6,20 @@ Notes from two real experiences applying AI to QA: a PoC with the Playwright age
 
 Playwright offers three AI agents. We evaluated them on a real E2E suite:
 
-### 🩹 Healer — fixes failing tests
+### Healer — fixes failing tests
 
 - **Reliable** when the failure is **in the automation repo itself**: badly specified locators or test implementation errors. In the PoC we introduced a typo in a method argument and it identified and fixed it quickly.
 - **Fails** when many tests break at once due to selector changes in the application: it can't detect the mismatch between the frontend code and the automation's selectors.
 
 **Verdict**: useful as a detector of test implementation errors; not for failures caused by changes in the application.
 
-### 📋 Planner — generates test plans
+### Planner — generates test plans
 
 You give it context about the app and how many scenarios you want; it produces an `.md` with numbered scenarios and steps with nested `expect:` items. What surprised me most: the coverage includes **responsiveness, accessibility (keyboard, screen reader, ARIA), and performance with large datasets** — dimensions a manual plan often forgets.
 
 **Verdict**: valuable as a **scenario checklist generator** that a human curates and implements.
 
-### 🤖 Generator — generates the tests
+### Generator — generates the tests
 
 It takes the Planner's plan + context about the team's approach (POM, locators) and generates the test class. The numbers from our PoC:
 

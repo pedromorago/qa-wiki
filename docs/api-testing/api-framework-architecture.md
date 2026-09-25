@@ -58,7 +58,7 @@ Two details I find particularly well thought out:
 - **Multi-environment via properties**: each environment has its own `config.properties` (base URL, admin credentials, flags). The test points at one via an environment variable, without touching code:
 
   ```bash
-  ENV_PATH=local TEST_SUITE=V2Catalog ./gradlew :test --tests $TEST_SUITE
+  ENV_PATH=local ./gradlew :test --tests V2Catalog
   ```
 
 - **Suites per product domain**: day to day you don't run individual tests but suites (`@Suite` + `@SelectPackages("cases.v2.catalog")`), which is exactly how the pipelines are organized. Suite = package = domain: the same unit in code, execution, and CI.
@@ -75,7 +75,7 @@ Three levels of inheritance that balance reuse and performance:
 
 Order: `@BeforeAll` → (`@BeforeEach` → test → `@AfterEach`) × N → `@AfterAll`.
 
-- `@BeforeAll` / `@AfterAll` must be `static` (JUnit creates a new instance per test).
+- `@BeforeAll` / `@AfterAll` must be `static` (JUnit creates a new instance per test), unless the class uses `@TestInstance(Lifecycle.PER_CLASS)`.
 - `@BeforeAll`: create the test's shared users/data.
 - `@BeforeEach`: reset state if the test needs it clean.
 - Hooks exist to **eliminate duplication**, not to hide logic: if a hook does something that affects the test's outcome, it should probably live in the test.
