@@ -50,4 +50,4 @@ The syllabus tells you **what** will be asked; the sample exams show you **how**
 
 ## After the CTFL
 
-With a couple of years of practice, the next step is the [Advanced Level](/istqb/advanced-level). The Test Analyst module picks up exactly where chapter 4 leaves off.
+With a couple of years of practice, the next step is the [Advanced Level](/istqb/advanced-level). If you build automation, [Test Automation Engineering](/istqb/tae-exam) picks up where CTFL chapter 6 (test tools) leaves off; if you design tests, the Test Analyst module continues chapter 4.
