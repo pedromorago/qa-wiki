@@ -2,56 +2,60 @@
 
 The Foundation Level ([CTFL](/istqb/exam-format)) checks that you know the vocabulary and the basic techniques. The **Advanced Level** checks that you can **apply them to a scenario and justify the choice**: longer questions, several correct-looking options, and a good share of analysis questions. It isn't one exam but a set of modules, each aimed at a different role.
 
+The one I'm preparing is **Test Automation Engineering (CTAL-TAE v2.0)**, and it's the module this section covers in depth.
+
 ::: info Data checked in September 2026
-ISTQB updates syllabi and exam rules regularly. The figures below come from the official ISTQB pages and documents as of September 2026. Before booking, check the current **Exam Structure Tables** and the module's page on [istqb.org](https://istqb.org/).
+ISTQB updates syllabi and exam rules regularly. The figures below come from the official ISTQB documents as of September 2026. Before booking, check the current **Exam Structure Tables** and the module's page on [istqb.org](https://istqb.org/).
 :::
 
-## The three core modules
+## The modules at a glance
 
-| | Test Analyst (CTAL-TA) | Technical Test Analyst (CTAL-TTA) | Test Management (CTAL-TM) |
-|---|---|---|---|
-| **For whom** | Whoever designs and runs tests from the business side | Whoever tests from the code and the architecture | Whoever plans, leads and reports testing |
-| **Focus** | Test techniques at depth, risk-based testing, quality characteristics (functional, usability, compatibility), defect prevention | White-box techniques, static and dynamic analysis, technical quality characteristics (performance, security, reliability…), reviews, automation | Managing the test activities, the product (metrics, estimation, defects) and the team |
-| **Current version** | **v4.0** (May 2025) | v4.0 (June 2021) | v3.0 (May 2024) |
-| **Questions** | 45 | 45 | 50 |
-| **Points / pass mark** | 78 points, pass with **51** (65%) | 78 points, 65% | 65%; check the current total (the 2026 tables corrected it) |
-| **Duration** | 120 min (+25% if not in your native language) | 120 min (+25%) | 120 min (+25%) |
-| **Chapters** | 5 | 6 | 3 |
+| | Test Automation Engineering (CTAL-TAE) | Test Analyst (CTAL-TA) | Technical Test Analyst (CTAL-TTA) | Test Management (CTAL-TM) |
+|---|---|---|---|---|
+| **For whom** | Whoever designs, builds and maintains the test automation | Whoever designs and runs tests from the business side | Whoever tests from the code and the architecture | Whoever plans, leads and reports testing |
+| **Focus** | Automation architecture and frameworks, approaches and design patterns, pilots and deployment risks, CI/CD, reporting, verifying and improving the automation | Test techniques at depth, risk-based testing, quality characteristics, defect prevention | White-box techniques, static and dynamic analysis, technical quality characteristics, reviews | Managing the test activities, the product and the team |
+| **Current version** | **v2.0** (May 2024) | v4.0 (May 2025) | v4.0 (June 2021) | v3.0 (May 2024) |
+| **Questions** | **40** | 45 | 45 | 50 |
+| **Points / pass mark** | **66 points, pass with 43** (65%) | 78 points, pass with 51 (65%) | 78 points, 65% | 65%; check the current total |
+| **Duration** | **90 min** (113 with the 25% extension) | 120 min (+25%) | 120 min (+25%) | 120 min (+25%) |
+| **Chapters** | 8 | 5 | 6 | 3 |
 
-Things all three have in common:
+Things they have in common:
 
-- **Prerequisite: the CTFL certificate** (any version). Some practical experience is recommended; exam providers may ask for it, especially for Test Management.
-- **Questions are weighted by cognitive level.** Besides K2 (understand) and K3 (apply), there are **K4 (analyze)** questions. In the official Test Analyst sample exam, a K2 question is worth 1 point, a K3 2 points and a K4 3 points. You can't pass by getting the easy ones right.
-- **The certificates don't expire.** Holding all three core modules gives you the *Full Advanced Level*; the Expert Level (Test Management, Improving the Test Process) comes after, and that one is valid for seven years.
+- **Prerequisite: the CTFL certificate** (any version). Practical experience is recommended: the TAE syllabus asks for at least six months as a test or development engineer, and some exam providers ask for more.
+- **Questions are weighted by cognitive level.** Besides K2 (understand) and K3 (apply), there are **K4 (analyze)** questions. In the official sample exams, a K2 question is worth 1 point, a K3 2 points and a K4 3 points. You can't pass by getting the easy ones right.
+- **The certificates don't expire.**
 
-Other modules carry "Advanced" in their name without being part of the core trio: **Test Automation Engineering** (CTAL-TAE v2.0, 2024) and the new **Agile Tester** (CTAL-AT v2.0, 2026, replacing the old agile certifications).
+Two neighbors worth knowing: **Test Automation Strategy** (CT-TAS v1.0, a Specialist module released alongside TAE v2.0) holds the *strategic* side of automation (business case, organizational deployment, metrics catalog), and the new **Agile Tester** (CTAL-AT v2.0, 2026) replaces the old agile certifications.
 
 ## Which one first?
 
-- **Test Analyst** if your day-to-day is analyzing requirements, designing test cases and running them (manual or automated), especially in functional and integration testing. It's the natural continuation of CTFL chapter 4.
-- **Technical Test Analyst** if you work close to the code: unit and integration tests, static analysis, performance, security, test automation architecture.
-- **Test Management** if you coordinate testing: strategy, planning, estimation, metrics, reporting to stakeholders, leading testers.
+- **Test Automation Engineering** if you build and maintain automated tests: frameworks, page objects and API layers, pipelines, reports, flaky tests. It's about the *engineering* of automation, not about a particular tool.
+- **Test Analyst** if your day-to-day is analyzing requirements and designing test cases. It's the natural continuation of CTFL chapter 4.
+- **Technical Test Analyst** if you work close to the code: white-box techniques, static analysis, performance, security.
+- **Test Management** if you coordinate testing: strategy, estimation, metrics, reporting, leading testers.
+- **Test Automation Strategy** (Specialist) if you decide *whether and how* an organization automates, rather than building it.
 
-For a QA engineer who spends the week designing and executing tests in an integration project, **Test Analyst is the logical first step**, and it's the module this section covers in depth. Its v4.0 syllabus also happens to formalize things I already do at work: test oracles, test environment requirements, test data requirements, impact analysis to scope regression, and defect prevention.
+For me the choice is TAE: I've built Playwright and TypeScript suites, a REST Assured API framework, CI pipelines and a sharding optimizer, and the syllabus gives names and structure to exactly that work (layered frameworks, the facade and page object patterns, test levels in pipelines, failure analysis, static analysis of test code).
 
 ## Don't study with outdated material
 
-The Test Analyst module changed a lot from v3.1 to v4.0 (new techniques, a new chapter on defect prevention, the tools chapter absorbed into chapter 1). **The v3.1 exam is being retired**: in English it ended in May 2026, and in other languages it can only be taken until **16 November 2026**. Courses, books and question banks written for v3.1 will teach you techniques the new exam doesn't ask about, and skip ones it does. The differences are listed in the [Test Analyst page](/istqb/advanced-test-analyst#what-changed-from-v3-1).
+TAE v2.0 is **a complete rewrite** of the 2016 syllabus, not an update. The 2016 exam was retired (in English in June 2025, in other languages in December 2025). Old courses and question banks will drill you on things that are gone (the full generic test automation architecture with its four layers, transitioning manual tests to automation, the metrics catalog, the test automation manager) and miss the new ones (CI/CD pipelines, a three-layer framework, SOLID and design patterns, TDD and BDD, contract testing, static analysis of test code, AI-assisted maintenance). The full list is in the [TAE exam page](/istqb/tae-exam#what-changed-from-2016).
 
 ## Taking it in Spain
 
-- The Spanish member board, [SSTQB](https://www.sstqb.com/), publishes syllabi and sample exams; exams are taken through accredited exam providers (for example Brightest), online or in person.
-- **Check the language before you study**: when this page was written it wasn't confirmed that the Spanish Test Analyst exam was already on v4.0. If it isn't, the English v4.0 exam with the 25% extra time for non-native speakers is the safe option.
+- The Spanish member board, [SSTQB](https://www.sstqb.com/), publishes syllabi and sample exams. For TAE v2.0, a Spanish translation of the syllabus existed only as a **draft** when this page was written, and there was no Spanish sample exam.
+- Exams are taken through accredited providers (for example Brightest, at test centers or online with remote proctoring). **Check the exam language before you study**: if there's no final Spanish version, the English exam with the 25% extra time (113 minutes) is the safe option, and then it pays to study from the English syllabus.
 
 ## Where to go next
 
-- [Advanced Test Analyst (CTAL-TA v4.0)](/istqb/advanced-test-analyst): exam structure and a chapter-by-chapter map.
-- [Advanced study plan](/istqb/advanced-study-plan): a ten-week plan built on the official documents.
-- [Practice questions](/istqb/advanced-practice-questions): original questions in the exam's style, with explained answers.
+- [Advanced Test Automation Engineering (CTAL-TAE v2.0)](/istqb/tae-exam): the exam in numbers and a chapter-by-chapter map.
+- [TAE study plan](/istqb/tae-study-plan): eight weeks weighted by exam points, with a small framework built by hand along the way.
+- [TAE practice questions](/istqb/tae-practice-questions): original questions in the exam's style, with explained answers.
 
 ## References
 
-- [ISTQB — Certified Tester Advanced Level Test Analyst](https://istqb.org/certifications/certified-tester-advanced-level-test-analyst/)
-- [ISTQB — Certified Tester Advanced Level Technical Test Analyst](https://istqb.org/certifications/certified-tester-advanced-level-technical-test-analyst-ctal-tta/)
-- [ISTQB — Certified Tester Advanced Level Test Management v3.0](https://istqb.org/certifications/certified-tester-advanced-level-test-management-ctal-tm-v3-0/)
+- [ISTQB — Advanced Level Test Automation Engineering v2.0](https://istqb.org/certifications/certified-tester-advanced-level-test-automation-engineering-ctal-tae-v2-0/)
+- [ISTQB — Test Automation Strategy (CT-TAS)](https://istqb.org/certifications/certified-tester-test-automation-strategy-ct-tas/)
+- [ISTQB — Advanced Level Test Analyst](https://istqb.org/certifications/certified-tester-advanced-level-test-analyst/)
 - [SSTQB — Spanish member board](https://www.sstqb.com/)

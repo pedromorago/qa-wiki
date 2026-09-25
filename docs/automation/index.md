@@ -25,3 +25,7 @@ Strategy, tools (Playwright, Cypress, Cucumber, Python) and E2E automation patte
 - [BDD with Cucumber](/automation/bdd-with-cucumber) — Gherkin and step definitions, and when BDD genuinely pays off.
 - [Cypress: first steps](/automation/cypress-first-steps) — the runner, the essential commands and the chaining-plus-retry mental model.
 - [Cypress: patterns that work](/automation/cypress-patterns) — cy.session, cy.intercept, state via API and organization that scales.
+
+## Certification
+
+- [ISTQB Advanced Test Automation Engineering](/istqb/tae-exam) — the exam that formalizes this section: framework layers, approaches and patterns, pipelines, reporting and continuous improvement, with a [study plan](/istqb/tae-study-plan) and [practice questions](/istqb/tae-practice-questions).

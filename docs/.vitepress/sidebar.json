@@ -329,16 +329,16 @@
           "link": "/istqb/advanced-level"
         },
         {
-          "text": "Advanced Test Analyst (v4.0)",
-          "link": "/istqb/advanced-test-analyst"
+          "text": "Advanced TAE (v2.0): the exam",
+          "link": "/istqb/tae-exam"
         },
         {
-          "text": "Advanced study plan",
-          "link": "/istqb/advanced-study-plan"
+          "text": "TAE study plan",
+          "link": "/istqb/tae-study-plan"
         },
         {
-          "text": "Advanced practice questions",
-          "link": "/istqb/advanced-practice-questions"
+          "text": "TAE practice questions",
+          "link": "/istqb/tae-practice-questions"
         }
       ]
     },

@@ -44,7 +44,7 @@ features:
     link: /telecom/
   - icon: 🎓
     title: ISTQB certification
-    details: The CTFL v4.0 exam explained, and a section to prepare the Advanced Level — exam format, syllabus map, study plan and practice questions.
+    details: The CTFL v4.0 exam explained, and a section to prepare the Advanced Test Automation Engineering (CTAL-TAE v2.0) — exam, syllabus map, study plan and practice questions.
     link: /istqb/
   - icon: 📖
     title: Constantly growing
