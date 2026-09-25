@@ -1,4 +1,4 @@
-# QA Fundamentals
+# QA fundamentals
 
 The core concepts everything else is built on. If this is your first time here, this is the recommended order:
 
@@ -9,3 +9,4 @@ The core concepts everything else is built on. If this is your first time here, 
 5. [Bug reporting](/fundamentals/bug-reporting) — how to write a bug a developer can reproduce and fix on the first try.
 6. [Exploratory testing](/fundamentals/exploratory-testing) — learning, designing and executing at once: charter-based sessions and heuristics to find the unexpected.
 7. [The evolving QA role](/fundamentals/the-evolving-qa-role) — what quality is, why manual testing doesn't scale, and where the role is headed.
+8. [Onboarding into a complex domain](/fundamentals/onboarding-into-a-new-domain) — making a new domain concrete, studying actively, and capturing what you learn.

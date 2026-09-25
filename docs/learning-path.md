@@ -17,18 +17,21 @@ The vocabulary and concepts everything else is built on.
 
 ## Stage 2 — The craft in a real team
 
-How quality is worked inside an agile team, beyond executing tests.
+How quality work gets done inside an agile team, beyond executing tests.
 
 1. [Agile testing strategy](/strategy/agile-testing-strategy)
 2. [Acceptance criteria & DoR](/strategy/acceptance-criteria-and-dor)
 3. [How to review a task](/strategy/how-to-review-a-task)
 4. [Defining tests for a feature](/strategy/defining-tests-for-a-feature)
-5. [The evolving QA role](/fundamentals/the-evolving-qa-role)
-6. [Git basics for QA](/cicd/git-for-qa) — the daily flow and Git as an investigation tool (diff, blame, bisect).
+5. [Scrum from the QA seat](/strategy/scrum-from-the-qa-seat) — what QA does in each ceremony, and estimation that includes testing.
+6. [Test management with Xray](/strategy/test-management-with-xray) — tests, plans and executions that keep traceability.
+7. [The evolving QA role](/fundamentals/the-evolving-qa-role)
+8. [Onboarding into a complex domain](/fundamentals/onboarding-into-a-new-domain) — for every new job or project.
+9. [Git basics for QA](/cicd/git-for-qa) — the daily flow and Git as an investigation tool (diff, blame, bisect).
 
 ## Stage 3 — Certification (optional, recommended)
 
-The [ISTQB CTFL](/istqb/) won't make you a better tester by itself, but it organizes your vocabulary, fills gaps and opens HR filters. This is the best moment in the path for it: with stages 1 and 2 done, much of the syllabus will already sound familiar.
+The [ISTQB CTFL](/istqb/) won't make you a better tester by itself, but it organizes your vocabulary, fills gaps and gets your CV past HR filters. This is the best moment in the path for it: with stages 1 and 2 done, much of the syllabus will already sound familiar.
 
 1. [The CTFL v4.0 exam](/istqb/exam-format)
 2. [Study plan](/istqb/study-plan)
@@ -90,18 +93,34 @@ Designing the quality of a whole system, not of a single feature.
 2. [Testing layers: frontend](/strategy/frontend-testing-layers)
 3. [What E2E tests should cover](/strategy/what-e2e-tests-should-cover)
 4. [Microservices testing](/strategy/microservices-testing)
-5. [Shift-left and maturity](/strategy/shift-left-and-maturity)
-6. [Bug root cause analysis](/strategy/bug-root-cause-analysis)
-7. [Performance testing fundamentals](/performance/performance-fundamentals) — test types and the metrics that matter.
-8. [JMeter in practice](/performance/jmeter-in-practice) — from the design GUI to the CLI in the pipeline.
-9. Security for QA: OWASP Top 10 <Badge type="warning" text="planned" />
-10. Accessibility testing <Badge type="warning" text="planned" />
+5. [Test environments strategy](/strategy/test-environments-strategy) — what each environment can prove.
+6. [Mocks in integration testing](/strategy/mocks-in-integration-testing) — useful, and they lie.
+7. [Shift-left and maturity](/strategy/shift-left-and-maturity)
+8. [Bug root cause analysis](/strategy/bug-root-cause-analysis)
+9. [Investigating hard failures](/strategy/investigating-hard-failures) — intermittent bugs and production incidents.
+10. [Performance testing fundamentals](/performance/performance-fundamentals) — test types and the metrics that matter.
+11. [JMeter in practice](/performance/jmeter-in-practice) — from the design GUI to the CLI in the pipeline.
+12. Security for QA: OWASP Top 10 <Badge type="warning" text="planned" />
+13. Accessibility testing <Badge type="warning" text="planned" />
 
 ## Stage 8 — Domain specialization
 
 Every sector has its own map of systems and its own vocabulary. In my case, telecom:
 
 1. [OSS/BSS for QA](/telecom/oss-bss-for-qa) — an operator's systems, TM Forum, and what testing chains of systems means.
+2. [The catalog: offers, CFS, RFS and resources](/telecom/catalog-cfs-rfs) — configuration that decides behavior.
+3. [Service orders (TMF641)](/telecom/service-orders-tmf641) — the state machine, and why the inventory is the truth.
+4. [Fallout management](/telecom/fallout-management) — when provisioning fails, and how to test it.
+5. [Testing workflows on a BPM engine](/telecom/testing-bpm-workflows) — versions, skipped tasks and human tasks.
+
+## Stage 9 — Advanced certification (optional)
+
+Once you have a couple of years of practice, the [ISTQB Advanced Level](/istqb/advanced-level) turns experience into structured judgment: risk-based testing, test techniques at depth, and (for the Test Analyst module) quality characteristics beyond functionality. Take it when the syllabus describes things you've already done, not before.
+
+1. [The Advanced Level: which module](/istqb/advanced-level)
+2. [Advanced Test Analyst: exam and syllabus map](/istqb/advanced-test-analyst)
+3. [Advanced study plan](/istqb/advanced-study-plan)
+4. [Practice questions](/istqb/advanced-practice-questions)
 
 ::: tip How to use this path
 Starting from zero: complete stages 1 and 2 before anything else, and find a real project (your own or a practice one) to apply each stage to as soon as possible. Already working as a QA: use it to spot your gaps — we all have them.
