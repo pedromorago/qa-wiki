@@ -23,8 +23,8 @@ Two design decisions I find particularly sharp:
 
 An optional field stays empty. What works:
 
-1. **Mandatory on creation** of the bug-type issue.
-2. **Validator on the transition**: the workflow prevents moving the bug to "Delivered" with the field empty.
+1. **Shown on creation** of the bug-type issue.
+2. **Validator on the transition**: the bug can't move to "Delivered" with the field empty.
 
 (We first tried a reactive automation that sent the ticket back to its previous state with a comment — it works, but workflow validation is cleaner. Better to prevent than to correct.)
 
@@ -39,5 +39,7 @@ Aggregated by quarter, by team or by product area, the data answers the question
 And the loop closes with the **team's quality metrics**, reviewed periodically (in the retro or the sprint review, not on a dashboard nobody opens): bugs opened vs closed, reported vs hotfixes, distribution by severity and by root cause. Not as surveillance — as an answer to "where do we focus the effort?".
 
 ::: tip The binary triage that keeps the signal clean
-The same discipline applies to pipeline failures: is the application failing? → bug. Is the test failing? → fix the test (or delete it if it's irrecoverably flaky). A third state — "re-run it and see if it passes" — does not exist: it's the death of trust in the regression suite.
+The same discipline applies to pipeline failures: is the application failing? → bug. Is the test failing? → fix the test (or delete it if it's irrecoverably flaky). A third state — "re-run it and see if it passes" — does not exist: it's the death of trust in the regression suite. If CI retries are enabled, a test that only passes on retry is reported as flaky and fixed, never ignored.
 :::
+
+Related: [Investigating hard failures](/strategy/investigating-hard-failures) — what to do when the failure is intermittent or only shows up in production.

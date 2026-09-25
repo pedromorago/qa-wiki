@@ -28,13 +28,14 @@ This is where [partitions and boundary values](/fundamentals/test-case-design) a
 - Expired or tampered token → `401`.
 - Valid token but a user **without permission** → `403`.
 - The classic of classics: **IDOR** — with customer A's token, request `GET /customers/B/service-orders`. Can I see another customer's orders?
+- **API keys**: test them by the negative (without the key → unauthorized; with it → works), and check that **secrets never appear in the logs**.
 
 ## 4. Behavior and state
 
 - Does the operation actually persist? After a `POST`, do the `GET` and verify.
 - Idempotency: repeat the same `PUT`/`DELETE`. Does the second `DELETE` return `404` or `204`? Is that what's expected?
 - Duplicate `POST` (double click, network retry): does it create two service orders?
-- Concurrency: two simultaneous updates on the same resource. Who wins? Is there version control (ETag / `version`)?
+- Concurrency: two simultaneous updates on the same resource. Who wins? Is there optimistic locking (ETag + `If-Match`, or a `version` field)?
 
 ## 5. Listings: pagination, filters, and sorting
 
@@ -43,7 +44,12 @@ This is where [partitions and boundary values](/fundamentals/test-case-design) a
 - Combined filters and filters with values that yield no results.
 - Stable ordering: do two identical requests return the same order?
 
-## 6. The non-functional bits I can actually touch
+## 6. Partial updates
+
+- `PATCH` semantics depend on the format: a JSON Merge Patch (RFC 7396) replaces the fields you send and removes the ones you set to `null`, a JSON Patch (RFC 6902) applies explicit operations (`replace`, `add`, `remove`), and some APIs implement `PATCH` as a full replacement anyway. Check that fields you **didn't** send are untouched after the call.
+- Read after writing: when a `PATCH` returns an error, a follow-up `GET` tells you whether the change was applied anyway (a timeout after the write is common in integrations).
+
+## 7. The non-functional bits I can actually touch
 
 - Reasonable response time (and consistent across calls).
 - Rate limiting: does it respond with `429` when exceeded? With a `Retry-After` header?

@@ -8,8 +8,8 @@ Everything worth knowing about the exam **before** you start studying: what is a
 |---|---|
 | Questions | 40, multiple choice |
 | Scoring | 1 point per question, no penalty for wrong answers |
-| Pass mark | 26 out of 40 (65 %) |
-| Duration | 60 minutes (+25 % if the exam isn't in your native language: 75 min) |
+| Pass mark | 26 out of 40 (65%) |
+| Duration | 60 minutes (+25% if the exam isn't in your native language: 75 min) |
 | Answers | Single correct answer, unless the question states otherwise |
 
 You can take it **online with remote proctoring or in person**, through an accredited exam provider (I took mine with Brightest). The certificate never expires.
@@ -18,13 +18,13 @@ You can take it **online with remote proctoring or in person**, through an accre
 
 Every learning objective in the syllabus has a cognitive level, and that level determines the question type:
 
-| Level | What it demands | Rough time per question |
-|---|---|---|
-| **K1** — Remember | Exact terminology and definitions | ~1 min |
-| **K2** — Understand | Explain, compare, classify concepts | 1–2 min |
-| **K3** — Apply | Solve a case: apply a technique to an example | ~3 min |
+| Level | What it demands | Questions in the exam | Rough time per question |
+|---|---|---|---|
+| **K1** — Remember | Exact terminology and definitions | 8 | 30–45 s |
+| **K2** — Understand | Explain, compare, classify concepts | 24 | 1–1.5 min |
+| **K3** — Apply | Solve a case: apply a technique to an example | 8 | 2–3 min |
 
-The exam includes **8 K3 questions**, and they decide who passes: almost all of them come from chapter 4 (test design techniques) and require practicing exercises, not just reading.
+The exam includes **8 K3 questions**, and they decide who passes. Most come from chapter 4 (the four black-box techniques and ATDD); the rest from chapter 5 (effort estimation, test case prioritization, writing a defect report). All of them require practicing exercises, not just reading.
 
 ## The 6 syllabus chapters
 
@@ -40,7 +40,7 @@ The v4.0 syllabus has **6 chapters, 14 business outcomes and 64 learning objecti
 | 6 | Test tools | The lowest |
 
 ::: tip Key idea
-Chapters 4 and 5 concentrate most of the questions, and chapter 4 also concentrates the K3s. If you're short on time, prioritize mastering the chapter 4 techniques: equivalence partitioning, boundary values, decision tables and state transitions.
+Chapters 4 and 5 account for about half of the questions, and they also hold all the K3s. If you're short on time, prioritize mastering the chapter 4 techniques (equivalence partitioning, boundary values, decision tables, state transitions and ATDD) and the chapter 5 exercises (estimation, prioritization, defect reports).
 :::
 
 ## Official documents (free download)
