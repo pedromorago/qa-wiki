@@ -9,9 +9,17 @@ I come from a project where the POM was split into three folders per page — `U
 The decision when migrating: **a single class per page/modal/list** consolidating selectors + actions + assertions. To keep long classes readable, editor folding regions:
 
 ```ts
-// #region Selectors ... // #endregion
-// #region Actions ...   // #endregion
-// #region Assertions ... // #endregion
+// #region Selectors
+// ...
+// #endregion
+
+// #region Actions
+// ...
+// #endregion
+
+// #region Assertions
+// ...
+// #endregion
 ```
 
 ## `page` via constructor, not per method
@@ -27,20 +35,20 @@ const componentForm = new ComponentFormPage(page);
 await componentForm.fillForm(componentData);
 ```
 
-We chose B. The deciding factor isn't aesthetics: with one instance per test, the POM stays **isolated under parallel execution** — no shared state between workers.
+We chose B. The deciding factor isn't aesthetics: with one instance per test, the POM stays **isolated between tests** — no state leaks from one test into the next, which is also what keeps it safe under parallel execution.
 
 ## Locators as properties, initialized in the constructor
 
 ```ts
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, FrameLocator } from '@playwright/test';
 
 export class EditorPage {
   // #region Selectors
-  private editorFrame: Locator;
+  private editorFrame: FrameLocator;
   private save: Locator;
 
   constructor(private page: Page) {
-    this.editorFrame = this.page.locator('#editor-iframe');
+    this.editorFrame = this.page.frameLocator('#editor-iframe');
     this.save = this.page.getByTestId('btn-save');
   }
   // #endregion
@@ -53,7 +61,7 @@ export class EditorPage {
 }
 ```
 
-Every locator centralized and typed (`Locator`/`FrameLocator` — iframes are treated as just another property). Priority goes to user-facing locators: `getByRole`, `getByText`, `getByLabel`, `getByTestId`.
+Every locator centralized and typed (`Locator`/`FrameLocator` — iframes are treated as just another property). Priority goes to user-facing locators (`getByRole`, `getByLabel`, `getByText`), then `getByTestId` as an explicit test contract.
 
 ### Parameterized dynamic locators
 
@@ -75,13 +83,13 @@ And while we're at it, the most profitable anti-flaky rule: **web-first assertio
 
 ## SOLID in practice: the dialogs case
 
-The anti-pattern we refactored: a monolithic `Dialog` class with dozens of locators from different dialogs and a `validateFields(tipo, ventana, …)` with a giant switch. Any change to one dialog affected the entire class (SRP violation).
+The anti-pattern we refactored: a monolithic `Dialog` class with dozens of locators from different dialogs and a `validateFields(type, window, …)` with a giant switch. Any change to one dialog affected the entire class (SRP violation).
 
 The refactor: **a base class with what's common + one subclass per dialog**:
 
 ```ts
 // base/Dialog.ts — only what's common to all dialogs
-export class Dialog {
+export abstract class Dialog {
   protected readonly title: Locator;
   protected readonly confirm: Locator;
 

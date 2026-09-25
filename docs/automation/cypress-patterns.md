@@ -4,7 +4,7 @@ With [the first steps](/automation/cypress-first-steps) you write a test; with t
 
 ## Custom commands: log in once
 
-Repeated flows become your own commands in `support/commands.ts`. The universal case is login, and with `cy.session` the session is **cached across tests**: the real login happens once, not in every test.
+Repeated flows become your own commands in `support/commands.ts`. The universal case is login, and with `cy.session` the session is **cached across the tests of a spec** (and across specs with `cacheAcrossSpecs: true`): the real login happens once, not in every test.
 
 ```js
 Cypress.Commands.add('login', (user = 'sales-agent') => {
@@ -63,10 +63,10 @@ The balancing rule: stubbing the network tests the frontend **in isolation**; cr
 ## In the pipeline
 
 ```bash
-npx cypress run --browser chrome --spec "cypress/e2e/ordering/**"
+npx cypress run --browser chrome --spec "cypress/e2e/ordering.cy.ts"
 ```
 
-- Videos and failure screenshots land in `cypress/videos` and `cypress/screenshots`: publish them as artifacts **always**, [including on red](/cicd/jenkins-and-gitlab-ci).
+- Failure screenshots land in `cypress/screenshots` (and videos in `cypress/videos` if you enable `video: true` — it's off by default since Cypress 13): publish them as artifacts **always**, [including on red](/cicd/jenkins-and-gitlab-ci).
 - The long suite gets split across containers by specs: the criteria live in [parallelization and sharding](/cicd/parallelization-and-sharding).
 
 ## Common mistakes

@@ -58,7 +58,7 @@ export default defineConfig({
     sidebar,
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/pedro-morago/qa-wiki' },
+      { icon: 'github', link: 'https://github.com/pedromorago/qa-wiki' },
       { icon: 'linkedin', link: 'https://www.linkedin.com/in/pedro-morago-lopezvazquez/' },
     ],
 
@@ -83,7 +83,7 @@ export default defineConfig({
     // whoever is actually reading an article. Now every page states it.
     footer: {
       message:
-        'Articles under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> — reuse them non-commercially with credit. Code under <a href="https://github.com/pedro-morago/qa-wiki/blob/main/LICENSE.md" target="_blank" rel="noopener">MIT</a>.',
+        'Articles under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> — reuse them non-commercially with credit. Code under <a href="https://github.com/pedromorago/qa-wiki/blob/main/LICENSE.md" target="_blank" rel="noopener">MIT</a>.',
       copyright:
         'Copyright © 2026 <a href="https://pedromorago.com" target="_blank" rel="noopener">Pedro Morago</a> · QA Engineer',
     },

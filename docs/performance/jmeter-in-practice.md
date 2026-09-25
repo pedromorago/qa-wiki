@@ -20,7 +20,7 @@ A JMeter plan is a tree of elements:
 
 1. **Design in the GUI** with a handful of threads: the request (e.g. a catalog query or a service order creation), its assertions (status, some content, max duration) and the extractors.
 2. **Parameterize the data** with *CSV Data Set Config*: a hundred users with the same customer and the same catalog product test the cache, not the system.
-3. **Correlate the dynamic parts**: tokens, session ids and generated values get extracted from responses (JSON/Regex Extractor) and reused (`${token}`) — the equivalent of request chaining in any API test.
+3. **Correlate the dynamic parts**: tokens, session IDs and generated values get extracted from responses (JSON/Regex Extractor) and reused (`${token}`) — the equivalent of request chaining in any API test.
 4. **Run in the CLI**, never the GUI:
 
 ```bash
@@ -35,8 +35,8 @@ jmeter -n -t plan.jmx -l results.jtl -e -o report/
 
 - **Running the real load from the GUI** with listeners on: the GUI consumes so many resources you end up measuring JMeter, not your system.
 - **Not correlating**: blindly replaying recorded requests with expired tokens produces mountains of 401s that look like "system errors".
-- **Unrealistic ramp-up**: going from 0 to 500 users in one second isn't a load test, it's an attack.
-- **Generating load from a single small machine**: if the generator saturates before the system does, JMeter has a distributed mode and you can also spread across CI.
+- **Unrealistic ramp-up**: going from 0 to 500 users in one second isn't a load test, it's an attack (unless you're deliberately running a spike test).
+- **Generating load from a single small machine**: if the generator saturates before the system does, you're measuring the generator, not the system. JMeter has a distributed mode, and you can also spread the load across CI machines.
 - **Keeping the `.jmx` outside the repo**: it's XML, it gets versioned [like any other test code](/cicd/git-for-qa).
 
 ::: tip Key idea

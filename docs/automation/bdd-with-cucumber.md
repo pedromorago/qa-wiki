@@ -12,7 +12,7 @@ Feature: Convergent discount
   Scenario: Fiber customer adding a mobile line
     Given a customer with an active fiber subscription
     When they confirm the order for a mobile line
-    Then the monthly fee applies the convergent discount
+    Then the convergent discount is applied to the monthly fee
 ```
 
 - **Given** — the starting state.

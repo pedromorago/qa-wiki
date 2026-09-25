@@ -20,12 +20,14 @@ Classifying test types helps you speak a common language with the team and spot 
 1. **Unit** — one function or class in isolation. (Usually) written by developers.
 2. **Integration** — the interaction between components: service + database, module A + module B.
 3. **System / E2E** — the full flow from the user's perspective.
-4. **Acceptance (UAT)** — validating that the product solves the business need.
+4. **Acceptance** — validating that the product solves the business need. User acceptance testing (UAT) is one form of acceptance testing, not a synonym for it.
+
+That's the everyday simplification. ISTQB (CTFL v4.0) defines five test levels: **component**, **component integration**, **system**, **system integration** and **acceptance** — it splits integration in two depending on whether you're joining pieces of the same system or your system with others.
 
 ## Types you absolutely need to know
 
-- **Smoke testing**: a minimal, fast battery of tests verifying that the critical stuff works. If the smoke tests fail, there's no point testing any further.
-- **Sanity testing**: a quick, focused check after a specific change, to confirm the affected functionality still makes sense.
+- **Smoke testing**: a quick check that the main functionality works before investing in deeper testing. If the smoke tests fail, there's no point testing any further.
+- **Sanity testing**: a term used inconsistently. ISTQB treats it as a synonym of smoke; some teams use it for a narrow check of the core functionality. Whatever your team means by it, agree on it and write it down — [here's how one team used both terms](/strategy/agile-testing-strategy).
 - **Regression**: re-running existing tests to confirm a change hasn't broken what already worked. It's the number one candidate for automation.
 - **Exploratory**: testing without a fixed script, designing and executing at the same time, guided by experience and intuition. It's not "testing at random": it's organized into sessions with objectives (*charters*).
 - **Re-testing (confirmation)**: testing a specific bug again after its fix.
@@ -36,9 +38,13 @@ Re-testing confirms that **the fixed bug** no longer occurs. Regression confirms
 
 ## Most common non-functional types
 
-- **Performance**: response times under normal conditions.
-- **Load**: behavior with the expected volume of users.
-- **Stress**: behavior beyond the expected limit — does it degrade gracefully or blow up?
+- **Performance** (umbrella): load, stress, spike, soak — see [Performance testing fundamentals](/performance/performance-fundamentals).
+  - **Load**: behavior with the expected volume of users.
+  - **Stress**: behavior beyond the expected limit — does it degrade gracefully or blow up?
 - **Security**: vulnerabilities (injection, XSS, session management…).
 - **Usability and accessibility**: making sure anyone can use the product (WCAG).
 - **Compatibility**: browsers, devices, operating systems, resolutions.
+
+::: tip Key idea
+The names matter less than the agreement behind them. If half the team hears "sanity" and thinks smoke, and the other half thinks regression, the classification has failed at its first job: giving the team a common language.
+:::

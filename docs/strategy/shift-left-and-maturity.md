@@ -38,14 +38,24 @@ The word that separates levels is almost always **"regular"**: the difference be
 
 ### How it's assessed
 
-Each practice in the matrix is marked as: **Implemented · Partially implemented** (not every team adopted it — key in multi-team organizations) **· Pending** (needs to be rolled out) **· Not applicable · No info**.
+Each practice in the matrix is marked as one of:
+
+- **Implemented**
+- **Partially implemented** — not every team adopted it (key in multi-team organizations)
+- **Pending** — needs to be rolled out
+- **Not applicable**
+- **No info**
 
 The level emerges from what's in place, and the *pending* practices **are directly the improvement plan**. You don't need to reach 5 in everything: the model's value is having an honest conversation about where you are and consciously deciding the next step per dimension.
 
-## Where to start (if you're at level 1-2)
+## Where to start (if you're at level 1–2)
 
 The three practices with the best effort-to-impact ratio in my experience:
 
-1. **Review designs and acceptance criteria before coding** (dimension 2, level 2-3) — the cheapest bug is the one that never gets written. The *three amigos* format (product + dev + QA) is enough.
+1. **Review designs and acceptance criteria before coding** (dimensions 1–2, levels 2–3) — the cheapest bug is the one that never gets written. The *three amigos* format (product + dev + QA) is enough.
 2. **Log every bug with its [root cause](/strategy/bug-root-cause-analysis)** (dimension 4) — without data, improvement is just opinion-slinging.
-3. **Turn each feature's manual validation into regression automation** (the phase 2 that always falls out of the sprint) — it's the only thing that breaks the vicious circle of manual testing that [doesn't scale](/fundamentals/the-evolving-qa-role).
+3. **Turn each feature's manual validation into regression automation** (the automation phase that always gets dropped from the sprint) — it's the only thing that breaks the vicious circle of manual testing that [doesn't scale](/fundamentals/the-evolving-qa-role).
+
+::: tip Key idea
+Shift-left isn't testing earlier out of goodwill: it's turning early practices into habits. The maturity model makes that visible — where you are, what's pending, and which step comes next.
+:::

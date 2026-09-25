@@ -29,7 +29,7 @@ void givenValidUser_WhenCreateProductWithAllFields_ThenCreateSuccess() {
 
     // then - validate the response
     TestCaseReport.assertResponseCodeAndBodySchema("Status and schema", response,
-            HttpStatus.SC_OK, CATALOG_SCHEMA_PATH + "/create-product.json");
+            HttpStatus.SC_CREATED, CATALOG_SCHEMA_PATH + "/create-product.json");
     TestCaseReport.assertPropertyIsNotNull("", response, "id");
     TestCaseReport.assertBodyContainsProperty("", response, "name", name);
 }
@@ -94,4 +94,4 @@ If you reuse the same service object instance for two calls (a GET with query pa
 java.lang.IllegalStateException: You can either send form parameters OR body content in POST, not both!
 ```
 
-The `RequestSpecification` **retains query params between requests**. Solution: clear the parameters between calls (via `FilterableRequestSpecification#removeParam`) or build a fresh specification per request. General lesson: if you share state between requests, manage it explicitly.
+The `RequestSpecification` **retains parameters between requests**, and `.param()` depends on the method: on a GET it's sent as a query param, on a POST as a form param — so the leftover param plus the body triggers the error. Solution: clear the parameters between calls (via `FilterableRequestSpecification#removeParam`) or build a fresh specification per request. General lesson: if you share state between requests, manage it explicitly.

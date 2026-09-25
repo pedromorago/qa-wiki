@@ -1,4 +1,4 @@
-# Testing strategy for microservices
+# Microservices testing
 
 Microservices change the problem: you're no longer testing *one* application, but many pieces that evolve separately and make promises to each other. The strategy that works best for me boils down to one idea: **test each service in two states**.
 
@@ -12,7 +12,7 @@ Without calling any third party — if it needs a dependency, it gets mocked. Go
 
 ## State 2: the microservice integrated into the ecosystem
 
-Here the key principle: **the ecosystem is treated as a black box with a single logical entry point**. The tests don't know (nor care) about the internal architecture or infrastructure.
+Here the key principle: **the ecosystem is treated as a black box with a single logical entry point**. The tests don't know (or care) about the internal architecture or infrastructure.
 
 - **Contract tests** — verify that consumer↔provider agreements (format, structure, data behavior) are honored, **without spinning up the whole system**. Their specific superpower: validating **backward compatibility** — that the provider's new version doesn't break existing consumers' expectations.
 - **Full-system E2E** — in two flavors: API E2E (the catalog exposed by the entire system) and frontend E2E (the same thing via the UI).
@@ -34,7 +34,7 @@ Out of this comes a test plan template for any new module: two phases (isolated/
 
 ## Tooling: my cheat sheet
 
-**Contract**: [Dredd](https://dredd.org) (validates directly against OpenAPI — cheap and perfect for CI, though it only does contract) or [Pact](https://pact.io) (true consumer/provider contracts, catches incompatibilities before deployment, but demands cross-team coordination and more setup).
+**Contract**: [Dredd](https://dredd.org) (validates directly against OpenAPI — cheap and perfect for CI, though it only does contract; heads-up: it has been unmaintained since ~2021 and its OpenAPI 3 support is still experimental, so [Schemathesis](https://github.com/schemathesis/schemathesis) is the alternative to look at) or [Pact](https://pact.io) (true consumer/provider contracts, catches incompatibilities before deployment, but demands cross-team coordination and more setup).
 
 **Functional API testing** — the recommendation is boring and correct: **each team with its native stack**:
 

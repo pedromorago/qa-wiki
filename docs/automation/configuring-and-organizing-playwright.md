@@ -22,7 +22,7 @@ fullyParallel: true,
 workers: process.env.CI ? 2 : 4,   // fewer workers in CI (smaller machines)
 ```
 
-Playwright parallelizes per file (tests within the same file run in order on the same worker). Prerequisite: [independent tests with their own data](/cicd/parallelization-and-sharding).
+By default Playwright parallelizes per file (tests in a file run in order on the same worker); with `fullyParallel: true`, as above, tests from the same file are also spread across workers. Prerequisite: [independent tests with their own data](/cicd/parallelization-and-sharding).
 
 ## Projects: browsers and variants
 
@@ -78,7 +78,7 @@ test('Try to get assets without permissions', {
 ```
 
 1. **Test type**: `@smoke`, `@sanity`, `@regression` — determines which battery it runs in.
-2. **Case ID in the test management tool** (Qase/TestRail…): **the first statement of the test**, so the result always gets published.
+2. **Case ID in the test case manager** (Qase/TestRail…): **the first statement of the test**, so the result always gets published.
 3. **Product edition** (if applicable): `@enterprise`, `@community`, or both.
 
 ### Filtering at run time
@@ -97,12 +97,12 @@ The variables come from the environment: the same command works for any combinat
 
 ### The skip detail
 
-If you skip a test, the `test.skip()` goes **after** the `qase.id()` — otherwise the test management tool doesn't associate the result and that case drops off the test run's radar:
+If you skip a test, the `test.skip()` goes **after** the `qase.id()` — otherwise the test case manager doesn't associate the result and that case drops off the test run's radar:
 
 ```ts
 test('Delete component when the ref is duplicated', { tag: ['@regression'] }, async () => {
   qase.id(1043);
-  test.skip(true, 'Pending to fix');
+  test.skip(true, 'Fix pending');
 });
 ```
 
@@ -116,9 +116,16 @@ since they are created on a per-test basis.
 ```
 
 ```ts
-test.beforeEach(async ({ browser }) => {
+import { test, type BrowserContext, type Page } from '@playwright/test';
+
+test.describe.configure({ mode: 'serial' });   // the tests share the page, so they run in order
+
+let context: BrowserContext;
+let page: Page;
+
+test.beforeAll(async ({ browser }) => {
   context = await browser.newContext();   // here you can pass recordVideo, etc.
   page = await context.newPage();
 });
-test.afterEach(async () => { await context.close(); });
+test.afterAll(async () => { await context.close(); });
 ```

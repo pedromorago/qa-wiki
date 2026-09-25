@@ -11,7 +11,7 @@ Pipeline concepts are the same in every tool; what changes is the vocabulary and
 | Who executes | agent (node) | runner | runner |
 | Saved outputs | artifacts | artifacts | artifacts |
 | When it fires | triggers (webhook, cron…) | rules / only | on: push, pull_request… |
-| Secrets | Credentials | CI/CD Variables (masked) | Secrets / protected variables |
+| Secrets | Credentials | CI/CD Variables (masked) | Secrets / secured variables |
 
 ## Jenkins essentials
 
@@ -39,7 +39,7 @@ What's worth knowing as a QA: **agents** (where each stage runs — it matters f
 
 ## GitLab CI essentials
 
-Built into GitLab, 100 % YAML configuration in `.gitlab-ci.yml`:
+Built into GitLab, 100% YAML configuration in `.gitlab-ci.yml`:
 
 ```yaml
 stages: [test]
@@ -57,7 +57,7 @@ e2e:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
 ```
 
-The useful pieces: **`image`** (each job runs in a [Docker container](/cicd/docker-for-qa) — the test environment is declared), **`artifacts.when: always`** (the report is kept on failure too, which is when you need it most) and **`rules`** (what runs in which context, the basis of [environment validations](/cicd/environment-validations)).
+The useful pieces: **`image`** (on Docker or Kubernetes executors, each job runs in a [Docker container](/cicd/docker-for-qa) — the test environment is declared), **`artifacts.when: always`** (the report is kept on failure too, which is when you need it most) and **`rules`** (what runs in which context, the basis of [environment validations](/cicd/environment-validations)).
 
 ## What doesn't change across tools
 
@@ -79,4 +79,4 @@ Learn the concepts (stages, runners, artifacts, triggers, secrets) and the tools
 ## References
 
 - [Jenkins Pipeline documentation](https://www.jenkins.io/doc/book/pipeline/)
-- [GitLab CI/CD documentation](https://docs.gitlab.com/ee/ci/)
+- [GitLab CI/CD documentation](https://docs.gitlab.com/ci/)

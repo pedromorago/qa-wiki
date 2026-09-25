@@ -18,11 +18,18 @@ Feature: Service orders API
     And match response == { id: '#number', customerId: 987, productId: 'fiber-1gbps', status: 'created' }
 
   Scenario: The new order shows up in the customer's order list
+    # its own order: this scenario doesn't depend on the previous one
+    * path 'service-orders'
+    * request { customerId: 987, productId: 'fiber-1gbps' }
+    * method post
+    * status 201
+    * def orderId = response.id
+
     Given path 'service-orders'
     And param customerId = 987
     When method get
     Then status 200
-    And match response[*].productId contains 'fiber-1gbps'
+    And match response[*].id contains orderId
 ```
 
 The distinctive part is `match`: an assertion language that understands JSON natively, with markers like `#number`, `#string`, `#uuid` or `#notnull` to validate structure without pinning exact values — a lightweight form of [schema validation](/api-testing/json-schema-validation).

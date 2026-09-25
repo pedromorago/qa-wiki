@@ -1,7 +1,7 @@
-# 📚 QA Wiki — Formación
+# 📚 QA Wiki
 
-[![Deploy](https://github.com/pedro-morago/qa-wiki/actions/workflows/deploy.yml/badge.svg)](https://github.com/pedro-morago/qa-wiki/actions/workflows/deploy.yml)
-[![CI](https://github.com/pedro-morago/qa-wiki/actions/workflows/ci.yml/badge.svg)](https://github.com/pedro-morago/qa-wiki/actions/workflows/ci.yml)
+[![Deploy](https://github.com/pedromorago/qa-wiki/actions/workflows/deploy.yml/badge.svg)](https://github.com/pedromorago/qa-wiki/actions/workflows/deploy.yml)
+[![CI](https://github.com/pedromorago/qa-wiki/actions/workflows/ci.yml/badge.svg)](https://github.com/pedromorago/qa-wiki/actions/workflows/ci.yml)
 
 My personal **Quality Assurance** knowledge wiki: everything I keep learning, written in my own words, organized and searchable. It serves as a reference while I work and as part of my portfolio.
 
@@ -19,7 +19,7 @@ Sections are data: each entry in `docs/.vitepress/sidebar.json` may declare a `n
 
 ## AI search & answers
 
-`/search` offers semantic search that runs entirely in the visitor's browser: chunk embeddings are precomputed at deploy time (`scripts/search/`) and the query is embedded client-side — no backend, nothing typed ever leaves the page. On top of it, the **AI answer** button sends the question plus the top excerpts to our own Cloudflare Worker (`workers/wiki-ask`), which asks a Workers AI model for a short grounded answer with citations. Free tier with a hard cap: if the daily quota runs out it degrades to plain results — and on the **Workers Free plan** it can never bill (on Workers Paid, overage would auto-bill, so this account deliberately stays on Free).
+`/search` offers semantic search that runs entirely in the visitor's browser: chunk embeddings are precomputed at deploy time (`scripts/search/`) and the query is embedded client-side — no backend, nothing typed ever leaves the page. On top of it, the **AI answer** button sends the question plus the top excerpts to my own Cloudflare Worker (`workers/wiki-ask`), which asks a Workers AI model for a short grounded answer with citations. Free tier with a hard cap: if the daily quota runs out it degrades to plain results — and on the **Workers Free plan** it can never bill (on Workers Paid, overage would auto-bill, so this account deliberately stays on Free).
 
 ## How to add content
 
@@ -30,7 +30,7 @@ From the browser: `/admin/` → pick the section → New → write → Save. Or 
    ```json
    { "text": "My topic", "link": "/fundamentals/my-topic" }
    ```
-3. Commit and push to `main`. It's published in about a minute.
+3. Commit and push to `main`. It's published in about a minute. (Pushing straight to `main` is fine here because this is a solo repo; on a shared repo I follow the [branch + pull request flow](docs/cicd/git-for-qa.md).)
 
 ## Local development
 
@@ -75,4 +75,4 @@ In the repo: **Settings → Pages → Source → GitHub Actions**. From there, t
 
 ## License
 
-Dual-licensed — see [LICENSE.md](LICENSE.md): the code (VitePress config, workflows) is **MIT**; the wiki content under `docs/` is **CC BY-NC-SA 4.0** (share and adapt non-commercially, with attribution).
+Dual-licensed — see [LICENSE.md](LICENSE.md): the code (VitePress config, workflows) is **MIT**; the wiki content under `docs/` is **CC BY-NC-SA 4.0** (share and adapt non-commercially, with attribution, under the same license).

@@ -157,7 +157,7 @@ async function ask() {
 
 # 🔎 AI search
 
-Ask in your own words — this searches the **meaning** of every page, not just keywords. Questions in **English** match best (the wiki is written in English). The search itself runs in your browser; nothing you type is sent anywhere. The first search downloads the model (~110 MB, cached afterwards), so it takes a little while; later searches are instant.
+Ask in your own words — this searches the **meaning** of every page, not just keywords. Questions in **English** match best (the wiki is written in English). The search itself runs in your browser; nothing you type leaves it unless you press **AI answer**. The first search downloads the model (~110 MB, cached afterwards), so it takes a little while; later searches are instant.
 
 <div class="ai-search">
   <form @submit.prevent="run">
@@ -226,8 +226,8 @@ Ask in your own words — this searches the **meaning** of every page, not just 
 .ai-search__snippet { margin: 4px 0 0; color: var(--vp-c-text-2); font-size: .9rem; }
 
 .ai-answer { margin: 1rem 0; }
-/* Doble clase para ganar en especificidad a la regla genérica `.ai-search button`
-   (si no, el botón hereda fondo morado y la pista gris queda ilegible). */
+/* Double class to win on specificity over the generic `.ai-search button` rule
+   (otherwise the button inherits the purple background and the grey hint becomes unreadable). */
 .ai-search .ai-answer__ask {
   padding: 8px 14px; border-radius: 8px; border: 1px dashed var(--vp-c-brand-1);
   background: transparent; color: var(--vp-c-brand-1); font-weight: 600; cursor: pointer;

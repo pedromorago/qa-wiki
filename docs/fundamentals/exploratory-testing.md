@@ -2,7 +2,7 @@
 
 **Exploratory testing** means testing software while learning, designing and executing tests **at the same time**: every result you observe feeds the next test you come up with. It is not "clicking around to see what happens" — it's a structured technique, and one of the best at finding interesting bugs.
 
-## Exploratory vs. scripted
+## Exploratory vs scripted
 
 | | Scripted testing | Exploratory testing |
 |---|---|---|
@@ -32,7 +32,7 @@ When you don't know where to go next, a heuristic gives you new angles. **SFDPOT
 
 - **S**tructure — what the product *is*: components, files, dependencies.
 - **F**unction — what the product *does*: every function, including the secondary ones.
-- **D**ata — what the product *processes*: inputs, outputs, boundaries, empty values, unicode, the huge.
+- **D**ata — what the product *processes*: inputs, outputs, boundaries, empty values, Unicode, very large values.
 - **P**latform — what the product *depends on*: browser, operating system, permissions, network.
 - **O**perations — *how it's used*: real user profiles, odd-but-legitimate flows.
 - **T**ime — *when*: concurrency, timeouts, time zones, before/after a migration.
@@ -58,5 +58,5 @@ Automation checks what you already know; exploration discovers what you don't. A
 ## References
 
 - Elisabeth Hendrickson — *Explore It!* (Pragmatic Bookshelf), the reference book on charters and sessions.
-- [James Bach — Session-Based Test Management](https://www.satisfice.com/blog/archives/category/session-based-testing)
+- [Jonathan & James Bach — Session-Based Test Management](https://www.satisfice.com/blog/archives/category/session-based-testing)
 - [ISTQB Glossary — exploratory testing](https://glossary.istqb.org/)

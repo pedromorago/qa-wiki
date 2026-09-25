@@ -1,10 +1,10 @@
 # JSON Schema validation in API tests
 
-Validating that `name == "Fiber 1 Gbps"` confirms a value. Validating the **JSON Schema** confirms the whole contract: that the response has the structure, types, and required fields the API promises. It's the validation with the best effort-to-value ratio in an API test.
+Validating that `name == "Fiber 1 Gbps"` confirms a value. Validating the **JSON Schema** confirms the whole contract: that the response has the structure, types, and required fields the API promises. It's the validation with the best value-to-effort ratio in an API test.
 
 ## Why
 
-- It detects **contract breaking changes** (a field that disappears, a type that changes from `string` to `number`) even when the functional happy path keeps passing.
+- It detects **breaking changes to the contract** (a field that disappears, a type that changes from `string` to `number`) even when the functional happy path keeps passing.
 - It guarantees **consistency across endpoints**: same date format, same error body across the whole API.
 - It's cheap: you write it once per endpoint and it validates dozens of properties on every run.
 
@@ -43,14 +43,14 @@ Its schema (`create-product.json`):
 }
 ```
 
-And a reusable generic schema, the standard error response (RFC 7807 style):
+And a reusable generic schema, the standard error response (RFC 9457 style, formerly RFC 7807, where `type` is a URI reference):
 
 ```json
 {
   "status": 401,
   "title": "Something went wrong",
   "detail": "Authentication failed",
-  "type": "SecurityError",
+  "type": "https://api.example.com/problems/authentication-failed",
   "traceId": "00000000-0000-0000-0000-000000000000"
 }
 ```
@@ -80,7 +80,7 @@ TestCaseReport.assertResponseCodeAndBodySchema("Status and schema", response,
         HttpStatus.SC_CREATED, CATALOG_SCHEMA_PATH + "/create-product.json");
 ```
 
-In JavaScript/TypeScript the equivalent is the `ajv` library; in Playwright it plugs into a custom `expect`.
+In JavaScript/TypeScript the equivalent is the `ajv` library (its default is draft-07; for draft-04 schemas like these, use `ajv-draft-04`); in Playwright it plugs into a custom `expect`.
 
 ## The nuances that make the difference
 

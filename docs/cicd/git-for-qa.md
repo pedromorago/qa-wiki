@@ -11,7 +11,7 @@ working directory → staging → local repository → remote (GitHub, Bitbucket
      (you edit)    (git add)    (git commit)        (git push)
 ```
 
-Understanding this flow prevents 90 % of the confusion. The rest is commands.
+Understanding this flow prevents 90% of the confusion. The rest is commands.
 
 ## The day-to-day commands
 
@@ -27,7 +27,7 @@ Understanding this flow prevents 90 % of the confusion. The rest is commands.
 | Change branches | `git switch other-branch` |
 | See the history | `git log --oneline` |
 
-The normal team flow: **one branch per task + pull request**. Never directly on `main` — not even for "a tiny change".
+On a shared repo, the normal flow is **one branch per task + pull request**. Never directly on `main` — not even for "a tiny change".
 
 ## Git as an investigation tool
 
@@ -42,12 +42,12 @@ This is where Git gives a QA superpowers:
 
 - **Small, frequent commits**, with messages that state the *why* ("stabilize login wait" says more than "fix").
 - **`.gitignore` for artifacts**: screenshots, videos, reports and `node_modules` don't get committed. Only code and configuration.
-- **Never credentials in the repo.** Test access data goes in environment variables or the secrets manager, never hardcoded — Git history doesn't forget.
+- **Never credentials in the repo.** Test access data goes in environment variables or the secrets manager, never hardcoded. If a secret does get pushed, deleting it isn't enough: Git history keeps it, so **rotate the credential** and move it to a secrets manager.
 - **Branch up to date before the PR**: integrate `main` into your branch and run the suite before requesting review.
 
 ## Common mistakes
 
-- **Working on `main`** and finding out when pushing.
+- **Working on `main`** and only noticing when the push is rejected.
 - **Giant commits** ("misc changes") that make precise review or revert impossible.
 - **`git push --force` on shared branches** — it rewrites history others already have. If you need it on your own branch, `--force-with-lease` at least checks you're not stomping on someone's work.
 - **Resolving conflicts without reading them**, accepting "all mine" or "all theirs". A badly resolved conflict is a silent bug.
