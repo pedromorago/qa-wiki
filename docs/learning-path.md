@@ -115,12 +115,12 @@ Every sector has its own map of systems and its own vocabulary. In my case, tele
 
 ## Stage 9 — Advanced certification (optional)
 
-Once you have a couple of years of practice, the [ISTQB Advanced Level](/istqb/advanced-level) turns experience into structured judgment: risk-based testing, test techniques at depth, and (for the Test Analyst module) quality characteristics beyond functionality. Take it when the syllabus describes things you've already done, not before.
+Once you've built and maintained real automation for a while, the [ISTQB Advanced Level Test Automation Engineering](/istqb/advanced-level) turns that experience into structured judgment: framework architecture, approaches and patterns, pipelines, reporting, and how to verify and improve the automation itself. Take it when the syllabus describes things you've already done, not before.
 
 1. [The Advanced Level: which module](/istqb/advanced-level)
-2. [Advanced Test Analyst: exam and syllabus map](/istqb/advanced-test-analyst)
-3. [Advanced study plan](/istqb/advanced-study-plan)
-4. [Practice questions](/istqb/advanced-practice-questions)
+2. [Advanced Test Automation Engineering: exam and syllabus map](/istqb/tae-exam)
+3. [TAE study plan](/istqb/tae-study-plan)
+4. [TAE practice questions](/istqb/tae-practice-questions)
 
 ::: tip How to use this path
 Starting from zero: complete stages 1 and 2 before anything else, and find a real project (your own or a practice one) to apply each stage to as soon as possible. Already working as a QA: use it to spot your gaps — we all have them.
